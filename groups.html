@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>学员组别 · 领航计划</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   沿用首页 / 导师页视觉系统
+   Type: HYXuanSong 35S (display) / HYQiHei 50J·70J (functional)
+   ============================================================ */
+:root{
+  --bg:#08080A;
+  --card-bg:rgba(255,255,255,.045); --card-bg-2:rgba(255,255,255,.075);
+  --card-border:rgba(255,255,255,.11); --radius:20px;
+  --line:rgba(255,255,255,.08); --line-strong:rgba(255,255,255,.18);
+  --fg:#F2F2F4; --fg-2:rgba(242,242,244,.66); --fg-3:rgba(242,242,244,.54);
+  --violet:#A695E6;
+  --display:"HYXuanSong 35S","HYXuanSong","汉仪玄宋","Bodoni Moda","Songti SC",serif;
+  --body:"HYQiHei 50J","HYQiHei","汉仪旗黑","Hanken Grotesk","PingFang SC",-apple-system,sans-serif;
+  --latin:"Bodoni Moda",serif;
+  --gutter:64px; --maxw:1600px; --indent:48px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:110px}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:30px;
+  font-weight:500;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);position:relative}
+section{position:relative;z-index:2}
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(58% 42% at 80% 10%,rgba(150,125,225,.13),transparent 70%),
+  radial-gradient(52% 40% at 8% 48%,rgba(70,95,190,.09),transparent 70%),
+  radial-gradient(55% 45% at 88% 78%,rgba(160,115,205,.10),transparent 70%)}
+.grid-lines{position:fixed;inset:0;pointer-events:none;z-index:1}
+.grid-lines i{position:absolute;top:0;bottom:0;width:1px;background:var(--line)}
+.grid-lines i:nth-child(1){left:calc(max(0px,(100vw - var(--maxw))/2) + 128px)}
+.grid-lines i:nth-child(2){right:calc(max(0px,(100vw - var(--maxw))/2) + 224px)}
+
+.card{background:var(--card-bg);-webkit-backdrop-filter:blur(26px) saturate(1.25);
+  backdrop-filter:blur(26px) saturate(1.25);border:1px solid var(--card-border);
+  border-radius:var(--radius);transition:background .25s,border-color .25s,transform .25s}
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--body);
+  font-size:13px;line-height:12px;font-weight:700;letter-spacing:1.6px;padding:14px 24px;
+  border-radius:999px;background:var(--fg);color:var(--bg);border:1px solid var(--fg);transition:.2s}
+.btn:hover{background:transparent;color:var(--fg)}
+.btn-ghost{background:rgba(255,255,255,.05);color:var(--fg);border-color:var(--line-strong);
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+.btn-ghost:hover{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.mono{font-size:11px;letter-spacing:1.6px;font-weight:700;color:var(--fg-3);text-transform:uppercase}
+
+/* ---------- header ---------- */
+.site-header{position:sticky;top:0;z-index:50;height:76px;transition:background .3s,border-color .3s;
+  background:transparent;border-bottom:1px solid transparent}
+.site-header.stuck{background:rgba(8,8,10,.72);-webkit-backdrop-filter:blur(18px);
+  backdrop-filter:blur(18px);border-bottom-color:var(--line)}
+.site-header .wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .mark{width:34px;height:34px;flex:none;object-fit:contain}
+.brand .name{font-family:var(--display);font-size:21px;letter-spacing:.5px}
+.nav{display:flex;align-items:center;gap:34px}
+.nav a:not(.btn){font-size:13px;line-height:1;letter-spacing:1.6px;font-weight:500;
+  color:var(--fg-2);transition:color .2s}
+.nav a:not(.btn):hover,.nav a.on{color:var(--fg)}
+.nav .sep{width:1px;height:15px;background:var(--line-strong);flex:none}
+
+/* ---------- hero：背景图左右翻转，压暗方式同首页/导师页 ---------- */
+.hero{position:relative;min-height:70vh;margin-top:-76px;padding-top:76px;
+  display:flex;align-items:center;overflow:hidden;background:#08080A;isolation:isolate}
+.hero-bg{position:absolute;inset:0;z-index:0;
+  background:url("web_assets/group-header.webp") center 42% / cover no-repeat;
+  transform:scaleX(-1)}   /* 左右翻转：行星弧线改从右侧扫下，光核移到左半 */
+.hero .scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:
+  linear-gradient(90deg,rgba(7,7,12,.93) 0%,rgba(7,7,12,.76) 28%,rgba(7,7,12,.30) 56%,rgba(7,7,12,.05) 76%,transparent 90%),
+  linear-gradient(180deg,rgba(7,7,12,.58),transparent 24%,transparent 58%,rgba(8,8,10,.55) 84%,#08080A 100%)}
+.hero .wrap{z-index:3}
+.hero h1{font-family:var(--display);font-size:72px;line-height:100px;letter-spacing:-3px;font-weight:400}
+.hero .rule{width:84px;height:1px;background:var(--line-strong);margin:26px 0 30px}
+.hero .sub{font-size:16px;line-height:30px;color:var(--fg-2);max-width:54ch}
+
+/* ---------- 组别行：全宽图文交替 ---------- */
+.g-en{font-size:10px;letter-spacing:2.4px;font-weight:700;color:var(--violet);text-transform:uppercase}
+.g-title{font-family:var(--display);font-size:36px;font-weight:400;line-height:1.25}
+.g-desc{font-size:14.5px;line-height:26px;color:var(--fg-2)}
+.req-list{list-style:none}
+.req-list li{font-size:13.5px;line-height:24px;color:var(--fg-2);padding:5px 0 5px 22px;position:relative}
+.req-list li::before{content:"";position:absolute;left:0;top:16px;width:9px;height:1px;background:var(--violet)}
+.imgph{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--card-border);
+  background:radial-gradient(120% 90% at 72% 12%,rgba(160,130,230,.26),transparent 62%),
+  linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02))}
+.imgph .tag{position:absolute;top:12px;left:12px;font-size:9px;letter-spacing:1.2px;font-weight:700;
+  color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:2px 9px}
+.mm{display:flex;gap:12px;align-items:center;min-width:0}
+.mm .av{width:46px;height:46px;border-radius:50%;overflow:hidden;flex:none}
+.mm .nm{font-family:var(--display);font-size:16px;line-height:1.35;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mm .po{font-size:11.5px;line-height:17px;color:var(--fg-3);margin-top:3px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.av img{width:100%;height:100%;object-fit:cover}
+.av.ph{background:rgba(255,255,255,.055);border:1px solid var(--card-border);position:relative}
+.av.ph::before{content:"";position:absolute;left:50%;top:22%;width:30%;aspect-ratio:1;
+  transform:translateX(-50%);border-radius:50%;background:rgba(255,255,255,.16)}
+.av.ph::after{content:"";position:absolute;left:50%;top:60%;width:62%;height:56%;
+  transform:translateX(-50%);border-radius:52% 52% 0 0;background:rgba(255,255,255,.14)}
+.is-ph .nm,.is-ph .po{color:var(--fg-3)}
+.g-more{font-size:11px;letter-spacing:1.6px;font-weight:700;color:var(--fg-3);transition:color .2s}
+.g-more:hover{color:var(--fg)}
+
+.rows{display:flex;flex-direction:column;gap:18px}
+/* 图位宽 340 固定，高度撑满整行（与文字+导师区齐平）；
+   真图进来后 object-fit:cover 等比放大裁切，不变形 */
+.row{position:relative;display:grid;grid-template-columns:340px 1fr;gap:48px;padding:36px;
+  scroll-margin-top:110px}
+.row .media{align-self:stretch}
+.row .media .imgph{height:100%}
+.row .media .imgph img{width:100%;height:100%;object-fit:cover}
+.row:nth-child(even){grid-template-columns:1fr 340px}
+.row:nth-child(even) .media{order:2}
+.row .cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:22px}
+.row .mm-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px;
+  padding-top:22px;border-top:1px solid var(--line)}
+
+/* ---------- 报名 CTA（同首页 final-cta） ---------- */
+.final-cta{padding:150px 0;position:relative;overflow:hidden;margin-top:140px}
+.final-cta::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(70% 90% at 76% 40%,rgba(160,125,225,.22),transparent 68%)}
+.final-cta h2{font-family:var(--display);font-size:60px;line-height:1.3;font-weight:400;letter-spacing:-2px}
+.final-cta .sub{color:var(--fg-2);margin:24px 0 0;font-size:16px;max-width:52ch}
+.final-cta .actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:44px}
+
+/* ---------- footer ---------- */
+.site-footer{border-top:1px solid var(--line);padding:44px 0;margin-top:0;position:relative;z-index:2;
+  display:flex;justify-content:space-between;align-items:center;gap:30px;
+  font-size:12.5px;color:var(--fg-3);flex-wrap:wrap}
+.site-footer nav{display:flex;gap:28px}
+
+@media(max-width:1240px){
+  :root{--gutter:32px;--indent:32px}
+  .grid-lines{display:none}
+  .row{grid-template-columns:1fr;gap:28px}
+  .row:nth-child(even) .media{order:0}
+  .row .media .imgph{aspect-ratio:16/9;height:auto}
+}
+@media(max-width:700px){
+  .nav a:not(.btn),.nav .sep{display:none}
+  .hero h1{font-size:38px;line-height:60px;letter-spacing:-1.5px}
+  .g-title{font-size:28px}
+  .sv .sv-q{align-items:flex-start;flex-direction:column;gap:12px}
+  .sv .sv-q .lab{min-width:0}
+  .row{padding:24px}
+  .row .cols,.row .mm-row{grid-template-columns:1fr}
+  .final-cta h2{font-size:34px;letter-spacing:-1px}
+}
+</style>
+</head>
+<body>
+<div class="ambient"></div>
+<div class="grid-lines"><i></i><i></i></div>
+
+<header class="site-header" id="hdr"><div class="wrap">
+  <a class="brand" href="index.html">
+    <img class="mark" src="web_assets/lh-logo.webp" alt="">
+    <span class="name">领航计划</span>
+  </a>
+  <nav class="nav">
+    <a href="index.html">首页</a>
+    <a href="groups.html" class="on">组别</a>
+    <a href="mentors.html">导师</a>
+    <a href="index.html#journal">文章</a>
+    <span class="sep"></span>
+    <a href="#">社区登录</a>
+    <a class="btn" href="#apply">报名领航</a>
+  </nav>
+</div></header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="scrim"></div>
+  <div class="wrap">
+    <h1>学员组别</h1>
+    <div class="rule"></div>
+    <p class="sub">
+      学员按职业阶段与背景分入四组，每组约十位学员，配对四位总监级别及以上的导师。
+      找到属于你的那一组。
+    </p>
+  </div>
+</section>
+
+<!-- ===================== 四个组 ===================== -->
+<section><div class="wrap" style="padding-block:96px 0">
+  <div class="rows" id="rows"></div>
+</div></section>
+
+<!-- ===================== 报名领航 ===================== -->
+<section class="final-cta" id="apply">
+  <div class="wrap" style="position:relative;z-index:2">
+    <h2>报名领航</h2>
+    <p class="sub">
+      领航计划每年招募一期，九月开学，次年五月毕业。
+      找到你的组，与一百二十余位导师和一群同行者一起出发。
+    </p>
+    <div class="actions">
+      <a class="btn" href="#" style="padding:18px 38px">报名领航</a>
+      <a class="btn btn-ghost" href="mentors.html" style="padding:18px 38px">认识导师团队</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="site-footer">
+  <span>Lighthouse Mentorship · 领航计划</span>
+  <nav><a href="index.html">首页</a><a href="groups.html">组别</a><a href="mentors.html">导师</a><a href="index.html#journal">文章</a><a href="#">社区登录</a><a href="#apply">报名</a></nav>
+  <span>© Lighthouse Mentorship · 501(c)(3)</span>
+</div></div>
+
+<script>
+/* =========================================================================
+   数据 —— 组别文案来自公众号《美西十二期报名开启》；导师沿用现有素材
+   ========================================================================= */
+const GROUPS = [
+  { id:"rising", cn:"新星职业组", en:"Rising",
+    desc:"面向中大型科技公司工作经验相对较少、但展现出快速成长潜力的职场新锐。",
+    reqs:["通常为全职工作五年以内","对职业发展有主动思考","具备较强学习能力和成长潜力"],
+    goal:"通过导师经验分享和同行交流，帮助学员理解不同的职业发展路径，拓展行业视野，建立对自身优势与未来方向的认知，加速从优秀个人贡献者向未来领导者成长。" },
+  { id:"senior", cn:"资深职业组", en:"Senior",
+    desc:"面向中大型科技公司拥有较丰富经验的 Manager、Senior Manager 及对应级别的 Individual Contributor。",
+    reqs:["具备较丰富的职场经验","有领导团队、推动重要项目或跨团队协作经验","希望进一步扩大个人影响力"],
+    goal:"匹配具有丰富管理经验和高阶领导力的导师，帮助学员从更高视角理解组织、业务和领导力，在职业发展的关键阶段获得新的启发，共同定义 AI 时代的领导力边界与组织架构。" },
+  { id:"startup", cn:"初创员工组", en:"Startup",
+    desc:"面向初创公司的优秀员工与业务骨干，Manager 或 Individual Contributor 均可，职能不限。",
+    reqs:["公司规模约 20–500 人","通常处于 C 轮及之前阶段","公司的业务骨干"],
+    goal:"导师通常具有 Founder、VP 或创业公司核心团队经验，围绕创业公司的真实挑战展开交流——如何在快速变化的环境中推动业务、扩大个人影响力、与公司共同成长、面对创业阶段的关键选择。" },
+  { id:"founder", cn:"创始人组", en:"Founder",
+    desc:"面向全职创业的科技公司创始人，以接近 Private Board Meeting 的小班形式交流。",
+    reqs:["全职投入创业","公司已经完成融资","优先考虑融资 $2M 以上（轮次不限）"],
+    goal:"导师通常为成功创业者或投资人，帮助创始人面对公司战略选择、团队建设与组织发展、融资和董事会管理等创业过程中的关键挑战。让创业之路少一份孤独，多一份支持。" }
+];
+const P = "web_assets/mentors/";
+const GROUP_MENTORS = {
+  rising:  [ {name:"Liangxiao Zhu", photo:"Liangxiao Zhu.png", pos:"职位待补"}, {ph:true}, {ph:true} ],
+  senior:  [ {name:"David Feng 冯大为", photo:"David Feng 冯大为.png", pos:"职位待补"},
+             {name:"David Wei", photo:"David Wei.png", pos:"职位待补"}, {ph:true} ],
+  startup: [ {name:"包胜华", photo:"包胜华.png", pos:"职位待补"},
+             {name:"钱骏", photo:"钱骏.png", pos:"职位待补"}, {ph:true} ],
+  founder: [ {name:"Chang Chen", photo:"Chang Chen.png", pos:"Founder, Hockey Stick Growth"},
+             {name:"刘长明", pos:"CEO, Stellar Cyber"},
+             {name:"王金林", pos:"Managing Partner, Foothill Ventures"} ]
+};
+
+const esc = s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const avatar = m => (m.ph || !m.photo)
+  ? `<div class="av ph"></div>`
+  : `<div class="av"><img src="${P}${encodeURIComponent(m.photo)}" alt="${esc(m.name)}" loading="lazy" decoding="async"></div>`;
+const mm = m => `<div class="mm ${m.ph?'is-ph':''}">${avatar(m)}
+  <div style="min-width:0"><div class="nm">${m.ph?'导师姓名':esc(m.name)}</div>
+  <div class="po">${m.ph?'职位待补':esc(m.pos||'职位待补')}</div></div></div>`;
+
+document.getElementById("rows").innerHTML = GROUPS.map(g=>`
+  <div class="card row" id="g-${g.id}">
+    <div class="media"><div class="imgph"><span class="tag">PLACEHOLDER · ${g.cn}</span></div></div>
+    <div>
+      <div class="g-en">${g.en}</div>
+      <h3 class="g-title" style="margin-top:8px">${g.cn}</h3>
+      <p class="g-desc" style="margin-top:14px">${g.desc}</p>
+      <div class="cols">
+        <div><div class="mono" style="margin-bottom:10px">招生要求</div>
+          <ul class="req-list">${g.reqs.map(r=>`<li>${r}</li>`).join("")}</ul></div>
+        <div><div class="mono" style="margin-bottom:10px">你会得到什么</div>
+          <p style="font-size:13.5px;line-height:24px;color:var(--fg-2)">${g.goal}</p></div>
+      </div>
+      <div class="mm-row" style="margin-top:26px">${GROUP_MENTORS[g.id].map(mm).join("")}</div>
+      <div style="margin-top:18px"><a class="g-more" href="mentors.html">查看本组全部导师 →</a></div>
+    </div>
+  </div>`).join("");
+
+/* header 滚动后变实 */
+const hdr = document.getElementById("hdr");
+const onScroll = ()=>hdr.classList.toggle("stuck", scrollY>40);
+onScroll(); addEventListener("scroll", onScroll, {passive:true});
+</script>
+</body>
+</html>
