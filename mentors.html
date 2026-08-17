@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>导师团队 · 领航计划</title>
+<title data-en="Our Mentors · Lighthouse Mentorship">导师团队 · 领航计划</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
@@ -68,6 +68,9 @@ section{position:relative;z-index:2}
   color:var(--fg-2);transition:color .2s}
 .nav a:not(.btn):hover,.nav a.on{color:var(--fg)}
 .nav .sep{width:1px;height:15px;background:var(--line-strong);flex:none}
+.nav a.lang{font-family:var(--latin);font-size:12px;letter-spacing:1.4px;font-weight:500;
+  padding:6px 12px;border-radius:999px;border:1px solid var(--line-strong);color:var(--fg-2)}
+.nav a.lang:hover{color:var(--fg);border-color:var(--fg)}
 
 /* ---------- hero：结构与首页一致，标题垂直居中 ---------- */
 .hero{position:relative;min-height:70vh;margin-top:-76px;padding-top:76px;
@@ -155,7 +158,7 @@ section{position:relative;z-index:2}
   .m-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:700px){
-  .nav a:not(.btn),.nav .sep{display:none}
+  .nav a:not(.btn):not(.lang),.nav .sep{display:none}
   .hero h1{font-size:38px;line-height:60px;letter-spacing:-1.5px}
   .grp-head h2{font-size:30px}
   .grp-head .req{padding-left:0}
@@ -172,16 +175,17 @@ section{position:relative;z-index:2}
 <header class="site-header" id="hdr"><div class="wrap">
   <a class="brand" href="index.html">
     <img class="mark" src="web_assets/lh-logo.webp" alt="">
-    <span class="name">领航计划</span>
+    <span class="name" data-en="Lighthouse Mentorship">领航计划</span>
   </a>
   <nav class="nav">
-    <a href="index.html">首页</a>
-    <a href="groups.html">组别</a>
-    <a href="mentors.html" class="on">导师</a>
-    <a href="index.html#journal">文章</a>
+    <a href="index.html" data-en="Home">首页</a>
+    <a href="groups.html" data-en="Groups">组别</a>
+    <a href="mentors.html" class="on" data-en="Mentors">导师</a>
+    <a href="index.html#journal" data-en="Journal">文章</a>
     <span class="sep"></span>
-    <a href="#">社区登录</a>
-    <a class="btn" href="#">报名领航</a>
+    <a href="#" data-en="Community Login">社区登录</a>
+    <a href="#" class="lang" data-lang-btn aria-label="Switch language">EN</a>
+    <a class="btn" href="#" data-en="Apply Now">报名领航</a>
   </nav>
 </div></header>
 
@@ -190,16 +194,16 @@ section{position:relative;z-index:2}
   <div class="hero-bg"></div>
   <div class="scrim"></div>
   <div class="wrap">
-    <h1>导师团队</h1>
+    <h1 data-en="Our Mentors">导师团队</h1>
     <div class="rule"></div>
-    <p class="sub">
+    <p class="sub" data-en="Our mentors are largely VPs and directors from leading tech companies such as Meta, Google, Apple and NVIDIA, together with serial entrepreneurs and successful investors active in the Chinese community. Mentees are matched with mentors in their region for at least one in-depth themed session every month.">
       导师多由 Meta、Google、Apple、NVIDIA 等顶尖科技公司的 VP 与总监，以及活跃在华人圈的连续创业者与成功投资人组成。
       学员与本区导师匹配，每月至少一次深入的主题交流。
     </p>
     <div style="margin-top:44px">
       <div class="seg" id="seg">
-        <button data-r="west" class="on">美西导师</button>
-        <button data-r="east">美东导师</button>
+        <button data-r="west" class="on" data-en="West Coast">美西导师</button>
+        <button data-r="east" data-en="East Coast">美东导师</button>
       </div>
     </div>
   </div>
@@ -219,7 +223,7 @@ section{position:relative;z-index:2}
 
 <div class="wrap"><div class="site-footer">
   <span>Lighthouse Mentorship · 领航计划</span>
-  <nav><a href="index.html">首页</a><a href="groups.html">组别</a><a href="mentors.html">导师</a><a href="index.html#journal">文章</a><a href="#">社区登录</a><a href="#">报名</a></nav>
+  <nav><a href="index.html" data-en="Home">首页</a><a href="groups.html" data-en="Groups">组别</a><a href="mentors.html" data-en="Mentors">导师</a><a href="index.html#journal" data-en="Journal">文章</a><a href="#" data-en="Community Login">社区登录</a><a href="#" data-en="Apply">报名</a></nav>
   <span>© Lighthouse Mentorship · 501(c)(3)</span>
 </div></div>
 
@@ -228,15 +232,37 @@ section{position:relative;z-index:2}
    数据契约 —— 字段与 Airtable 对齐：photo / name / position / bio
    另加 region(west|east) + group。API 接通后由同步脚本回填，页面代码不用改。
    ========================================================================= */
+/* ---------- i18n：中/英切换。静态文案写在 data-en 属性里；JS 渲染的数据带 *_en 字段 ---------- */
+let LANG = (()=>{ try{ return localStorage.getItem("lh-lang") || "zh"; }catch(e){ return "zh"; } })();
+const t = (zh,en)=> LANG==="en" && en!=null ? en : zh;
+function applyStatic(){
+  document.querySelectorAll("[data-en]").forEach(el=>{
+    if(!el.hasAttribute("data-zh")) el.setAttribute("data-zh", el.innerHTML);
+    el.innerHTML = LANG==="en" ? el.getAttribute("data-en") : el.getAttribute("data-zh");
+  });
+  document.documentElement.lang = LANG==="en" ? "en" : "zh-CN";
+  document.querySelectorAll("[data-lang-btn]").forEach(b=>b.textContent = LANG==="en" ? "中文" : "EN");
+}
+function setLang(l){ LANG=l; try{ localStorage.setItem("lh-lang", l); }catch(e){} applyStatic(); renderAll(); }
+document.querySelectorAll("[data-lang-btn]").forEach(b=>b.addEventListener("click", e=>{ e.preventDefault(); setLang(LANG==="en"?"zh":"en"); }));
+
 const GROUPS = [
-  { id:"rising",  cn:"新星职业组", req:"面向中大型科技公司工作经验相对较少、但展现出快速成长潜力的职场新锐。通常为全职工作五年以内。" },
-  { id:"senior",  cn:"资深职业组", req:"面向中大型科技公司拥有较丰富经验的 Manager、Senior Manager 及对应级别的 Individual Contributor。" },
-  { id:"startup", cn:"初创员工组", req:"面向初创公司的优秀员工与业务骨干。公司规模约 20–500 人，通常处于 C 轮及之前阶段，职能不限。" },
-  { id:"founder", cn:"创始人组",   req:"面向全职创业的科技公司创始人，以接近 Private Board Meeting 的小班形式交流。公司已完成融资。" }
+  { id:"rising",  cn:"新星职业组", name_en:"Rising Professionals",
+    req:"面向中大型科技公司工作经验相对较少、但展现出快速成长潜力的职场新锐。通常为全职工作五年以内。",
+    req_en:"For early-career professionals at mid-to-large tech companies with relatively limited experience but clear signs of rapid growth potential. Typically within five years of full-time work." },
+  { id:"senior",  cn:"资深职业组", name_en:"Senior Professionals",
+    req:"面向中大型科技公司拥有较丰富经验的 Manager、Senior Manager 及对应级别的 Individual Contributor。",
+    req_en:"For experienced Managers, Senior Managers and equivalent-level Individual Contributors at mid-to-large tech companies." },
+  { id:"startup", cn:"初创员工组", name_en:"Startup Employees",
+    req:"面向初创公司的优秀员工与业务骨干。公司规模约 20–500 人，通常处于 C 轮及之前阶段，职能不限。",
+    req_en:"For outstanding employees and key contributors at startups. Company size roughly 20–500 people, typically Series C or earlier; any function." },
+  { id:"founder", cn:"创始人组",   name_en:"Founders",
+    req:"面向全职创业的科技公司创始人，以接近 Private Board Meeting 的小班形式交流。公司已完成融资。",
+    req_en:"For full-time founders of tech companies who have completed a funding round, meeting in a small-group format close to a private board meeting." }
 ];
 const REGIONS = {
-  west:{ cn:"美西导师", short:"美西", cities:"加州湾区 · 西雅图" },
-  east:{ cn:"美东导师", short:"美东", cities:"纽约 · 波士顿 · 华盛顿" }
+  west:{ cn:"美西导师", en:"West Coast Mentors", short:"美西", short_en:"West Coast", cities:"加州湾区 · 西雅图",        cities_en:"SF Bay Area · Seattle" },
+  east:{ cn:"美东导师", en:"East Coast Mentors", short:"美东", short_en:"East Coast", cities:"纽约 · 波士顿 · 华盛顿", cities_en:"New York · Boston · Washington, D.C." }
 };
 const P = "web_assets/mentors/";
 
@@ -244,15 +270,20 @@ const P = "web_assets/mentors/";
    ⚠ guess:true 的几位，组别与区域是暂放的，需按 Airtable 修正 */
 const MENTORS = [
   { region:"west", group:"founder", name:"刘长明", position:"CEO, Stellar Cyber",
-    bio:"刘长明导师是 Stellar Cyber 的联合创始人和首席执行官。曾在 2006 年创办 Aerohive Networks，于 2014 年在 NYSE 上市。刘长明导师曾在 Juniper Networks…" },
+    bio:"刘长明导师是 Stellar Cyber 的联合创始人和首席执行官。曾在 2006 年创办 Aerohive Networks，于 2014 年在 NYSE 上市。刘长明导师曾在 Juniper Networks…",
+    bio_en:"Changming Liu is co-founder and CEO of Stellar Cyber. In 2006 he founded Aerohive Networks, which listed on the NYSE in 2014. He previously worked at Juniper Networks…" },
   { region:"west", group:"founder", name:"王金林", position:"Managing Partner, Foothill Ventures, Ex cofounder & CEO of Auryc",
-    bio:"王金林博士现任 Foothill Ventures（清源创投）管理合伙人，以及清华企业家协会天使基金管理合伙人，其成功投资案例包括独角兽公司 Carta、Iterable、Ginkgo…" },
+    bio:"王金林博士现任 Foothill Ventures（清源创投）管理合伙人，以及清华企业家协会天使基金管理合伙人，其成功投资案例包括独角兽公司 Carta、Iterable、Ginkgo…",
+    bio_en:"Dr. Jinlin Wang is Managing Partner at Foothill Ventures and Managing Partner of the TEEC Angel Fund. His successful investments include the unicorns Carta, Iterable, Ginkgo…" },
   { region:"west", group:"founder", name:"陈维国", position:"Partner, Sheppard Mullin Richter & Hampton LLP",
-    bio:"陈维国导师在清华大学获得工程和法律双学位，毕业后来美国继续学习法律。现在是美国盛智律师事务所的合伙人，主要帮助硅谷和中国高新技术公司建立专利组合和…" },
+    bio:"陈维国导师在清华大学获得工程和法律双学位，毕业后来美国继续学习法律。现在是美国盛智律师事务所的合伙人，主要帮助硅谷和中国高新技术公司建立专利组合和…",
+    bio_en:"Weiguo Chen holds dual degrees in engineering and law from Tsinghua University and continued his legal studies in the United States. He is now a Partner at Sheppard Mullin, helping high-tech companies in Silicon Valley and China build patent portfolios and…" },
   { region:"west", group:"founder", name:"Chang Chen", position:"Founder, Hockey Stick Growth", photo:"Chang Chen.png",
-    bio:"I'm Chang Chen. I've been fortunate to be part of three startup exits, where I learned that “yes, we finally sold it” still makes my heart race. I've helped 40+…" },
+    bio:"我是 Chang Chen。有幸参与过三次创业公司退出，也因此明白，“我们终于把它卖掉了”这句话至今仍会让我心跳加速。我帮助过 40 多家…",
+    bio_en:"I'm Chang Chen. I've been fortunate to be part of three startup exits, where I learned that “yes, we finally sold it” still makes my heart race. I've helped 40+…" },
   { region:"west", group:"founder", name:"John Sun 孙壮", position:"Partner, HLK Ventures",
-    bio:"孙壮导师有十多年投资经验，主导投资项目超过 30 个，投资金额超过 6 亿美元，并帮助多个公司在美国、香港、深圳等证券交易市场上市。他于 2006 年加入世界银行…" },
+    bio:"孙壮导师有十多年投资经验，主导投资项目超过 30 个，投资金额超过 6 亿美元，并帮助多个公司在美国、香港、深圳等证券交易市场上市。他于 2006 年加入世界银行…",
+    bio_en:"John Sun has more than a decade of investment experience, having led over 30 deals totalling more than US$600 million and helped multiple companies list in the U.S., Hong Kong and Shenzhen. He joined the World Bank in 2006…" },
 
   { region:"west", group:"senior",  name:"David Feng 冯大为", photo:"David Feng 冯大为.png", guess:true },
   { region:"west", group:"senior",  name:"David Wei",        photo:"David Wei.png",        guess:true },
@@ -274,19 +305,22 @@ const avatar = m => (m.ph || !m.photo)
   : `<div class="av"><img src="${P}${encodeURIComponent(m.photo)}" alt="${esc(m.name)}" loading="lazy" decoding="async"></div>`;
 const card = m=>`<div class="card m ${m.ph?'is-ph':''}">
   <div class="top">${avatar(m)}
-    <div><div class="nm">${m.ph?'导师姓名':esc(m.name)}</div>
-      <div class="po">${m.ph||!m.position?'职位待补':esc(m.position)}</div></div></div>
-  <div class="bio">${m.ph||!m.bio?'简介待从 Airtable 导入。':m.bio}</div>
+    <div><div class="nm">${m.ph?t('导师姓名','Mentor Name'):esc(m.name)}</div>
+      <div class="po">${m.ph||!m.position?t('职位待补','Title TBD'):esc(m.position)}</div></div></div>
+  <div class="bio">${m.ph||!m.bio?t('简介待从 Airtable 导入。','Bio to be imported from Airtable.'):t(m.bio,m.bio_en)}</div>
 </div>`;
 
-document.getElementById("groups").innerHTML = GROUPS.map(g=>`
+function renderShell(){
+  document.getElementById("groups").innerHTML = GROUPS.map(g=>`
   <div class="grp" id="${g.id}">
-    <div class="grp-head"><h2>${g.cn}</h2><div class="req">${g.req}</div></div>
+    <div class="grp-head"><h2>${t(g.cn,g.name_en)}</h2><div class="req">${t(g.req,g.req_en)}</div></div>
     <div class="m-grid" data-g="${g.id}"></div>
   </div>`).join("");
 
-document.getElementById("sideNav").innerHTML = GROUPS.map((g,i)=>
-  `<li><a href="#${g.id}" class="${i?'':'on'}" data-g="${g.id}">${g.cn}<span class="n" data-n="${g.id}">0</span></a></li>`).join("");
+  document.getElementById("sideNav").innerHTML = GROUPS.map((g,i)=>
+    `<li><a href="#${g.id}" class="${i?'':'on'}" data-g="${g.id}">${t(g.cn,g.name_en)}<span class="n" data-n="${g.id}">0</span></a></li>`).join("");
+}
+renderShell();
 
 /* ---------- 区域状态：时区预选 → localStorage → 手动切换 ---------- */
 function guessRegion(){
@@ -305,13 +339,16 @@ function paint(){
     const box  = document.querySelector(`.m-grid[data-g="${g.id}"]`);
     const list = of(region, g.id);
     box.innerHTML = list.length ? list.map(card).join("")
-                                : `<div class="empty">该组暂无${REGIONS[region].short}导师</div>`;
+                                : `<div class="empty">${t(`该组暂无${REGIONS[region].short}导师`,`No ${REGIONS[region].short_en} mentors in this group yet`)}</div>`;
     document.querySelector(`[data-n="${g.id}"]`).textContent = list.length;
   });
   document.querySelectorAll("#seg button").forEach(b=>b.classList.toggle("on", b.dataset.r===region));
+  const n = MENTORS.filter(m=>m.region===region).length;
   document.getElementById("sideFoot").innerHTML =
-    `${REGIONS[region].cities}<br>共 ${MENTORS.filter(m=>m.region===region).length} 位导师`;
+    `${t(REGIONS[region].cities,REGIONS[region].cities_en)}<br>${t(`共 ${n} 位导师`,`${n} mentors in total`)}`;
 }
+/* 切换语言：重绘分组骨架 + 卡片，并重新挂目录高亮的观察器 */
+function renderAll(){ renderShell(); paint(); observeGroups(); }
 
 document.getElementById("seg").addEventListener("click", e=>{
   const b = e.target.closest("button"); if(!b) return;
@@ -320,16 +357,23 @@ document.getElementById("seg").addEventListener("click", e=>{
   paint();
 });
 
+applyStatic();
 paint();
 
 /* ---------- 滚动高亮左侧目录 ---------- */
-GROUPS.forEach(g=>{
-  const el = document.getElementById(g.id); if(!el) return;
-  new IntersectionObserver(es=>es.forEach(en=>{
-    if(!en.isIntersecting) return;
-    document.querySelectorAll("#sideNav a").forEach(a=>a.classList.toggle("on", a.dataset.g===g.id));
-  }), {rootMargin:"-140px 0px -62% 0px"}).observe(el);
-});
+let groupObservers = [];
+function observeGroups(){
+  groupObservers.forEach(o=>o.disconnect()); groupObservers = [];
+  GROUPS.forEach(g=>{
+    const el = document.getElementById(g.id); if(!el) return;
+    const io = new IntersectionObserver(es=>es.forEach(en=>{
+      if(!en.isIntersecting) return;
+      document.querySelectorAll("#sideNav a").forEach(a=>a.classList.toggle("on", a.dataset.g===g.id));
+    }), {rootMargin:"-140px 0px -62% 0px"});
+    io.observe(el); groupObservers.push(io);
+  });
+}
+observeGroups();
 
 /* header 滚动后变实 */
 const hdr = document.getElementById("hdr");

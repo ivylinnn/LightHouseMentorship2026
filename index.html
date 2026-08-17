@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>领航计划 · 首页</title>
+<title data-en="Lighthouse Mentorship · Home">领航计划 · 首页</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -108,6 +108,10 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 .nav a:not(.btn){font-size:13px;line-height:1;letter-spacing:1.6px;font-weight:500;color:var(--fg-2);transition:color .2s}
 .nav a:not(.btn):hover{color:var(--fg)}
 .nav .sep{width:1px;height:15px;background:var(--line-strong);flex:none}
+/* 中英切换：与 nav 文字同级，移动端也保留 */
+.nav a.lang{font-family:var(--latin-display);font-size:12px;letter-spacing:1.4px;font-weight:500;
+  padding:6px 12px;border-radius:999px;border:1px solid var(--line-strong);color:var(--fg-2)}
+.nav a.lang:hover{color:var(--fg);border-color:var(--fg)}
 .btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--body);
   font-size:13px;line-height:12px;font-weight:700;letter-spacing:1.6px;
   padding:14px 24px;border-radius:999px;background:var(--fg);color:var(--bg);
@@ -297,7 +301,7 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 @media(max-width:680px){
   /* 移动端内容不再内缩，破折号与正文同一左边界 */
   :root{--indent:0px}
-  .nav a:not(.btn),.nav .sep{display:none}
+  .nav a:not(.btn):not(.lang),.nav .sep{display:none}
   .hero h1{font-size:38px;line-height:60px;letter-spacing:-1.5px}
   .sec-title{font-size:32px}
   .sec-eyebrow{padding-left:0}
@@ -321,16 +325,17 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 <header class="site-header" id="hdr"><div class="wrap">
   <a class="brand rise" data-rise="0" href="#top">
     <img class="mark" src="web_assets/lh-logo.webp" alt="">
-    <span class="name">领航计划</span>
+    <span class="name" data-en="Lighthouse Mentorship">领航计划</span>
   </a>
   <nav class="nav rise" data-rise="1">
-    <a href="#top">首页</a>
-    <a href="groups.html">组别</a>
-    <a href="mentors.html">导师</a>
-    <a href="#journal">文章</a>
+    <a href="#top" data-en="Home">首页</a>
+    <a href="groups.html" data-en="Groups">组别</a>
+    <a href="mentors.html" data-en="Mentors">导师</a>
+    <a href="#journal" data-en="Journal">文章</a>
     <span class="sep"></span>
-    <a href="#">社区登录</a>
-    <a class="btn" href="#apply">报名领航</a>
+    <a href="#" data-en="Community Login">社区登录</a>
+    <a href="#" class="lang" data-lang-btn aria-label="Switch language">EN</a>
+    <a class="btn" href="#apply" data-en="Apply Now">报名领航</a>
   </nav>
 </div></header>
 
@@ -340,15 +345,15 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
   <canvas id="dust"></canvas>
   <div class="scrim"></div>
   <div class="wrap" style="position:relative;z-index:3">
-    <h1 class="rise" data-rise="2">所见更远，所行更深</h1>
+    <h1 class="rise" data-rise="2" data-en="See Further, Go Deeper">所见更远，所行更深</h1>
     <div class="rule" data-rise="3"></div>
-    <p class="sub rise" data-rise="4">
+    <p class="sub rise" data-rise="4" data-en="Connecting outstanding Chinese professionals and entrepreneurs worldwide — guided by experience, powered by mutual support —<br>to push the frontiers of career and impact together.">
       连接全球优秀华人专业人士与创业者，以经验为光，以互助为帆<br>
       共同开拓事业与影响力的新边界
     </p>
     <div class="actions rise" data-rise="5">
-      <a class="btn" href="#apply">报名领航</a>
-      <a class="btn btn-ghost" href="#groups">了解组别</a>
+      <a class="btn" href="#apply" data-en="Apply Now">报名领航</a>
+      <a class="btn btn-ghost" href="#groups" data-en="Explore the Groups">了解组别</a>
     </div>
   </div>
 </section>
@@ -356,34 +361,34 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 <!-- ===================== 关于领航 ===================== -->
 <section class="sec" id="about"><div class="wrap">
   <div class="sec-eyebrow">About</div>
-  <h2 class="sec-title">关于领航</h2>
+  <h2 class="sec-title" data-en="About Lighthouse">关于领航</h2>
 
   <div class="about-grid">
     <div>
-      <p class="lead">
+      <p class="lead" data-en="Lighthouse Mentorship (领航计划) is a nonprofit 501(c)(3) growth program for the Chinese community, co-founded by the Northern California Tsinghua University Alumni Association and the Tsinghua Entrepreneur and Executive Club (TEEC). Run by mentors, mentees and volunteers, it has completed twelve cohorts since its first class in 2015.">
         领航计划是面向华人社区的非营利成长项目（Lighthouse Mentorship, 501(c)(3)），
         由北加州清华校友会与两岸清华企业家协会共同发起，以导师、学员、志愿者为主体运作，
         自 2015 年首期至今走过十二期。
       </p>
-      <p class="lead" style="margin-top:26px">
+      <p class="lead" style="margin-top:26px" data-en="Each cohort opens in September and graduates the following May. Mentees are placed into small groups by career stage — about ten mentees per group, paired with four mentors at director level or above — for at least one in-depth themed session every month, plus open lectures, workshops and community events for the whole cohort.">
         每期九月开学、次年五月毕业。学员按职业阶段分入小组，每组约十位学员，
         配对四位总监级别及以上的导师，每月至少一次深度主题交流；
         此外还有面向全体学员的公开课、工作坊与社区活动。
       </p>
       <!-- 数字进入视口后从 0 滚动到目标值（data-count）；无 JS 时直接显示终值 -->
       <div class="stat-grid">
-        <div><div class="n"><span data-count="2015">2015</span></div><div class="k">创办至今</div></div>
-        <div><div class="n"><span data-count="12">12</span><small>期</small></div><div class="k">Cohorts</div></div>
+        <div><div class="n"><span data-count="2015">2015</span></div><div class="k" data-en="Founded">创办至今</div></div>
+        <div><div class="n"><span data-count="12">12</span><small data-en="">期</small></div><div class="k">Cohorts</div></div>
         <div><div class="n"><span data-count="120">120</span>+</div><div class="k">Mentors</div></div>
-        <div><div class="n"><span data-count="9">9</span><small>个月</small></div><div class="k">同行周期</div></div>
+        <div><div class="n"><span data-count="9">9</span><small data-en="&nbsp;mo">个月</small></div><div class="k" data-en="Program Length">同行周期</div></div>
       </div>
     </div>
 
     <figure class="about-photo">
       <div class="frame">
-        <img src="web_assets/about_image.webp" alt="领航计划全体合影" loading="lazy" decoding="async">
+        <img src="web_assets/about_image.webp" alt="领航计划全体合影" data-en-alt="Lighthouse cohort group photo" loading="lazy" decoding="async">
       </div>
-      <figcaption>领航计划全体合影 <span class="ph">期数 · 时间 · 地点待补</span></figcaption>
+      <figcaption><span data-en="Lighthouse cohort group photo">领航计划全体合影</span> <span class="ph" data-en="Cohort · date · location TBD">期数 · 时间 · 地点待补</span></figcaption>
     </figure>
   </div>
 </div></section>
@@ -391,8 +396,8 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 <!-- ===================== 活动形式 ===================== -->
 <section class="sec" id="format"><div class="wrap">
   <div class="sec-eyebrow">Program Format</div>
-  <h2 class="sec-title">活动形式</h2>
-  <p class="sec-sub">
+  <h2 class="sec-title" data-en="Program Format">活动形式</h2>
+  <p class="sec-sub" data-en="The tech industry is undergoing profound change. AI is redrawing technical boundaries and the industry landscape, and career paths no longer run in a single direction. These questions rarely have textbook answers — Lighthouse aims to build a lasting platform of mutual support, where talented people at every stage learn alongside industry veterans through real problems and grow together through sustained connection.">
     科技行业正在经历深刻变化，AI 正在重新定义技术边界和行业格局，职业发展的路径也不再只有单一方向。
     这些问题往往没有标准答案——领航希望搭建一个长期的互助共生平台，
     让不同阶段的优秀人才与行业前辈在真实问题中不断学习，在持续连接中共同成长。
@@ -401,8 +406,8 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
     <div class="topics-row">
       <span class="mono-label">Topics</span>
       <div class="chips">
-        <span>行业趋势</span><span>领导力</span><span>职业发展与选择</span>
-        <span>个人成长</span><span>理财投资</span><span>心理健康与焦虑</span>
+        <span data-en="Industry Trends">行业趋势</span><span data-en="Leadership">领导力</span><span data-en="Career Growth &amp; Choices">职业发展与选择</span>
+        <span data-en="Personal Growth">个人成长</span><span data-en="Personal Finance &amp; Investing">理财投资</span><span data-en="Mental Health &amp; Anxiety">心理健康与焦虑</span>
       </div>
     </div>
     <div class="timeline" id="timeline"></div>
@@ -413,11 +418,11 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 <!-- ===================== 学员组别 ===================== -->
 <section class="sec" id="groups"><div class="wrap">
   <div class="sec-eyebrow">Cohort Groups</div>
-  <h2 class="sec-title">学员组别</h2>
+  <h2 class="sec-title" data-en="Cohort Groups">学员组别</h2>
   <p class="sec-sub">
-    领航面向不同职业与创业阶段、不同文化与专业背景的人才开放报名。我们期待遇见对职业发展有明确思考的学习者、
-    真诚分享所知所思的交流者、致力提升影响力的管理者、积极投身创业的引领者，以及愿意参与社区建设的同行者。
-    <span class="minor">欢迎来自 Tech、Product、Design、Marketing、Operations、Sales 等不同职能方向的申请者。</span>
+    <span data-en="Lighthouse welcomes applicants across career and startup stages and from diverse cultural and professional backgrounds. We hope to meet learners with clear thinking about their careers, communicators who share openly what they know and think, managers committed to growing their impact, leaders building companies, and fellow travelers willing to help build the community.">领航面向不同职业与创业阶段、不同文化与专业背景的人才开放报名。我们期待遇见对职业发展有明确思考的学习者、
+    真诚分享所知所思的交流者、致力提升影响力的管理者、积极投身创业的引领者，以及愿意参与社区建设的同行者。</span>
+    <span class="minor" data-en="Applicants from Tech, Product, Design, Marketing, Operations, Sales and other functions are all welcome.">欢迎来自 Tech、Product、Design、Marketing、Operations、Sales 等不同职能方向的申请者。</span>
   </p>
   <div class="groups" id="group-cards"></div>
 </div></section>
@@ -426,10 +431,10 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 <section class="sec" id="mentors"><div class="wrap">
   <div class="sec-eyebrow">Mentors</div>
   <div class="sec-head">
-    <h2 class="sec-title">导师团队</h2>
-    <a class="btn btn-ghost" href="mentors.html">查看全部 120+ 位导师</a>
+    <h2 class="sec-title" data-en="Our Mentors">导师团队</h2>
+    <a class="btn btn-ghost" href="mentors.html" data-en="See All 120+ Mentors">查看全部 120+ 位导师</a>
   </div>
-  <p class="sec-sub">
+  <p class="sec-sub" data-en="Our mentors are largely VPs and directors from leading tech companies such as Meta, Google, Apple and NVIDIA, together with serial entrepreneurs and successful investors active in the Chinese community. They include guides who have navigated promotion at companies large and small, and benchmark founders — some who have exited, some still building — offering tailored, in-depth guidance to mentees at every career stage.">
     导师多由 Meta、Google、Apple、NVIDIA 等顶尖科技公司的 VP 与总监，以及活跃在华人圈的连续创业者与成功投资人组成。
     既有大中小厂晋升之路的引路人，也有功成身退或持续投身的标杆创业者，
     为处于不同职业阶段的学员提供量身定制的深度指导。
@@ -440,7 +445,7 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 <!-- ===================== 学员的话 ===================== -->
 <section class="sec" id="voices"><div class="wrap">
   <div class="sec-eyebrow">In Their Words</div>
-  <h2 class="sec-title">学员的话</h2>
+  <h2 class="sec-title" data-en="In Their Words">学员的话</h2>
   <div class="quotes" id="quotes" style="margin-top:54px"></div>
 </div></section>
 
@@ -448,8 +453,8 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 <section class="sec" id="journal"><div class="wrap">
   <div class="sec-eyebrow">Journal</div>
   <div class="sec-head">
-    <h2 class="sec-title">领航文章</h2>
-    <a class="btn btn-ghost" href="#">全部文章</a>
+    <h2 class="sec-title" data-en="Journal">领航文章</h2>
+    <a class="btn btn-ghost" href="#" data-en="All Articles">全部文章</a>
   </div>
   <div class="posts" id="posts-grid" style="margin-top:54px"></div>
 </div></section>
@@ -457,81 +462,122 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 <!-- ===================== 主办方 ===================== -->
 <section class="sec" id="orgs-sec"><div class="wrap">
   <div class="sec-eyebrow">Organizers</div>
-  <h2 class="sec-title">主办方与支持组织</h2>
+  <h2 class="sec-title" data-en="Organizers &amp; Supporting Organizations">主办方与支持组织</h2>
   <div class="orgs" id="orgs" style="margin-top:48px"></div>
 </div></section>
 
 <!-- ===================== 结尾 CTA ===================== -->
 <section class="final-cta" id="apply">
   <div class="wrap" style="position:relative;z-index:2">
-    <h2>下一段航程，与你同行</h2>
-    <p class="sub">
+    <h2 data-en="Your Next Voyage, Together">下一段航程，与你同行</h2>
+    <p class="sub" data-en="Lighthouse recruits one cohort a year: classes begin in September and graduate the following May. Whether you're searching for your next direction or hoping to pass on the road you've traveled, there's a place for you here.">
       领航计划每年招募一期，九月开学，次年五月毕业。
       无论你正在寻找下一个方向，还是希望把走过的路传给后来的人，这里都有位置。
     </p>
     <div style="display:flex;gap:14px;flex-wrap:wrap">
-      <a class="btn" href="#" style="padding:18px 38px">报名领航</a>
-      <a class="btn btn-ghost" href="#groups" style="padding:18px 38px">先看看四个组别</a>
+      <a class="btn" href="#" style="padding:18px 38px" data-en="Apply Now">报名领航</a>
+      <a class="btn btn-ghost" href="#groups" style="padding:18px 38px" data-en="See the Four Groups First">先看看四个组别</a>
     </div>
   </div>
 </section>
 
 <div class="wrap"><div class="site-footer">
   <span>Lighthouse Mentorship · 领航计划</span>
-  <nav><a href="#top">首页</a><a href="groups.html">组别</a><a href="mentors.html">导师</a><a href="#journal">文章</a><a href="#">社区登录</a><a href="#apply">报名</a></nav>
+  <nav><a href="#top" data-en="Home">首页</a><a href="groups.html" data-en="Groups">组别</a><a href="mentors.html" data-en="Mentors">导师</a><a href="#journal" data-en="Journal">文章</a><a href="#" data-en="Community Login">社区登录</a><a href="#apply" data-en="Apply">报名</a></nav>
   <span>© Lighthouse Mentorship · 501(c)(3)</span>
 </div></div>
 
 <script>
 /* 内容来自领航公众号两篇文章；标 PLACEHOLDER 的为占位 */
+/* ---------- i18n：中/英切换。静态文案写在 data-en 属性里；JS 渲染的数据带 *_en 字段 ---------- */
+let LANG = (()=>{ try{ return localStorage.getItem("lh-lang") || "zh"; }catch(e){ return "zh"; } })();
+const t = (zh,en)=> LANG==="en" && en!=null ? en : zh;
+function applyStatic(){
+  document.querySelectorAll("[data-en]").forEach(el=>{
+    if(!el.hasAttribute("data-zh")) el.setAttribute("data-zh", el.innerHTML);
+    el.innerHTML = LANG==="en" ? el.getAttribute("data-en") : el.getAttribute("data-zh");
+  });
+  document.querySelectorAll("[data-en-alt]").forEach(el=>{
+    if(!el.hasAttribute("data-zh-alt")) el.setAttribute("data-zh-alt", el.alt);
+    el.alt = LANG==="en" ? el.getAttribute("data-en-alt") : el.getAttribute("data-zh-alt");
+  });
+  document.documentElement.lang = LANG==="en" ? "en" : "zh-CN";
+  document.querySelectorAll("[data-lang-btn]").forEach(b=>b.textContent = LANG==="en" ? "中文" : "EN");
+}
+function setLang(l){ LANG=l; try{ localStorage.setItem("lh-lang", l); }catch(e){} applyStatic(); render(); }
+document.querySelectorAll("[data-lang-btn]").forEach(b=>b.addEventListener("click", e=>{ e.preventDefault(); setLang(LANG==="en"?"zh":"en"); }));
+
 const GROUPS = [
-  { en:"Rising",  cn:"新星职业组", desc:"面向中大型科技公司工作经验相对较少、但展现出快速成长潜力的职场新锐。通常为全职工作五年以内。" },
-  { en:"Senior",  cn:"资深职业组", desc:"面向中大型科技公司拥有较丰富经验的 Manager、Senior Manager 及对应级别的 Individual Contributor。" },
-  { en:"Startup", cn:"初创员工组", desc:"面向初创公司的优秀员工与业务骨干。公司规模约 20–500 人，通常处于 C 轮及之前阶段，职能不限。" },
-  { en:"Founder", cn:"创始人组",   desc:"面向全职创业的科技公司创始人，以接近 Private Board Meeting 的小班形式交流。公司已完成融资。" }
+  { en:"Rising",  cn:"新星职业组", name_en:"Rising Professionals",
+    desc:"面向中大型科技公司工作经验相对较少、但展现出快速成长潜力的职场新锐。通常为全职工作五年以内。",
+    desc_en:"For early-career professionals at mid-to-large tech companies with relatively limited experience but clear signs of rapid growth potential. Typically within five years of full-time work." },
+  { en:"Senior",  cn:"资深职业组", name_en:"Senior Professionals",
+    desc:"面向中大型科技公司拥有较丰富经验的 Manager、Senior Manager 及对应级别的 Individual Contributor。",
+    desc_en:"For experienced Managers, Senior Managers and equivalent-level Individual Contributors at mid-to-large tech companies." },
+  { en:"Startup", cn:"初创员工组", name_en:"Startup Employees",
+    desc:"面向初创公司的优秀员工与业务骨干。公司规模约 20–500 人，通常处于 C 轮及之前阶段，职能不限。",
+    desc_en:"For outstanding employees and key contributors at startups. Company size roughly 20–500 people, typically Series C or earlier; any function." },
+  { en:"Founder", cn:"创始人组",   name_en:"Founders",
+    desc:"面向全职创业的科技公司创始人，以接近 Private Board Meeting 的小班形式交流。公司已完成融资。",
+    desc_en:"For full-time founders of tech companies who have completed a funding round, meeting in a small-group format close to a private board meeting." }
 ];
 
 const TIMELINE = [
-  { t:"SEP",     d:"九月开学启航，分组与导师匹配完成" },
-  { t:"MONTHLY", d:"每月至少一次小组深度主题交流" },
-  { t:"ONGOING", d:"面向全体学员的公开课与工作坊" },
-  { t:"FEB",     d:"二月期中汇报" },
-  { t:"MAY",     d:"五月毕业汇展" }
+  { t:"SEP",     d:"九月开学启航，分组与导师匹配完成", d_en:"Kick-off in September; groups formed and mentors matched" },
+  { t:"MONTHLY", d:"每月至少一次小组深度主题交流",     d_en:"At least one in-depth group session every month" },
+  { t:"ONGOING", d:"面向全体学员的公开课与工作坊",     d_en:"Open lectures and workshops for the whole cohort" },
+  { t:"FEB",     d:"二月期中汇报",                     d_en:"Mid-term presentations in February" },
+  { t:"MAY",     d:"五月毕业汇展",                     d_en:"Graduation showcase in May" }
 ];
 
 const DIMS = [
-  { cn:"深度", en:"Depth",   sub:"小组里的长谈", img:"深度.webp",
-    p:"每月一次深聊，由学员和导师一起选题——从团队目标与业务对齐，到技术经理如何保持前瞻判断，到创业公司当下怎么活下去。" },
-  { cn:"广度", en:"Breadth", sub:"公开课与工作坊", img:"广度.webp",
-    p:"期期开设公开课与主题工作坊，涵盖销售技巧、财富管理、职场女性成长、心理健康与领导力提升等议题。" },
-  { cn:"高度", en:"Height",  sub:"导师的视角", img:"高度.webp",
-    p:"导师以多年积累的经验认知，帮助学员站在决策者的高度看清行业新生态、公司新布局与创业新思路。" },
-  { cn:"圈子", en:"Circle",  sub:"互助的社群", img:"圈子.webp",
-    p:"毕业之后，很多人选择继续为这个圈子贡献——做助教、做志愿者。不少导师本身就是从往期学员成长起来的。" }
+  { cn:"深度", en:"Depth",   sub:"小组里的长谈", sub_en:"Long Conversations in Small Groups", img:"深度.webp",
+    p:"每月一次深聊，由学员和导师一起选题——从团队目标与业务对齐，到技术经理如何保持前瞻判断，到创业公司当下怎么活下去。",
+    p_en:"One deep-dive session a month, with topics chosen by mentees and mentors together — from aligning team goals with the business, to how engineering managers stay ahead of the curve, to how a startup survives right now." },
+  { cn:"广度", en:"Breadth", sub:"公开课与工作坊", sub_en:"Open Lectures &amp; Workshops", img:"广度.webp",
+    p:"期期开设公开课与主题工作坊，涵盖销售技巧、财富管理、职场女性成长、心理健康与领导力提升等议题。",
+    p_en:"Every cohort features open lectures and themed workshops covering sales skills, wealth management, women's career growth, mental health, leadership development and more." },
+  { cn:"高度", en:"Height",  sub:"导师的视角", sub_en:"The Mentor's Vantage Point", img:"高度.webp",
+    p:"导师以多年积累的经验认知，帮助学员站在决策者的高度看清行业新生态、公司新布局与创业新思路。",
+    p_en:"Drawing on years of accumulated experience, mentors help mentees see the industry's new ecosystem, companies' new strategies and fresh startup ideas from a decision-maker's height." },
+  { cn:"圈子", en:"Circle",  sub:"互助的社群", sub_en:"A Community That Gives Back", img:"圈子.webp",
+    p:"毕业之后，很多人选择继续为这个圈子贡献——做助教、做志愿者。不少导师本身就是从往期学员成长起来的。",
+    p_en:"After graduating, many choose to keep contributing to this circle — as teaching assistants or volunteers. Quite a few mentors grew out of earlier cohorts themselves." }
 ];
 
 const QUOTES = [
-  { p:"我在领航的导师们身上看到的，是一个个「原来还可以这样」的样子。他们拓宽、冲破了我潜意识里的天花板，像在迷雾中打开的一盏盏探照灯。", w:"九期学员" },
-  { p:"导师们毫无保留的分享，像是把几十年的职场「内功心法」倾囊相授。很多困惑了很久的问题，听完一席话，瞬间茅塞顿开。", w:"十期学员" },
-  { p:"我因为公司的 reorg 被裁，一度陷入迷茫。是领航的导师和同学给了我许多求职建议和方向，也给了我无数内推机会。", w:"十一期学员" }
+  { p:"我在领航的导师们身上看到的，是一个个「原来还可以这样」的样子。他们拓宽、冲破了我潜意识里的天花板，像在迷雾中打开的一盏盏探照灯。", w:"九期学员",
+    p_en:"What I saw in my Lighthouse mentors was one example after another of “oh — it can be done that way too.” They widened and broke through ceilings I hadn't even known I had, like searchlights switching on in the fog.", w_en:"Cohort 9 mentee" },
+  { p:"导师们毫无保留的分享，像是把几十年的职场「内功心法」倾囊相授。很多困惑了很久的问题，听完一席话，瞬间茅塞顿开。", w:"十期学员",
+    p_en:"The mentors shared without holding anything back — like handing over decades of hard-won career know-how all at once. Questions that had puzzled me for ages became clear after a single conversation.", w_en:"Cohort 10 mentee" },
+  { p:"我因为公司的 reorg 被裁，一度陷入迷茫。是领航的导师和同学给了我许多求职建议和方向，也给了我无数内推机会。", w:"十一期学员",
+    p_en:"I was laid off in a company reorg and felt lost for a while. It was Lighthouse mentors and classmates who gave me job-search advice and direction — and countless referrals.", w_en:"Cohort 11 mentee" }
 ];
 
 const POSTS = [
-  { d:"2026 · 07", h:"美西十二期报名开启", p:"变革时代，独行舟不如共弄潮。第十二期领航计划面向不同职业、创业阶段开放报名⋯⋯", ph:false },
-  { d:"2026 · 06", h:"星海逐浪，向光而行：领航公众号启航", p:"从硅谷到西雅图、从纽约到波士顿，每年九月起次年五月终，总会有一群志同道合之友月月相聚⋯⋯", ph:false },
-  { d:"PLACEHOLDER", h:"文章标题占位 · 待补", p:"公众号文章摘要占位。上线后由公众号内容同步，或在 CMS 中维护。", ph:true }
+  { d:"2026 · 07", h:"美西十二期报名开启", h_en:"West Coast Cohort 12 Applications Open",
+    p:"变革时代，独行舟不如共弄潮。第十二期领航计划面向不同职业、创业阶段开放报名⋯⋯",
+    p_en:"In an era of change, better to ride the waves together than row alone. Cohort 12 of Lighthouse is now open to applicants at every career and startup stage…", ph:false },
+  { d:"2026 · 06", h:"星海逐浪，向光而行：领航公众号启航", h_en:"Chasing Waves in a Sea of Stars: The Lighthouse WeChat Channel Sets Sail",
+    p:"从硅谷到西雅图、从纽约到波士顿，每年九月起次年五月终，总会有一群志同道合之友月月相聚⋯⋯",
+    p_en:"From Silicon Valley to Seattle, New York to Boston — every year from September to May, a group of kindred spirits gathers month after month…", ph:false },
+  { d:"PLACEHOLDER", h:"文章标题占位 · 待补", h_en:"Article title placeholder · TBD",
+    p:"公众号文章摘要占位。上线后由公众号内容同步，或在 CMS 中维护。",
+    p_en:"Placeholder for a WeChat article summary. Synced from the official account after launch, or maintained in the CMS.", ph:true }
 ];
 
-const ORGS = ["清华企业家协会 TEEC","北加州清华校友会 THAA-NC","上海交通大学硅谷校友会 SJTUSV","中国科大硅谷校友会 USTCSVAA","Stanford CEO","同济大学北加州校友会 TJUAANC","浙江大学北加州校友会","北航硅谷校友会"];
+const ORGS = [
+  { zh:"清华企业家协会 TEEC",          en:"Tsinghua Entrepreneur &amp; Executive Club (TEEC)" },
+  { zh:"北加州清华校友会 THAA-NC",     en:"Northern California Tsinghua University Alumni Association (THUAA-NC)" },
+  { zh:"上海交通大学硅谷校友会 SJTUSV", en:"SJTU Silicon Valley Alumni Association (SJTUSV)" },
+  { zh:"中国科大硅谷校友会 USTCSVAA",  en:"USTC Silicon Valley Alumni Association (USTCSVAA)" },
+  { zh:"Stanford CEO",                 en:"Stanford CEO" },
+  { zh:"同济大学北加州校友会 TJUAANC", en:"Tongji University Alumni Association of Northern California (TJUAANC)" },
+  { zh:"浙江大学北加州校友会",         en:"Zhejiang University Alumni Association of Northern California" },
+  { zh:"北航硅谷校友会",               en:"Beihang University Silicon Valley Alumni Association" }
+];
 
 const set=(id,html)=>{const el=document.getElementById(id); if(el) el.innerHTML=html;};
-
-set("group-cards", GROUPS.map(g=>`<a class="card gcard" href="groups.html#g-${g.en.toLowerCase()}">
-  <h3>${g.cn}</h3>
-  <div class="en">${g.en}</div>
-  <p>${g.desc}</p>
-  <div class="more">了解详情 →</div>
-</a>`).join(""));
 
 /* 导师：图片文件名即姓名；职位待补 */
 const MENTORS = [
@@ -542,32 +588,43 @@ const MENTORS = [
   { name:"包胜华",            file:"包胜华.png" },
   { name:"钱骏",              file:"钱骏.png" }
 ];
+/* 所有 JS 渲染的区块集中在 render()，切换语言时重绘 */
+function render(){
+set("group-cards", GROUPS.map(g=>`<a class="card gcard" href="groups.html#g-${g.en.toLowerCase()}">
+  <h3>${t(g.cn,g.name_en)}</h3>
+  <div class="en">${t(g.en,g.cn)}</div>
+  <p>${t(g.desc,g.desc_en)}</p>
+  <div class="more">${t("了解详情","Learn more")} →</div>
+</a>`).join(""));
+
 set("mentor-grid", MENTORS.map(m=>`<a class="mentor" href="mentors.html">
   <div class="avatar"><img src="web_assets/mentors/${encodeURIComponent(m.file)}" alt="${m.name}" loading="lazy" decoding="async"></div>
   <b>${m.name}</b>
   <i>Director / VP · Company</i>
 </a>`).join(""));
 
-set("timeline", TIMELINE.map(x=>`<div><div class="t">${x.t}</div><div class="d">${x.d}</div></div>`).join(""));
+set("timeline", TIMELINE.map(x=>`<div><div class="t">${x.t}</div><div class="d">${t(x.d,x.d_en)}</div></div>`).join(""));
 set("dims", DIMS.map(x=>`<div class="card dim">
   <div class="ph" style="background-image:url('web_assets/dims/${encodeURIComponent(x.img)}')"></div>
   <div class="veil"></div>
   <div class="aura"></div>
-  <h4>${x.sub}</h4>
+  <h4>${t(x.sub,x.sub_en)}</h4>
   <div class="en">${x.en} · ${x.cn}</div>
-  <div class="desc"><p>${x.p}</p></div>
+  <div class="desc"><p>${t(x.p,x.p_en)}</p></div>
 </div>`).join(""));
-set("quotes", QUOTES.map(q=>`<div class="card quote"><p>“${q.p}”</p><div class="who">—— <em>${q.w}</em></div></div>`).join(""));
+set("quotes", QUOTES.map(q=>`<div class="card quote"><p>“${t(q.p,q.p_en)}”</p><div class="who">—— <em>${t(q.w,q.w_en)}</em></div></div>`).join(""));
 set("posts-grid", POSTS.map(p=>`<div class="card is-link pcard">
   <div class="thumb">${p.ph?'<span>PLACEHOLDER</span>':''}</div>
   <div class="body">
     <div class="date">${p.d}</div>
-    <h4>${p.h}</h4>
-    <p>${p.p}</p>
-    <div class="more">阅读全文 →</div>
+    <h4>${t(p.h,p.h_en)}</h4>
+    <p>${t(p.p,p.p_en)}</p>
+    <div class="more">${t("阅读全文","Read more")} →</div>
   </div>
 </div>`).join(""));
-set("orgs", ORGS.map(o=>`<div class="card org">${o}</div>`).join(""));
+set("orgs", ORGS.map(o=>`<div class="card org">${t(o.zh,o.en)}</div>`).join(""));
+}
+applyStatic(); render();
 
 /* header 在 hero 之上透明，滚动后变实 */
 const hdr=document.getElementById("hdr");
