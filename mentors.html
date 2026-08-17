@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>导师团队 · 领航计划</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   沿用首页视觉系统
+   Type: HYXuanSong 35S (display) / HYQiHei 50J·70J (functional)
+   对比度三档同首页：--fg 17.9 / --fg-2 7.89 / --fg-3 5.53 : 1
+   ============================================================ */
+:root{
+  --bg:#08080A;
+  --card-bg:rgba(255,255,255,.045); --card-bg-2:rgba(255,255,255,.075);
+  --card-border:rgba(255,255,255,.11); --radius:20px;
+  --line:rgba(255,255,255,.08); --line-strong:rgba(255,255,255,.18);
+  --fg:#F2F2F4; --fg-2:rgba(242,242,244,.66); --fg-3:rgba(242,242,244,.54);
+  --violet:#A695E6;
+  --display:"HYXuanSong 35S","HYXuanSong","汉仪玄宋","Bodoni Moda","Songti SC",serif;
+  --body:"HYQiHei 50J","HYQiHei","汉仪旗黑","Hanken Grotesk","PingFang SC",-apple-system,sans-serif;
+  --latin:"Bodoni Moda",serif;
+  --gutter:64px; --maxw:1600px; --indent:48px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:30px;
+  font-weight:500;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);position:relative}
+section{position:relative;z-index:2}
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(58% 42% at 80% 10%,rgba(150,125,225,.13),transparent 70%),
+  radial-gradient(52% 40% at 8% 48%,rgba(70,95,190,.09),transparent 70%),
+  radial-gradient(55% 45% at 88% 78%,rgba(160,115,205,.10),transparent 70%)}
+.grid-lines{position:fixed;inset:0;pointer-events:none;z-index:1}
+.grid-lines i{position:absolute;top:0;bottom:0;width:1px;background:var(--line)}
+.grid-lines i:nth-child(1){left:calc(max(0px,(100vw - var(--maxw))/2) + 128px)}
+.grid-lines i:nth-child(2){right:calc(max(0px,(100vw - var(--maxw))/2) + 224px)}
+
+.card{background:var(--card-bg);-webkit-backdrop-filter:blur(26px) saturate(1.25);
+  backdrop-filter:blur(26px) saturate(1.25);border:1px solid var(--card-border);
+  border-radius:var(--radius);transition:background .25s,border-color .25s,transform .25s}
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--body);
+  font-size:13px;line-height:12px;font-weight:700;letter-spacing:1.6px;padding:14px 24px;
+  border-radius:999px;background:var(--fg);color:var(--bg);border:1px solid var(--fg);transition:.2s}
+.btn:hover{background:transparent;color:var(--fg)}
+.btn-ghost{background:rgba(255,255,255,.05);color:var(--fg);border-color:var(--line-strong);
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+.btn-ghost:hover{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.mono{font-size:11px;letter-spacing:1.6px;font-weight:700;color:var(--fg-3);text-transform:uppercase}
+
+/* ---------- header ---------- */
+.site-header{position:sticky;top:0;z-index:50;height:76px;transition:background .3s,border-color .3s;
+  background:transparent;border-bottom:1px solid transparent}
+.site-header.stuck{background:rgba(8,8,10,.72);-webkit-backdrop-filter:blur(18px);
+  backdrop-filter:blur(18px);border-bottom-color:var(--line)}
+.site-header .wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .mark{width:34px;height:34px;flex:none;object-fit:contain}
+.brand .name{font-family:var(--display);font-size:21px;letter-spacing:.5px}
+.nav{display:flex;align-items:center;gap:34px}
+.nav a:not(.btn){font-size:13px;line-height:1;letter-spacing:1.6px;font-weight:500;
+  color:var(--fg-2);transition:color .2s}
+.nav a:not(.btn):hover,.nav a.on{color:var(--fg)}
+.nav .sep{width:1px;height:15px;background:var(--line-strong);flex:none}
+
+/* ---------- hero：结构与首页一致，标题垂直居中 ---------- */
+.hero{position:relative;min-height:70vh;margin-top:-76px;padding-top:76px;
+  display:flex;align-items:center;overflow:hidden;background:#08080A;isolation:isolate}
+/* 图是 1672×941（1.78:1），hero 更宽，cover 按宽度缩放 → 水平无溢出，
+   background-position 左右移无效。所以把整个背景层向右挪，并提亮。
+   hero 变矮之后垂直溢出变多，68% 让裁切偏向上方（上多下少）。 */
+.hero-bg{position:absolute;top:0;bottom:0;left:7%;right:-7%;z-index:0;
+  background:url("web_assets/mentor-header.webp") center 68% / cover no-repeat;
+  filter:brightness(1.2) saturate(1.06)}
+.hero .scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:
+  linear-gradient(90deg,rgba(7,7,12,.95) 0%,rgba(7,7,12,.80) 26%,rgba(7,7,12,.34) 52%,rgba(7,7,12,.06) 74%,transparent 90%),
+  linear-gradient(180deg,rgba(7,7,12,.58),transparent 22%,transparent 58%,rgba(8,8,10,.55) 84%,#08080A 100%)}
+.hero .wrap{z-index:3}
+.hero h1{font-family:var(--display);font-size:72px;line-height:100px;letter-spacing:-3px;font-weight:400}
+.hero .rule{width:84px;height:1px;background:var(--line-strong);margin:26px 0 30px}
+.hero .sub{font-size:16px;line-height:30px;color:var(--fg-2);max-width:54ch}
+
+/* ---------- 区域切换：尺寸对齐首页 .btn ---------- */
+.seg{display:inline-flex;padding:4px;border-radius:999px;background:rgba(255,255,255,.06);
+  border:1px solid var(--card-border);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
+.seg button{all:unset;cursor:pointer;font-family:var(--body);font-size:13px;line-height:12px;
+  font-weight:700;letter-spacing:1.6px;padding:13px 24px;border-radius:999px;
+  color:var(--fg-2);transition:.22s;white-space:nowrap}
+.seg button.on{background:var(--fg);color:var(--bg)}
+.seg button:not(.on):hover{color:var(--fg)}
+
+/* ---------- 两栏：左目录 + 右内容 ---------- */
+.two-col{display:grid;grid-template-columns:236px 1fr;gap:72px;align-items:start}
+.side-nav{position:sticky;top:112px}
+.side-nav .lab{margin-bottom:14px}
+.side-nav ul{list-style:none;border-left:1px solid var(--line)}
+.side-nav li a{display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  padding:13px 0 13px 20px;font-size:14px;color:var(--fg-3);
+  margin-left:-1px;border-left:1px solid transparent;transition:.22s}
+.side-nav li a:hover{color:var(--fg-2)}
+.side-nav li a.on{color:var(--fg);border-left-color:var(--violet)}
+.side-nav li a .n{font-family:var(--latin);font-size:12px;color:var(--violet)}
+.side-nav .foot{margin-top:26px;padding-left:20px;font-size:12px;line-height:20px;color:var(--fg-3)}
+
+/* ---------- 分组段落：描述在标题下，右侧不再重复人数 ---------- */
+.grp{padding-top:92px}
+.grp:first-child{padding-top:0}
+.grp-head{padding-bottom:26px;border-bottom:1px solid var(--line);margin-bottom:36px}
+.grp-head h2{font-family:var(--display);font-size:40px;font-weight:400;line-height:1.2;
+  display:flex;align-items:center;gap:20px}
+.grp-head h2::before{content:"";width:24px;height:1px;background:var(--fg);flex:none}
+.grp-head .req{font-size:14px;line-height:25px;color:var(--fg-2);margin-top:12px;padding-left:44px;max-width:62ch}
+
+/* ---------- 导师卡：一行三个 ---------- */
+.m-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.m{padding:26px 24px 24px;display:flex;flex-direction:column}
+.m:hover{background:var(--card-bg-2);border-color:rgba(255,255,255,.2);transform:translateY(-3px)}
+.m .top{display:flex;gap:16px;align-items:center}
+.m .av{width:66px;height:66px;border-radius:50%;overflow:hidden;flex:none}
+.m .nm{font-family:var(--display);font-size:21px;line-height:1.25}
+.m .po{font-size:12px;line-height:19px;color:var(--violet);margin-top:5px}
+.m .bio{font-size:13px;line-height:23px;color:var(--fg-2);margin-top:18px;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.av img{width:100%;height:100%;object-fit:cover}
+.av.ph{background:rgba(255,255,255,.055);border:1px solid var(--card-border);position:relative}
+.av.ph::before{content:"";position:absolute;left:50%;top:22%;width:30%;aspect-ratio:1;
+  transform:translateX(-50%);border-radius:50%;background:rgba(255,255,255,.16)}
+.av.ph::after{content:"";position:absolute;left:50%;top:60%;width:62%;height:56%;
+  transform:translateX(-50%);border-radius:52% 52% 0 0;background:rgba(255,255,255,.14)}
+.is-ph .nm,.is-ph .po{color:var(--fg-3)}
+.empty{padding:54px 0;text-align:center;color:var(--fg-3);font-size:14px;
+  border:1px dashed var(--card-border);border-radius:var(--radius)}
+
+/* ---------- footer ---------- */
+.site-footer{border-top:1px solid var(--line);padding:44px 0;margin-top:130px;position:relative;z-index:2;
+  display:flex;justify-content:space-between;align-items:center;gap:30px;
+  font-size:12.5px;color:var(--fg-3);flex-wrap:wrap}
+.site-footer nav{display:flex;gap:28px}
+
+@media(max-width:1240px){
+  :root{--gutter:32px;--indent:32px}
+  .grid-lines{display:none}
+  .two-col{grid-template-columns:1fr;gap:40px}
+  .side-nav{position:static}
+  .side-nav ul{display:flex;flex-wrap:wrap;gap:8px 26px;border-left:0}
+  .side-nav li a{border-left:0;padding:6px 0;margin-left:0;border-bottom:1px solid transparent}
+  .side-nav li a.on{border-left:0;border-bottom-color:var(--violet)}
+  .side-nav .foot{padding-left:0}
+  .m-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:700px){
+  .nav a:not(.btn),.nav .sep{display:none}
+  .hero h1{font-size:38px;line-height:60px;letter-spacing:-1.5px}
+  .grp-head h2{font-size:30px}
+  .grp-head .req{padding-left:0}
+  .m-grid{grid-template-columns:1fr}
+  .seg{width:100%}
+  .seg button{flex:1;text-align:center;padding:13px 12px}
+}
+</style>
+</head>
+<body>
+<div class="ambient"></div>
+<div class="grid-lines"><i></i><i></i></div>
+
+<header class="site-header" id="hdr"><div class="wrap">
+  <a class="brand" href="index.html">
+    <img class="mark" src="web_assets/lh-logo.webp" alt="">
+    <span class="name">领航计划</span>
+  </a>
+  <nav class="nav">
+    <a href="index.html">首页</a>
+    <a href="groups.html">组别</a>
+    <a href="mentors.html" class="on">导师</a>
+    <a href="index.html#journal">文章</a>
+    <span class="sep"></span>
+    <a href="#">社区登录</a>
+    <a class="btn" href="#">报名领航</a>
+  </nav>
+</div></header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="scrim"></div>
+  <div class="wrap">
+    <h1>导师团队</h1>
+    <div class="rule"></div>
+    <p class="sub">
+      导师多由 Meta、Google、Apple、NVIDIA 等顶尖科技公司的 VP 与总监，以及活跃在华人圈的连续创业者与成功投资人组成。
+      学员与本区导师匹配，每月至少一次深入的主题交流。
+    </p>
+    <div style="margin-top:44px">
+      <div class="seg" id="seg">
+        <button data-r="west" class="on">美西导师</button>
+        <button data-r="east">美东导师</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 内容 ===================== -->
+<section><div class="wrap" style="padding-block:96px 0">
+  <div class="two-col">
+    <aside class="side-nav">
+      <div class="mono lab">Groups</div>
+      <ul id="sideNav"></ul>
+      <div class="foot" id="sideFoot"></div>
+    </aside>
+    <div id="groups"></div>
+  </div>
+</div></section>
+
+<div class="wrap"><div class="site-footer">
+  <span>Lighthouse Mentorship · 领航计划</span>
+  <nav><a href="index.html">首页</a><a href="groups.html">组别</a><a href="mentors.html">导师</a><a href="index.html#journal">文章</a><a href="#">社区登录</a><a href="#">报名</a></nav>
+  <span>© Lighthouse Mentorship · 501(c)(3)</span>
+</div></div>
+
+<script>
+/* =========================================================================
+   数据契约 —— 字段与 Airtable 对齐：photo / name / position / bio
+   另加 region(west|east) + group。API 接通后由同步脚本回填，页面代码不用改。
+   ========================================================================= */
+const GROUPS = [
+  { id:"rising",  cn:"新星职业组", req:"面向中大型科技公司工作经验相对较少、但展现出快速成长潜力的职场新锐。通常为全职工作五年以内。" },
+  { id:"senior",  cn:"资深职业组", req:"面向中大型科技公司拥有较丰富经验的 Manager、Senior Manager 及对应级别的 Individual Contributor。" },
+  { id:"startup", cn:"初创员工组", req:"面向初创公司的优秀员工与业务骨干。公司规模约 20–500 人，通常处于 C 轮及之前阶段，职能不限。" },
+  { id:"founder", cn:"创始人组",   req:"面向全职创业的科技公司创始人，以接近 Private Board Meeting 的小班形式交流。公司已完成融资。" }
+];
+const REGIONS = {
+  west:{ cn:"美西导师", short:"美西", cities:"加州湾区 · 西雅图" },
+  east:{ cn:"美东导师", short:"美东", cities:"纽约 · 波士顿 · 华盛顿" }
+};
+const P = "web_assets/mentors/";
+
+/* 创始人组为你 Airtable 截图里的真实数据（简介是截图中可见部分，待 API 导入完整版）
+   ⚠ guess:true 的几位，组别与区域是暂放的，需按 Airtable 修正 */
+const MENTORS = [
+  { region:"west", group:"founder", name:"刘长明", position:"CEO, Stellar Cyber",
+    bio:"刘长明导师是 Stellar Cyber 的联合创始人和首席执行官。曾在 2006 年创办 Aerohive Networks，于 2014 年在 NYSE 上市。刘长明导师曾在 Juniper Networks…" },
+  { region:"west", group:"founder", name:"王金林", position:"Managing Partner, Foothill Ventures, Ex cofounder & CEO of Auryc",
+    bio:"王金林博士现任 Foothill Ventures（清源创投）管理合伙人，以及清华企业家协会天使基金管理合伙人，其成功投资案例包括独角兽公司 Carta、Iterable、Ginkgo…" },
+  { region:"west", group:"founder", name:"陈维国", position:"Partner, Sheppard Mullin Richter & Hampton LLP",
+    bio:"陈维国导师在清华大学获得工程和法律双学位，毕业后来美国继续学习法律。现在是美国盛智律师事务所的合伙人，主要帮助硅谷和中国高新技术公司建立专利组合和…" },
+  { region:"west", group:"founder", name:"Chang Chen", position:"Founder, Hockey Stick Growth", photo:"Chang Chen.png",
+    bio:"I'm Chang Chen. I've been fortunate to be part of three startup exits, where I learned that “yes, we finally sold it” still makes my heart race. I've helped 40+…" },
+  { region:"west", group:"founder", name:"John Sun 孙壮", position:"Partner, HLK Ventures",
+    bio:"孙壮导师有十多年投资经验，主导投资项目超过 30 个，投资金额超过 6 亿美元，并帮助多个公司在美国、香港、深圳等证券交易市场上市。他于 2006 年加入世界银行…" },
+
+  { region:"west", group:"senior",  name:"David Feng 冯大为", photo:"David Feng 冯大为.png", guess:true },
+  { region:"west", group:"senior",  name:"David Wei",        photo:"David Wei.png",        guess:true },
+  { region:"west", group:"rising",  name:"Liangxiao Zhu",    photo:"Liangxiao Zhu.png",    guess:true },
+  { region:"west", group:"startup", name:"包胜华",            photo:"包胜华.png",            guess:true },
+  { region:"west", group:"startup", name:"钱骏",              photo:"钱骏.png",              guess:true }
+];
+/* 占位补足密度，方便判断版式；上线时由 Airtable 数据替换 */
+const FILL = { west:{rising:8,senior:7,startup:4,founder:1}, east:{rising:7,senior:6,startup:5,founder:4} };
+Object.entries(FILL).forEach(([r,g])=>Object.entries(g).forEach(([k,n])=>{
+  for(let i=0;i<n;i++) MENTORS.push({region:r,group:k,ph:true});
+}));
+
+/* ---------- 渲染 ---------- */
+const of = (r,g)=>MENTORS.filter(m=>m.region===r && m.group===g);
+const esc = s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const avatar = m => (m.ph || !m.photo)
+  ? `<div class="av ph"></div>`
+  : `<div class="av"><img src="${P}${encodeURIComponent(m.photo)}" alt="${esc(m.name)}" loading="lazy" decoding="async"></div>`;
+const card = m=>`<div class="card m ${m.ph?'is-ph':''}">
+  <div class="top">${avatar(m)}
+    <div><div class="nm">${m.ph?'导师姓名':esc(m.name)}</div>
+      <div class="po">${m.ph||!m.position?'职位待补':esc(m.position)}</div></div></div>
+  <div class="bio">${m.ph||!m.bio?'简介待从 Airtable 导入。':m.bio}</div>
+</div>`;
+
+document.getElementById("groups").innerHTML = GROUPS.map(g=>`
+  <div class="grp" id="${g.id}">
+    <div class="grp-head"><h2>${g.cn}</h2><div class="req">${g.req}</div></div>
+    <div class="m-grid" data-g="${g.id}"></div>
+  </div>`).join("");
+
+document.getElementById("sideNav").innerHTML = GROUPS.map((g,i)=>
+  `<li><a href="#${g.id}" class="${i?'':'on'}" data-g="${g.id}">${g.cn}<span class="n" data-n="${g.id}">0</span></a></li>`).join("");
+
+/* ---------- 区域状态：时区预选 → localStorage → 手动切换 ---------- */
+function guessRegion(){
+  let tz = "";
+  try{ tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; }catch(e){}
+  if(/Los_Angeles|Vancouver|Tijuana|Phoenix|Denver|Edmonton|Boise|Anchorage|Honolulu/.test(tz)) return "west";
+  if(/New_York|Toronto|Detroit|Montreal|Halifax|Chicago|Winnipeg|Indiana|Kentucky/.test(tz)) return "east";
+  return null;                      // 认不出就不猜，也不显示提示
+}
+const saved   = (()=>{ try{ return localStorage.getItem("lh-region"); }catch(e){ return null; } })();
+const guessed = guessRegion();
+let region = saved || guessed || "west";
+
+function paint(){
+  GROUPS.forEach(g=>{
+    const box  = document.querySelector(`.m-grid[data-g="${g.id}"]`);
+    const list = of(region, g.id);
+    box.innerHTML = list.length ? list.map(card).join("")
+                                : `<div class="empty">该组暂无${REGIONS[region].short}导师</div>`;
+    document.querySelector(`[data-n="${g.id}"]`).textContent = list.length;
+  });
+  document.querySelectorAll("#seg button").forEach(b=>b.classList.toggle("on", b.dataset.r===region));
+  document.getElementById("sideFoot").innerHTML =
+    `${REGIONS[region].cities}<br>共 ${MENTORS.filter(m=>m.region===region).length} 位导师`;
+}
+
+document.getElementById("seg").addEventListener("click", e=>{
+  const b = e.target.closest("button"); if(!b) return;
+  region = b.dataset.r;
+  try{ localStorage.setItem("lh-region", region); }catch(e){}
+  paint();
+});
+
+paint();
+
+/* ---------- 滚动高亮左侧目录 ---------- */
+GROUPS.forEach(g=>{
+  const el = document.getElementById(g.id); if(!el) return;
+  new IntersectionObserver(es=>es.forEach(en=>{
+    if(!en.isIntersecting) return;
+    document.querySelectorAll("#sideNav a").forEach(a=>a.classList.toggle("on", a.dataset.g===g.id));
+  }), {rootMargin:"-140px 0px -62% 0px"}).observe(el);
+});
+
+/* header 滚动后变实 */
+const hdr = document.getElementById("hdr");
+const onScroll = ()=>hdr.classList.toggle("stuck", scrollY>40);
+onScroll(); addEventListener("scroll", onScroll, {passive:true});
+</script>
+</body>
+</html>

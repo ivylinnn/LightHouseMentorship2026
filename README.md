@@ -1,11 +1,10 @@
-# 领航计划 · Lighthouse Mentorship — Homepage
+# 领航计划 · Lighthouse Mentorship
 
-Redesigned homepage for **领航计划 (Lighthouse Mentorship)** — a nine-month deep
-mentorship program and a lifelong Chinese-professional community, serving the Bay
-Area, Seattle, New York, and Boston. Registered 501(c)(3) nonprofit, founded 2015.
+Static website for **领航计划 (Lighthouse Mentorship)**, including the homepage,
+mentorship-group overview, and mentor directory.
 
-This is a single, self-contained static page (`index.html`) with an inline
-stylesheet and vanilla JS — no build step, no dependencies. Just open it.
+The site uses self-contained HTML, CSS, and vanilla JavaScript with local image
+assets. It has no build step or package dependencies.
 
 ## View it
 
@@ -13,37 +12,18 @@ stylesheet and vanilla JS — no build step, no dependencies. Just open it.
 - **Or serve it:** `python3 -m http.server 8000` then visit
   <http://localhost:8000/>.
 
-## Design highlights
-
-A dark "moonlight / voyager" aesthetic built around the 领航 (navigation) metaphor:
-
-- **Live deadline countdown** in the hero and final CTA (days until the cohort
-  deadline, computed client-side).
-- **Informative hero** — a concrete lead line and credibility row under the
-  poetic headline, so the value proposition reads in seconds.
-- **Four-city constellation** brand art (Silicon Valley · Seattle · New York ·
-  Boston) drawn in SVG.
-- **Status-aware CTAs** with a pulsing "open for applications" indicator.
-- **Attributed-testimonial structure**, **semantic horizontal `<nav>`**,
-  scroll-margin anchoring, `:focus-visible` states, a single `<h1>` with clean
-  heading order, and `prefers-reduced-motion` support.
-
 ## Page sections
 
-Hero → stats → about → how it works → tracks → mentors → stories →
-community & events → testimonials → FAQ → final CTA → footer.
+`index.html` is the homepage, `groups.html` introduces the four mentorship
+groups, and `mentors.html` presents the mentor roster.
 
-## Before going live — real data to swap in
+## Before going live
 
 The trust-critical content currently uses clearly-marked placeholders (see the
 `<!-- -->` comments in the markup):
 
-1. **Mentor photos, names, and companies** (currently single-character avatars).
-2. **Testimonial attribution** — replace placeholder names with
-   permission-cleared real ones.
-3. **Confirm the stats** (11 years / 1,000+ alumni / 300+ mentors / 4 cities).
-4. **Point CTAs at real destinations** (`/apply/west`, `/mentors`, `/stories`)
-   once those pages exist — they're same-page anchors for now.
+Replace the clearly labeled placeholder article, group imagery, and `#` links
+with their production destinations when those are available.
 
 ## License / ownership
 
