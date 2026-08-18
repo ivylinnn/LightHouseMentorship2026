@@ -108,7 +108,6 @@ section{position:relative;z-index:2}
   margin-left:-1px;border-left:1px solid transparent;transition:.22s}
 .side-nav li a:hover{color:var(--fg-2)}
 .side-nav li a.on{color:var(--fg);border-left-color:var(--violet)}
-.side-nav li a .n{font-family:var(--latin);font-size:12px;color:var(--violet)}
 .side-nav .foot{margin-top:26px;padding-left:20px;font-size:12px;line-height:20px;color:var(--fg-3)}
 
 /* ---------- 分组段落：描述在标题下，右侧不再重复人数 ---------- */
@@ -318,7 +317,7 @@ function renderShell(){
   </div>`).join("");
 
   document.getElementById("sideNav").innerHTML = GROUPS.map((g,i)=>
-    `<li><a href="#${g.id}" class="${i?'':'on'}" data-g="${g.id}">${t(g.cn,g.name_en)}<span class="n" data-n="${g.id}">0</span></a></li>`).join("");
+    `<li><a href="#${g.id}" class="${i?'':'on'}" data-g="${g.id}">${t(g.cn,g.name_en)}</a></li>`).join("");
 }
 renderShell();
 
@@ -340,7 +339,6 @@ function paint(){
     const list = of(region, g.id);
     box.innerHTML = list.length ? list.map(card).join("")
                                 : `<div class="empty">${t(`该组暂无${REGIONS[region].short}导师`,`No ${REGIONS[region].short_en} mentors in this group yet`)}</div>`;
-    document.querySelector(`[data-n="${g.id}"]`).textContent = list.length;
   });
   document.querySelectorAll("#seg button").forEach(b=>b.classList.toggle("on", b.dataset.r===region));
   const n = MENTORS.filter(m=>m.region===region).length;
