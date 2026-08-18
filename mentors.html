@@ -108,7 +108,6 @@ section{position:relative;z-index:2}
   margin-left:-1px;border-left:1px solid transparent;transition:.22s}
 .side-nav li a:hover{color:var(--fg-2)}
 .side-nav li a.on{color:var(--fg);border-left-color:var(--violet)}
-.side-nav .foot{margin-top:26px;padding-left:20px;font-size:12px;line-height:20px;color:var(--fg-3)}
 
 /* ---------- 分组段落：描述在标题下，右侧不再重复人数 ---------- */
 .grp{padding-top:92px}
@@ -121,14 +120,14 @@ section{position:relative;z-index:2}
 
 /* ---------- 导师卡：一行三个 ---------- */
 .m-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.m{padding:26px 24px 24px;display:flex;flex-direction:column}
+.m{padding:26px 24px 24px;display:flex;flex-direction:column;cursor:pointer}
 .m:hover{background:var(--card-bg-2);border-color:rgba(255,255,255,.2);transform:translateY(-3px)}
 .m .top{display:flex;gap:16px;align-items:center}
 .m .av{width:66px;height:66px;border-radius:50%;overflow:hidden;flex:none}
 .m .nm{font-family:var(--display);font-size:21px;line-height:1.25}
 .m .po{font-size:12px;line-height:19px;color:var(--violet);margin-top:5px}
 .m .bio{font-size:13px;line-height:23px;color:var(--fg-2);margin-top:18px;
-  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .av img{width:100%;height:100%;object-fit:cover}
 .av.ph{background:rgba(255,255,255,.055);border:1px solid var(--card-border);position:relative}
 .av.ph::before{content:"";position:absolute;left:50%;top:22%;width:30%;aspect-ratio:1;
@@ -138,6 +137,31 @@ section{position:relative;z-index:2}
 .is-ph .nm,.is-ph .po{color:var(--fg-3)}
 .empty{padding:54px 0;text-align:center;color:var(--fg-3);font-size:14px;
   border:1px dashed var(--card-border);border-radius:var(--radius)}
+
+/* ---------- 导师详情弹窗 ---------- */
+.modal{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:24px}
+.modal.open{display:flex}
+.modal .mask{position:absolute;inset:0;background:rgba(8,8,10,.28);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+.modal .box{position:relative;width:min(680px,100%);max-height:min(82vh,760px);overflow:auto;
+  background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.015)),rgba(10,10,14,.1);
+  backdrop-filter:blur(22px) saturate(1.3);-webkit-backdrop-filter:blur(22px) saturate(1.3);
+  border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);
+  padding:42px 46px 46px;box-shadow:0 30px 90px rgba(0,0,0,.45)}
+.modal .top{display:flex;gap:22px;align-items:center}
+.modal .box .av{width:96px;height:96px;border-radius:50%;overflow:hidden;flex:none}
+.modal .nm{font-family:var(--display);font-size:30px;line-height:1.2}
+.modal .po{font-size:13px;line-height:21px;color:var(--violet);margin-top:8px}
+.modal .bio{font-size:14.5px;line-height:27px;color:var(--fg-2);margin-top:26px;white-space:pre-line}
+.modal .x{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;
+  border:1px solid var(--line-strong);background:none;color:var(--fg-2);font-size:17px;line-height:1;
+  cursor:pointer;transition:color .2s,border-color .2s}
+.modal .x:hover{color:var(--fg);border-color:var(--fg)}
+@media(max-width:700px){
+  .modal{padding:14px}
+  .modal .box{padding:30px 24px 32px}
+  .modal .box .av{width:72px;height:72px}
+  .modal .nm{font-size:24px}
+}
 
 /* ---------- footer ---------- */
 .site-footer{border-top:1px solid var(--line);padding:44px 0;margin-top:130px;position:relative;z-index:2;
@@ -153,7 +177,6 @@ section{position:relative;z-index:2}
   .side-nav ul{display:flex;flex-wrap:wrap;gap:8px 26px;border-left:0}
   .side-nav li a{border-left:0;padding:6px 0;margin-left:0;border-bottom:1px solid transparent}
   .side-nav li a.on{border-left:0;border-bottom-color:var(--violet)}
-  .side-nav .foot{padding-left:0}
   .m-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:700px){
@@ -181,9 +204,9 @@ section{position:relative;z-index:2}
     <a href="groups.html" data-en="Groups">组别</a>
     <a href="mentors.html" class="on" data-en="Mentors">导师</a>
     <a href="index.html#journal" data-en="Journal">文章</a>
+    <a href="#" class="lang" data-lang-btn aria-label="Switch language">EN</a>
     <span class="sep"></span>
     <a href="#" data-en="Community Login">社区登录</a>
-    <a href="#" class="lang" data-lang-btn aria-label="Switch language">EN</a>
     <a class="btn" href="#" data-en="Apply Now">报名领航</a>
   </nav>
 </div></header>
@@ -214,7 +237,6 @@ section{position:relative;z-index:2}
     <aside class="side-nav">
       <div class="mono lab">Groups</div>
       <ul id="sideNav"></ul>
-      <div class="foot" id="sideFoot"></div>
     </aside>
     <div id="groups"></div>
   </div>
@@ -226,11 +248,20 @@ section{position:relative;z-index:2}
   <span>© Lighthouse Mentorship · 501(c)(3)</span>
 </div></div>
 
+<!-- 导师详情弹窗 -->
+<div class="modal" id="mModal" role="dialog" aria-modal="true" aria-label="导师详情">
+  <div class="mask" data-close></div>
+  <div class="box">
+    <button class="x" data-close aria-label="关闭">✕</button>
+    <div class="top"><span id="mmAv" style="display:contents"></span>
+      <div><div class="nm" id="mmNm"></div><div class="po" id="mmPo"></div></div></div>
+    <div class="bio" id="mmBio"></div>
+  </div>
+</div>
+
+<!-- 导师数据由 scripts/sync_mentors.py 从 Airtable 生成,勿手改 -->
+<script src="web_assets/mentors-data.js"></script>
 <script>
-/* =========================================================================
-   数据契约 —— 字段与 Airtable 对齐：photo / name / position / bio
-   另加 region(west|east) + group。API 接通后由同步脚本回填，页面代码不用改。
-   ========================================================================= */
 /* ---------- i18n：中/英切换。静态文案写在 data-en 属性里；JS 渲染的数据带 *_en 字段 ---------- */
 let LANG = (()=>{ try{ return localStorage.getItem("lh-lang") || "zh"; }catch(e){ return "zh"; } })();
 const t = (zh,en)=> LANG==="en" && en!=null ? en : zh;
@@ -263,38 +294,8 @@ const REGIONS = {
   west:{ cn:"美西导师", en:"West Coast Mentors", short:"美西", short_en:"West Coast", cities:"加州湾区 · 西雅图",        cities_en:"SF Bay Area · Seattle" },
   east:{ cn:"美东导师", en:"East Coast Mentors", short:"美东", short_en:"East Coast", cities:"纽约 · 波士顿 · 华盛顿", cities_en:"New York · Boston · Washington, D.C." }
 };
-const P = "web_assets/mentors/";
-
-/* 创始人组为你 Airtable 截图里的真实数据（简介是截图中可见部分，待 API 导入完整版）
-   ⚠ guess:true 的几位，组别与区域是暂放的，需按 Airtable 修正 */
-const MENTORS = [
-  { region:"west", group:"founder", name:"刘长明", position:"CEO, Stellar Cyber",
-    bio:"刘长明导师是 Stellar Cyber 的联合创始人和首席执行官。曾在 2006 年创办 Aerohive Networks，于 2014 年在 NYSE 上市。刘长明导师曾在 Juniper Networks…",
-    bio_en:"Changming Liu is co-founder and CEO of Stellar Cyber. In 2006 he founded Aerohive Networks, which listed on the NYSE in 2014. He previously worked at Juniper Networks…" },
-  { region:"west", group:"founder", name:"王金林", position:"Managing Partner, Foothill Ventures, Ex cofounder & CEO of Auryc",
-    bio:"王金林博士现任 Foothill Ventures（清源创投）管理合伙人，以及清华企业家协会天使基金管理合伙人，其成功投资案例包括独角兽公司 Carta、Iterable、Ginkgo…",
-    bio_en:"Dr. Jinlin Wang is Managing Partner at Foothill Ventures and Managing Partner of the TEEC Angel Fund. His successful investments include the unicorns Carta, Iterable, Ginkgo…" },
-  { region:"west", group:"founder", name:"陈维国", position:"Partner, Sheppard Mullin Richter & Hampton LLP",
-    bio:"陈维国导师在清华大学获得工程和法律双学位，毕业后来美国继续学习法律。现在是美国盛智律师事务所的合伙人，主要帮助硅谷和中国高新技术公司建立专利组合和…",
-    bio_en:"Weiguo Chen holds dual degrees in engineering and law from Tsinghua University and continued his legal studies in the United States. He is now a Partner at Sheppard Mullin, helping high-tech companies in Silicon Valley and China build patent portfolios and…" },
-  { region:"west", group:"founder", name:"Chang Chen", position:"Founder, Hockey Stick Growth", photo:"Chang Chen.png",
-    bio:"我是 Chang Chen。有幸参与过三次创业公司退出，也因此明白，“我们终于把它卖掉了”这句话至今仍会让我心跳加速。我帮助过 40 多家…",
-    bio_en:"I'm Chang Chen. I've been fortunate to be part of three startup exits, where I learned that “yes, we finally sold it” still makes my heart race. I've helped 40+…" },
-  { region:"west", group:"founder", name:"John Sun 孙壮", position:"Partner, HLK Ventures",
-    bio:"孙壮导师有十多年投资经验，主导投资项目超过 30 个，投资金额超过 6 亿美元，并帮助多个公司在美国、香港、深圳等证券交易市场上市。他于 2006 年加入世界银行…",
-    bio_en:"John Sun has more than a decade of investment experience, having led over 30 deals totalling more than US$600 million and helped multiple companies list in the U.S., Hong Kong and Shenzhen. He joined the World Bank in 2006…" },
-
-  { region:"west", group:"senior",  name:"David Feng 冯大为", photo:"David Feng 冯大为.png", guess:true },
-  { region:"west", group:"senior",  name:"David Wei",        photo:"David Wei.png",        guess:true },
-  { region:"west", group:"rising",  name:"Liangxiao Zhu",    photo:"Liangxiao Zhu.png",    guess:true },
-  { region:"west", group:"startup", name:"包胜华",            photo:"包胜华.png",            guess:true },
-  { region:"west", group:"startup", name:"钱骏",              photo:"钱骏.png",              guess:true }
-];
-/* 占位补足密度，方便判断版式；上线时由 Airtable 数据替换 */
-const FILL = { west:{rising:8,senior:7,startup:4,founder:1}, east:{rising:7,senior:6,startup:5,founder:4} };
-Object.entries(FILL).forEach(([r,g])=>Object.entries(g).forEach(([k,n])=>{
-  for(let i=0;i<n;i++) MENTORS.push({region:r,group:k,ph:true});
-}));
+const P = "web_assets/mentors/airtable/";
+/* MENTORS 来自 web_assets/mentors-data.js(由同步脚本生成) */
 
 /* ---------- 渲染 ---------- */
 const of = (r,g)=>MENTORS.filter(m=>m.region===r && m.group===g);
@@ -302,7 +303,7 @@ const esc = s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;
 const avatar = m => (m.ph || !m.photo)
   ? `<div class="av ph"></div>`
   : `<div class="av"><img src="${P}${encodeURIComponent(m.photo)}" alt="${esc(m.name)}" loading="lazy" decoding="async"></div>`;
-const card = m=>`<div class="card m ${m.ph?'is-ph':''}">
+const card = m=>`<div class="card m ${m.ph?'is-ph':''}" data-mid="${MENTORS.indexOf(m)}" role="button" tabindex="0">
   <div class="top">${avatar(m)}
     <div><div class="nm">${m.ph?t('导师姓名','Mentor Name'):esc(m.name)}</div>
       <div class="po">${m.ph||!m.position?t('职位待补','Title TBD'):esc(m.position)}</div></div></div>
@@ -341,9 +342,6 @@ function paint(){
                                 : `<div class="empty">${t(`该组暂无${REGIONS[region].short}导师`,`No ${REGIONS[region].short_en} mentors in this group yet`)}</div>`;
   });
   document.querySelectorAll("#seg button").forEach(b=>b.classList.toggle("on", b.dataset.r===region));
-  const n = MENTORS.filter(m=>m.region===region).length;
-  document.getElementById("sideFoot").innerHTML =
-    `${t(REGIONS[region].cities,REGIONS[region].cities_en)}<br>${t(`共 ${n} 位导师`,`${n} mentors in total`)}`;
 }
 /* 切换语言：重绘分组骨架 + 卡片，并重新挂目录高亮的观察器 */
 function renderAll(){ renderShell(); paint(); observeGroups(); }
@@ -372,6 +370,38 @@ function observeGroups(){
   });
 }
 observeGroups();
+
+/* ---------- 导师详情弹窗 ---------- */
+const modal = document.getElementById("mModal");
+function openMentor(m){
+  document.getElementById("mmAv").innerHTML = avatar(m);
+  document.getElementById("mmNm").textContent = m.name || "";
+  document.getElementById("mmPo").textContent = m.position || "";
+  document.getElementById("mmBio").textContent = t(m.bio, m.bio_en) || "";
+  modal.classList.add("open");
+  document.body.style.overflow = "hidden";
+  modal.querySelector(".x").focus();
+}
+function closeMentor(){
+  modal.classList.remove("open");
+  document.body.style.overflow = "";
+}
+modal.addEventListener("click", e=>{ if(e.target.hasAttribute("data-close")) closeMentor(); });
+addEventListener("keydown", e=>{ if(e.key==="Escape" && modal.classList.contains("open")) closeMentor(); });
+document.getElementById("groups").addEventListener("click", e=>{
+  const c = e.target.closest(".card.m");
+  if(!c || c.classList.contains("is-ph")) return;
+  const m = MENTORS[+c.dataset.mid];
+  if(m) openMentor(m);
+});
+document.getElementById("groups").addEventListener("keydown", e=>{
+  if(e.key!=="Enter" && e.key!==" ") return;
+  const c = e.target.closest(".card.m");
+  if(!c || c.classList.contains("is-ph")) return;
+  e.preventDefault();
+  const m = MENTORS[+c.dataset.mid];
+  if(m) openMentor(m);
+});
 
 /* header 滚动后变实 */
 const hdr = document.getElementById("hdr");

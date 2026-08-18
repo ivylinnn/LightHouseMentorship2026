@@ -201,7 +201,8 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 .mentor:hover .avatar{transform:translateY(-5px)}
 .mentor b{display:block;font-family:var(--display);font-size:18px;font-weight:400;letter-spacing:.4px;
   margin-top:20px;text-wrap:balance}
-.mentor i{display:block;font-style:normal;font-size:11.5px;line-height:19px;color:var(--fg-3);margin-top:6px}
+.mentor i{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  font-style:normal;font-size:11.5px;line-height:19px;color:var(--fg-3);margin-top:6px}
 
 /* ---------- 活动形式 ---------- */
 .timeline{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line-strong);margin-top:12px}
@@ -271,8 +272,7 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 .pcard .thumb{aspect-ratio:16/9;position:relative;border-bottom:1px solid var(--card-border);background:
   radial-gradient(120% 90% at 72% 12%,rgba(160,130,230,.30),transparent 62%),
   linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02))}
-.pcard .thumb span{position:absolute;top:12px;left:12px;font-size:9px;letter-spacing:1.2px;font-weight:700;
-  color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:2px 8px}
+.pcard .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .pcard .body{padding:26px 26px 28px;display:flex;flex-direction:column;flex:1}
 .pcard .date{font-size:11px;letter-spacing:1.4px;color:var(--fg-3);font-weight:700}
 .pcard h4{font-family:var(--display);font-size:23px;font-weight:400;line-height:1.45;margin:14px 0 12px}
@@ -332,9 +332,9 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
     <a href="groups.html" data-en="Groups">组别</a>
     <a href="mentors.html" data-en="Mentors">导师</a>
     <a href="#journal" data-en="Journal">文章</a>
+    <a href="#" class="lang" data-lang-btn aria-label="Switch language">EN</a>
     <span class="sep"></span>
     <a href="#" data-en="Community Login">社区登录</a>
-    <a href="#" class="lang" data-lang-btn aria-label="Switch language">EN</a>
     <a class="btn" href="#apply" data-en="Apply Now">报名领航</a>
   </nav>
 </div></header>
@@ -487,6 +487,10 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
   <span>© Lighthouse Mentorship · 501(c)(3)</span>
 </div></div>
 
+<!-- 导师数据与导师页同源,由 scripts/sync_mentors.py 从 Airtable 生成 -->
+<script src="web_assets/mentors-data.js"></script>
+<!-- 文章数据由 scripts/sync_articles.py 从公众号链接生成 -->
+<script src="web_assets/articles-data.js"></script>
 <script>
 /* 内容来自领航公众号两篇文章；标 PLACEHOLDER 的为占位 */
 /* ---------- i18n：中/英切换。静态文案写在 data-en 属性里；JS 渲染的数据带 *_en 字段 ---------- */
@@ -554,17 +558,7 @@ const QUOTES = [
     p_en:"I was laid off in a company reorg and felt lost for a while. It was Lighthouse mentors and classmates who gave me job-search advice and direction — and countless referrals.", w_en:"Cohort 11 mentee" }
 ];
 
-const POSTS = [
-  { d:"2026 · 07", h:"美西十二期报名开启", h_en:"West Coast Cohort 12 Applications Open",
-    p:"变革时代，独行舟不如共弄潮。第十二期领航计划面向不同职业、创业阶段开放报名⋯⋯",
-    p_en:"In an era of change, better to ride the waves together than row alone. Cohort 12 of Lighthouse is now open to applicants at every career and startup stage…", ph:false },
-  { d:"2026 · 06", h:"星海逐浪，向光而行：领航公众号启航", h_en:"Chasing Waves in a Sea of Stars: The Lighthouse WeChat Channel Sets Sail",
-    p:"从硅谷到西雅图、从纽约到波士顿，每年九月起次年五月终，总会有一群志同道合之友月月相聚⋯⋯",
-    p_en:"From Silicon Valley to Seattle, New York to Boston — every year from September to May, a group of kindred spirits gathers month after month…", ph:false },
-  { d:"PLACEHOLDER", h:"文章标题占位 · 待补", h_en:"Article title placeholder · TBD",
-    p:"公众号文章摘要占位。上线后由公众号内容同步，或在 CMS 中维护。",
-    p_en:"Placeholder for a WeChat article summary. Synced from the official account after launch, or maintained in the CMS.", ph:true }
-];
+/* POSTS 来自 web_assets/articles-data.js(公众号文章同步脚本生成) */
 
 const ORGS = [
   { zh:"清华企业家协会 TEEC",          en:"Tsinghua Entrepreneur &amp; Executive Club (TEEC)" },
@@ -580,14 +574,12 @@ const ORGS = [
 const set=(id,html)=>{const el=document.getElementById(id); if(el) el.innerHTML=html;};
 
 /* 导师：图片文件名即姓名；职位待补 */
-const MENTORS = [
-  { name:"Chang Chen",       file:"Chang Chen.png" },
-  { name:"David Feng 冯大为", file:"David Feng 冯大为.png" },
-  { name:"David Wei",        file:"David Wei.png" },
-  { name:"Liangxiao Zhu",    file:"Liangxiao Zhu.png" },
-  { name:"包胜华",            file:"包胜华.png" },
-  { name:"钱骏",              file:"钱骏.png" }
-];
+/* 首页导师栏：与导师页同一份 Airtable 数据(mentors-data.js),按组各抽两位共 6 位 */
+const HOME_MENTORS = (()=>{
+  const by = g => MENTORS.filter(m=>m.group===g && m.photo && m.position);
+  return [...by("founder").slice(0,2), ...by("senior").slice(0,2),
+          ...by("rising").slice(0,2), ...by("startup").slice(0,2)].slice(0,6);
+})();
 /* 所有 JS 渲染的区块集中在 render()，切换语言时重绘 */
 function render(){
 set("group-cards", GROUPS.map(g=>`<a class="card gcard" href="groups.html#g-${g.en.toLowerCase()}">
@@ -597,10 +589,10 @@ set("group-cards", GROUPS.map(g=>`<a class="card gcard" href="groups.html#g-${g.
   <div class="more">${t("了解详情","Learn more")} →</div>
 </a>`).join(""));
 
-set("mentor-grid", MENTORS.map(m=>`<a class="mentor" href="mentors.html">
-  <div class="avatar"><img src="web_assets/mentors/${encodeURIComponent(m.file)}" alt="${m.name}" loading="lazy" decoding="async"></div>
+set("mentor-grid", HOME_MENTORS.map(m=>`<a class="mentor" href="mentors.html">
+  <div class="avatar"><img src="web_assets/mentors/airtable/${encodeURIComponent(m.photo)}" alt="${m.name}" loading="lazy" decoding="async"></div>
   <b>${m.name}</b>
-  <i>Director / VP · Company</i>
+  <i>${m.position}</i>
 </a>`).join(""));
 
 set("timeline", TIMELINE.map(x=>`<div><div class="t">${x.t}</div><div class="d">${t(x.d,x.d_en)}</div></div>`).join(""));
@@ -613,15 +605,15 @@ set("dims", DIMS.map(x=>`<div class="card dim">
   <div class="desc"><p>${t(x.p,x.p_en)}</p></div>
 </div>`).join(""));
 set("quotes", QUOTES.map(q=>`<div class="card quote"><p>“${t(q.p,q.p_en)}”</p><div class="who">—— <em>${t(q.w,q.w_en)}</em></div></div>`).join(""));
-set("posts-grid", POSTS.map(p=>`<div class="card is-link pcard">
-  <div class="thumb">${p.ph?'<span>PLACEHOLDER</span>':''}</div>
+set("posts-grid", POSTS.map(p=>`<a class="card is-link pcard" href="${p.url}" target="_blank" rel="noopener">
+  <div class="thumb">${p.img?`<img src="web_assets/posts/${p.img}" alt="" loading="lazy" decoding="async">`:''}</div>
   <div class="body">
     <div class="date">${p.d}</div>
     <h4>${t(p.h,p.h_en)}</h4>
     <p>${t(p.p,p.p_en)}</p>
     <div class="more">${t("阅读全文","Read more")} →</div>
   </div>
-</div>`).join(""));
+</a>`).join(""));
 set("orgs", ORGS.map(o=>`<div class="card org">${t(o.zh,o.en)}</div>`).join(""));
 }
 applyStatic(); render();
