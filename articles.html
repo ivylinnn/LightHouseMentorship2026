@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-en="Lighthouse Mentorship · Journal">领航文章 · 领航计划</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#08080A;
+  --line:rgba(255,255,255,.08); --line-strong:rgba(255,255,255,.18);
+  --fg:#F2F2F4; --fg-2:rgba(242,242,244,.66); --fg-3:rgba(242,242,244,.54);
+  --violet:#A695E6;
+  --card-bg:rgba(255,255,255,.045); --card-bg-2:rgba(255,255,255,.075);
+  --card-border:rgba(255,255,255,.11); --radius:20px;
+  --display:"HYXuanSong 35S","HYXuanSong","汉仪玄宋","Bodoni Moda","Songti SC","STSong",serif;
+  --body:"HYQiHei 50J","HYQiHei","汉仪旗黑","Hanken Grotesk","PingFang SC",-apple-system,sans-serif;
+  --latin-display:"Bodoni Moda",serif;
+  --gutter:64px; --maxw:1600px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:30px;
+  font-weight:500;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+.card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  transition:background .25s,border-color .25s,transform .25s}
+a.card:hover{background:var(--card-bg-2);border-color:rgba(255,255,255,.2);transform:translateY(-3px)}
+
+/* ---------- header(与其余页面一致) ---------- */
+.site-header{position:sticky;top:0;z-index:50;height:76px;transition:background .3s,border-color .3s;
+  border-bottom:1px solid transparent}
+.site-header.stuck{background:rgba(8,8,10,.72);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  border-bottom-color:var(--line)}
+.site-header .wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:14px}
+.brand .mark{width:40px;height:40px;display:block}
+.brand .name{font-family:var(--display);font-size:21px;letter-spacing:.5px}
+.nav{display:flex;align-items:center;gap:28px}
+.nav a:not(.btn){font-size:13px;line-height:1;letter-spacing:1.6px;font-weight:500;color:var(--fg-2);transition:color .2s}
+.nav a:not(.btn):hover,.nav a.on{color:var(--fg)}
+.nav .sep{width:1px;height:15px;background:var(--line-strong);flex:none}
+.nav a.lang{font-size:13px;letter-spacing:1.6px;font-weight:500;
+  padding:6px 12px;border-radius:999px;border:1px solid var(--line-strong);color:var(--fg-2)}
+.nav a.lang:hover{color:var(--fg);border-color:var(--fg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--body);
+  font-size:13px;line-height:12px;font-weight:700;letter-spacing:1.6px;
+  padding:14px 24px;border-radius:999px;background:var(--fg);color:var(--bg);
+  transition:transform .2s,opacity .2s}
+.btn:hover{transform:translateY(-1px);opacity:.9}
+
+/* ---------- 页首标题 ---------- */
+.page-head{padding-block:96px 64px}
+.eyebrow{font-family:var(--latin-display);font-size:13px;letter-spacing:4px;color:var(--fg-3);text-transform:uppercase}
+.page-head h1{font-family:var(--display);font-size:48px;line-height:1.25;font-weight:400;
+  margin-top:18px;display:flex;align-items:center;gap:22px}
+.page-head h1::before{content:"";width:34px;height:1px;background:var(--fg);flex:none}
+.page-head p{margin-top:16px;padding-left:56px;color:var(--fg-2);font-size:15px;max-width:64ch}
+
+/* ---------- 文章卡片 ---------- */
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding-bottom:40px}
+.pcard{display:flex;flex-direction:column;cursor:pointer;overflow:hidden}
+.pcard .thumb{aspect-ratio:900/383;position:relative;  /* 微信封面标准比例,原图不裁切 */border-bottom:1px solid var(--card-border);background:
+  radial-gradient(120% 90% at 72% 12%,rgba(160,130,230,.30),transparent 62%),
+  linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02))}
+.pcard .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pcard .body{padding:26px 26px 28px;display:flex;flex-direction:column;flex:1}
+.pcard .date{font-size:11px;letter-spacing:1.4px;color:var(--fg-3);font-weight:700}
+.pcard h4{font-family:var(--display);font-size:23px;font-weight:400;line-height:1.45;margin:14px 0 12px}
+.pcard p{font-size:13.5px;line-height:24px;color:var(--fg-2);
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.pcard .more{margin-top:auto;padding-top:22px;font-size:11px;letter-spacing:1.6px;font-weight:700;color:var(--fg-3)}
+.empty{padding:80px 0;text-align:center;color:var(--fg-3);font-size:14px}
+
+/* ---------- footer ---------- */
+.site-footer{border-top:1px solid var(--line);padding:44px 0;margin-top:90px;
+  display:flex;justify-content:space-between;align-items:center;gap:30px;
+  font-size:12.5px;color:var(--fg-3);flex-wrap:wrap}
+.site-footer nav{display:flex;gap:28px}
+
+@media(max-width:1240px){
+  :root{--gutter:32px}
+  .posts{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:700px){
+  .nav a:not(.btn):not(.lang),.nav .sep{display:none}
+  .page-head h1{font-size:34px}
+  .page-head p{padding-left:0}
+  .posts{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header" id="hdr"><div class="wrap">
+  <a class="brand" href="index.html">
+    <img class="mark" src="web_assets/lh-logo.webp" alt="">
+    <span class="name" data-en="Lighthouse Mentorship">领航计划</span>
+  </a>
+  <nav class="nav">
+    <a href="index.html" data-en="Home">首页</a>
+    <a href="groups.html" data-en="Groups">组别</a>
+    <a href="mentors.html" data-en="Mentors">导师</a>
+    <a href="articles.html" class="on" data-en="Journal">文章</a>
+    <a href="#" class="lang" data-lang-btn aria-label="Switch language">EN</a>
+    <span class="sep"></span>
+    <a href="#" data-en="Community Login">社区登录</a>
+    <a class="btn" href="index.html#apply" data-en="Apply Now">报名领航</a>
+  </nav>
+</div></header>
+
+<div class="wrap page-head">
+  <div class="eyebrow">JOURNAL</div>
+  <h1 data-en="Lighthouse Journal">领航文章</h1>
+  <p data-en="Stories, insights and updates from the Lighthouse WeChat channel. Click any article to read the original.">
+    来自领航公众号的活动记录、导师分享与项目动态。点击卡片阅读原文。</p>
+</div>
+
+<div class="wrap"><div class="posts" id="posts-grid"></div></div>
+
+<div class="wrap"><div class="site-footer">
+  <span>Lighthouse Mentorship · 领航计划</span>
+  <nav><a href="index.html" data-en="Home">首页</a><a href="groups.html" data-en="Groups">组别</a><a href="mentors.html" data-en="Mentors">导师</a><a href="articles.html" data-en="Journal">文章</a><a href="#" data-en="Community Login">社区登录</a><a href="index.html#apply" data-en="Apply">报名</a></nav>
+  <span>© Lighthouse Mentorship · 501(c)(3)</span>
+</div></div>
+
+<!-- 文章数据由 scripts/sync_articles.py 从公众号链接生成 -->
+<script src="web_assets/articles-data.js"></script>
+<script>
+/* ---------- i18n:与其余页面同一套 ---------- */
+let LANG = (()=>{ try{ return localStorage.getItem("lh-lang") || "zh"; }catch(e){ return "zh"; } })();
+const t = (zh,en)=> LANG==="en" && en!=null ? en : zh;
+function applyStatic(){
+  document.querySelectorAll("[data-en]").forEach(el=>{
+    if(!el.hasAttribute("data-zh")) el.setAttribute("data-zh", el.innerHTML);
+    el.innerHTML = LANG==="en" ? el.getAttribute("data-en") : el.getAttribute("data-zh");
+  });
+  document.documentElement.lang = LANG==="en" ? "en" : "zh-CN";
+  document.querySelectorAll("[data-lang-btn]").forEach(b=>b.textContent = LANG==="en" ? "中文" : "EN");
+  document.title = LANG==="en" ? "Lighthouse Mentorship · Journal" : "领航文章 · 领航计划";
+}
+function setLang(l){ LANG=l; try{ localStorage.setItem("lh-lang", l); }catch(e){} applyStatic(); render(); }
+document.querySelectorAll("[data-lang-btn]").forEach(b=>b.addEventListener("click", e=>{ e.preventDefault(); setLang(LANG==="en"?"zh":"en"); }));
+
+function render(){
+  const grid = document.getElementById("posts-grid");
+  if(typeof POSTS === "undefined" || !POSTS.length){
+    grid.innerHTML = `<div class="empty">${t("文章整理中,敬请期待。","Articles coming soon.")}</div>`;
+    return;
+  }
+  grid.innerHTML = POSTS.map(p=>`<a class="card pcard" href="${p.url}" target="_blank" rel="noopener">
+    <div class="thumb">${p.img?`<img src="web_assets/posts/${p.img}" alt="" loading="lazy" decoding="async">`:''}</div>
+    <div class="body">
+      <div class="date">${p.d}</div>
+      <h4>${t(p.h,p.h_en)}</h4>
+      <p>${t(p.p,p.p_en)}</p>
+      <div class="more">${t("阅读全文","Read more")} →</div>
+    </div>
+  </a>`).join("");
+}
+applyStatic(); render();
+
+const hdr = document.getElementById("hdr");
+const onScroll = ()=>hdr.classList.toggle("stuck", scrollY>40);
+onScroll(); addEventListener("scroll", onScroll, {passive:true});
+</script>
+</body>
+</html>

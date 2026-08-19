@@ -109,7 +109,7 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 .nav a:not(.btn):hover{color:var(--fg)}
 .nav .sep{width:1px;height:15px;background:var(--line-strong);flex:none}
 /* 中英切换：与 nav 文字同级，移动端也保留 */
-.nav a.lang{font-family:var(--latin-display);font-size:12px;letter-spacing:1.4px;font-weight:500;
+.nav a.lang{font-size:13px;letter-spacing:1.6px;font-weight:500;
   padding:6px 12px;border-radius:999px;border:1px solid var(--line-strong);color:var(--fg-2)}
 .nav a.lang:hover{color:var(--fg);border-color:var(--fg)}
 .btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--body);
@@ -269,7 +269,7 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 /* ---------- 领航文章 ---------- */
 .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .pcard{display:flex;flex-direction:column;cursor:pointer;overflow:hidden}
-.pcard .thumb{aspect-ratio:16/9;position:relative;border-bottom:1px solid var(--card-border);background:
+.pcard .thumb{aspect-ratio:900/383;position:relative;  /* 微信封面标准比例,原图不裁切 */border-bottom:1px solid var(--card-border);background:
   radial-gradient(120% 90% at 72% 12%,rgba(160,130,230,.30),transparent 62%),
   linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02))}
 .pcard .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -331,7 +331,7 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
     <a href="#top" data-en="Home">首页</a>
     <a href="groups.html" data-en="Groups">组别</a>
     <a href="mentors.html" data-en="Mentors">导师</a>
-    <a href="#journal" data-en="Journal">文章</a>
+    <a href="articles.html" data-en="Journal">文章</a>
     <a href="#" class="lang" data-lang-btn aria-label="Switch language">EN</a>
     <span class="sep"></span>
     <a href="#" data-en="Community Login">社区登录</a>
@@ -353,7 +353,7 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
     </p>
     <div class="actions rise" data-rise="5">
       <a class="btn" href="#apply" data-en="Apply Now">报名领航</a>
-      <a class="btn btn-ghost" href="#groups" data-en="Explore the Groups">了解组别</a>
+      <a class="btn btn-ghost" href="#" data-en="Community Login">社区登录</a>
     </div>
   </div>
 </section>
@@ -454,7 +454,7 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
   <div class="sec-eyebrow">Journal</div>
   <div class="sec-head">
     <h2 class="sec-title" data-en="Journal">领航文章</h2>
-    <a class="btn btn-ghost" href="#" data-en="All Articles">全部文章</a>
+    <a class="btn btn-ghost" href="articles.html" data-en="All Articles">全部文章</a>
   </div>
   <div class="posts" id="posts-grid" style="margin-top:54px"></div>
 </div></section>
@@ -483,7 +483,7 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 
 <div class="wrap"><div class="site-footer">
   <span>Lighthouse Mentorship · 领航计划</span>
-  <nav><a href="#top" data-en="Home">首页</a><a href="groups.html" data-en="Groups">组别</a><a href="mentors.html" data-en="Mentors">导师</a><a href="#journal" data-en="Journal">文章</a><a href="#" data-en="Community Login">社区登录</a><a href="#apply" data-en="Apply">报名</a></nav>
+  <nav><a href="#top" data-en="Home">首页</a><a href="groups.html" data-en="Groups">组别</a><a href="mentors.html" data-en="Mentors">导师</a><a href="articles.html" data-en="Journal">文章</a><a href="#" data-en="Community Login">社区登录</a><a href="#apply" data-en="Apply">报名</a></nav>
   <span>© Lighthouse Mentorship · 501(c)(3)</span>
 </div></div>
 
@@ -512,9 +512,6 @@ function setLang(l){ LANG=l; try{ localStorage.setItem("lh-lang", l); }catch(e){
 document.querySelectorAll("[data-lang-btn]").forEach(b=>b.addEventListener("click", e=>{ e.preventDefault(); setLang(LANG==="en"?"zh":"en"); }));
 
 const GROUPS = [
-  { en:"Rising",  cn:"新星职业组", name_en:"Rising Professionals",
-    desc:"面向中大型科技公司工作经验相对较少、但展现出快速成长潜力的职场新锐。通常为全职工作五年以内。",
-    desc_en:"For early-career professionals at mid-to-large tech companies with relatively limited experience but clear signs of rapid growth potential. Typically within five years of full-time work." },
   { en:"Senior",  cn:"资深职业组", name_en:"Senior Professionals",
     desc:"面向中大型科技公司拥有较丰富经验的 Manager、Senior Manager 及对应级别的 Individual Contributor。",
     desc_en:"For experienced Managers, Senior Managers and equivalent-level Individual Contributors at mid-to-large tech companies." },
@@ -523,7 +520,10 @@ const GROUPS = [
     desc_en:"For outstanding employees and key contributors at startups. Company size roughly 20–500 people, typically Series C or earlier; any function." },
   { en:"Founder", cn:"创始人组",   name_en:"Founders",
     desc:"面向全职创业的科技公司创始人，以接近 Private Board Meeting 的小班形式交流。公司已完成融资。",
-    desc_en:"For full-time founders of tech companies who have completed a funding round, meeting in a small-group format close to a private board meeting." }
+    desc_en:"For full-time founders of tech companies who have completed a funding round, meeting in a small-group format close to a private board meeting." },
+  { en:"Rising",  cn:"新星职业组", name_en:"Rising Professionals",
+    desc:"面向中大型科技公司工作经验相对较少、但展现出快速成长潜力的职场新锐。通常为全职工作五年以内。",
+    desc_en:"For early-career professionals at mid-to-large tech companies with relatively limited experience but clear signs of rapid growth potential. Typically within five years of full-time work." }
 ];
 
 const TIMELINE = [
@@ -574,11 +574,16 @@ const ORGS = [
 const set=(id,html)=>{const el=document.getElementById(id); if(el) el.innerHTML=html;};
 
 /* 导师：图片文件名即姓名；职位待补 */
-/* 首页导师栏：与导师页同一份 Airtable 数据(mentors-data.js),按组各抽两位共 6 位 */
+/* 首页导师栏：与导师页同一份 Airtable 数据(mentors-data.js),
+   取 Airtable 视图中最上面的 6 位(数据文件保持视图行顺序;跨组重复出现的只算一次) */
 const HOME_MENTORS = (()=>{
-  const by = g => MENTORS.filter(m=>m.group===g && m.photo && m.position);
-  return [...by("founder").slice(0,2), ...by("senior").slice(0,2),
-          ...by("rising").slice(0,2), ...by("startup").slice(0,2)].slice(0,6);
+  const seen = new Set(), out = [];
+  for(const m of MENTORS){
+    if(!m.photo || !m.position || seen.has(m.name)) continue;
+    seen.add(m.name); out.push(m);
+    if(out.length === 6) break;
+  }
+  return out;
 })();
 /* 所有 JS 渲染的区块集中在 render()，切换语言时重绘 */
 function render(){
@@ -605,7 +610,7 @@ set("dims", DIMS.map(x=>`<div class="card dim">
   <div class="desc"><p>${t(x.p,x.p_en)}</p></div>
 </div>`).join(""));
 set("quotes", QUOTES.map(q=>`<div class="card quote"><p>“${t(q.p,q.p_en)}”</p><div class="who">—— <em>${t(q.w,q.w_en)}</em></div></div>`).join(""));
-set("posts-grid", POSTS.map(p=>`<a class="card is-link pcard" href="${p.url}" target="_blank" rel="noopener">
+set("posts-grid", POSTS.slice(0,3).map(p=>`<a class="card is-link pcard" href="${p.url}" target="_blank" rel="noopener">
   <div class="thumb">${p.img?`<img src="web_assets/posts/${p.img}" alt="" loading="lazy" decoding="async">`:''}</div>
   <div class="body">
     <div class="date">${p.d}</div>

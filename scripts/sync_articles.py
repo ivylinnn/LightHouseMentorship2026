@@ -18,7 +18,9 @@
 """
 import csv, hashlib, html, io, json, os, re, sys, urllib.request
 
-SHEET_CSV_URL = ""   # ← 之后接 Google Sheet:File → Share → Publish to web → CSV 的链接
+# 文章链接总表(Google Sheet)。要求共享设置为「Anyone with the link → Viewer」
+SHEET_CSV_URL = ("https://docs.google.com/spreadsheets/d/"
+                 "1sM6n3Daj5uUI5GG5EV7BgrDJ7C8KSE_a9qJ1rWORjpg/export?format=csv&gid=0")
 
 ROOT     = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 URL_FILE = os.path.join(ROOT, "scripts", "article_urls.txt")
@@ -37,17 +39,44 @@ def get(url):
 
 def load_urls():
     if SHEET_CSV_URL:
-        rows = list(csv.reader(io.StringIO(get(SHEET_CSV_URL).decode("utf-8"))))
-        urls = []
+        try:
+            raw = get(SHEET_CSV_URL).decode("utf-8")
+        except Exception:
+            sys.exit("读不到 Google Sheet:请确认共享设置为「Anyone with the link → Viewer」")
+        rows = list(csv.reader(io.StringIO(raw)))
+        # 按表头定位各列;没有表头就退回"哪格有链接用哪格"
+        link_i = date_i = show_i = None
         for row in rows:
-            if not row or "mp.weixin.qq.com" not in row[0]:
-                continue  # 跳过表头/空行
-            show = row[1].strip().lower() if len(row) > 1 else ""
-            if show in ("", "y", "yes", "true", "1"):
-                urls.append(row[0].strip())
-        return urls
+            for i, cell in enumerate(row):
+                c = cell.strip()
+                if "文章链接" in c: link_i = i
+                if "发布日期" in c or c == "日期": date_i = i
+                if c == "显示": show_i = i
+            if link_i is not None:
+                break
+        items = []
+        from datetime import datetime
+        for row in rows:
+            li = link_i if link_i is not None and link_i < len(row) else None
+            url = (row[li] if li is not None else
+                   next((c for c in row if "mp.weixin.qq.com" in c), "")).strip()
+            if "mp.weixin.qq.com" not in url:
+                continue  # 表头/空行
+            show = row[show_i].strip().lower() if show_i is not None and show_i < len(row) else ""
+            if show not in ("", "y", "yes", "true", "1"):
+                continue
+            ts = 0
+            if date_i is not None and date_i < len(row) and row[date_i].strip():
+                d = row[date_i].strip()
+                for fmt in ("%m/%d/%Y", "%Y/%m/%d", "%Y-%m-%d", "%m/%d/%y"):
+                    try:
+                        ts = int(datetime.strptime(d, fmt).timestamp()); break
+                    except ValueError:
+                        pass
+            items.append({"url": url, "ts": ts})
+        return items
     if os.path.exists(URL_FILE):
-        return [l.strip() for l in open(URL_FILE, encoding="utf-8")
+        return [{"url": l.strip(), "ts": 0} for l in open(URL_FILE, encoding="utf-8")
                 if l.strip() and not l.startswith("#") and "mp.weixin.qq.com" in l]
     sys.exit("没有文章来源:请配置 SHEET_CSV_URL 或创建 scripts/article_urls.txt")
 
@@ -88,16 +117,18 @@ def main():
 
     posts, errors = [], []
     from datetime import datetime, timezone
-    for url in urls:
+    for it in urls:
+        url = it["url"]
         slug = hashlib.md5(url.encode()).hexdigest()[:10]
         try:
             art = cache.get(slug) or fetch_article(url)
             img = save_cover(art["cover"], slug) if art.get("cover") else ""
             cache[slug] = art
-            d = datetime.fromtimestamp(art["ts"], tz=timezone.utc).strftime("%Y · %m") if art["ts"] else ""
+            ts = it["ts"] or art["ts"]      # 表里的发布日期优先,没填用文章抓到的时间
+            d = datetime.fromtimestamp(ts, tz=timezone.utc).strftime("%Y · %m") if ts else ""
             posts.append({"d": d, "h": art["h"], "p": art["p"], "img": img,
-                          "url": url, "ts": art["ts"]})
-            print(f"  ✓ {art['h'][:40]}")
+                          "url": url, "ts": ts})
+            print(f"  ✓ {d}  {art['h'][:40]}")
         except Exception as e:
             errors.append(f"{url}: {e}")
 

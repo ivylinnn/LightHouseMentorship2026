@@ -26,12 +26,14 @@ ROOT     = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PHOTO_DIR = os.path.join(ROOT, "web_assets", "mentors", "airtable")
 OUT_JS    = os.path.join(ROOT, "web_assets", "mentors-data.js")
 
-GROUP_MAP = {  # Airtable「组别」→ 网站 group id
+GROUP_MAP = {  # Airtable「组别」→ 网站 group id;初创员工并入资深职业(网页上是一个组)
     "新星职业组": "rising",
     "资深职业组": "senior",
-    "初创员工组": "startup",
+    "初创员工组": "senior",
     "创始人组":   "founder",
+    "西雅图组":   "seattle",
 }
+VIEW_ID = "viwHMIrIFbGSLuId7"   # 「导师完整信息」视图:网页展示顺序 = 此视图中的行顺序
 REGION_MAP = {"美西": "west", "美东": "east"}
 PHOTO_MAX = 480          # 头像最长边(px),卡片显示用足够
 FORCE = "--force" in sys.argv
@@ -49,7 +51,8 @@ def fetch_all(tok):
     url = f"https://api.airtable.com/v0/{BASE_ID}/{TABLE_ID}"
     recs, offset = [], None
     while True:
-        q = {"filterByFormula": "AND({网页显示}=TRUE(),{12期}='yes')", "pageSize": "100"}
+        q = {"filterByFormula": "AND({网页显示}=TRUE(),{12期}='yes')", "pageSize": "100",
+             "view": VIEW_ID}   # 指定视图后,返回顺序即视图行顺序
         if offset:
             q["offset"] = offset
         req = urllib.request.Request(url + "?" + urllib.parse.urlencode(q),
@@ -91,10 +94,10 @@ def main():
     print(f"拉取到 网页显示✓ 且 12期=yes 的记录: {len(recs)}")
 
     mentors, skipped, warns, downloaded = [], [], [], 0
-    for r in sorted(recs, key=lambda x: clean(x["fields"].get("Name", ""))):
+    for r in recs:                     # 不排序:保持 Airtable 视图中的行顺序
         f = r["fields"]
         name = clean(f.get("Name", ""))
-        groups = [GROUP_MAP[g] for g in f.get("组别", []) if g in GROUP_MAP]
+        groups = list(dict.fromkeys(GROUP_MAP[g] for g in f.get("组别", []) if g in GROUP_MAP))
         if not groups:
             skipped.append((name, f.get("组别", [])))
             continue
