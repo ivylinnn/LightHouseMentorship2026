@@ -148,8 +148,31 @@ section{position:relative;z-index:2}
   .row:nth-child(even) .media{order:0}
   .row .media .imgph{aspect-ratio:16/9;height:auto}
 }
+
+/* ---------- 移动端下拉菜单(桌面端隐藏) ---------- */
+.menu-btn{display:none;width:38px;height:38px;border-radius:10px;border:1px solid var(--line-strong);
+  background:none;cursor:pointer;position:relative;flex:none;padding:0}
+.menu-btn span{position:absolute;left:10px;right:10px;height:1.5px;background:var(--fg);
+  transition:transform .25s,opacity .25s}
+.menu-btn span:nth-child(1){top:13px}
+.menu-btn span:nth-child(2){top:18px}
+.menu-btn span:nth-child(3){top:23px}
+.menu-btn.open span:nth-child(1){transform:translateY(5px) rotate(45deg)}
+.menu-btn.open span:nth-child(2){opacity:0}
+.menu-btn.open span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+.m-menu{position:fixed;top:84px;right:16px;z-index:60;min-width:224px;display:none;
+  flex-direction:column;padding:10px;border-radius:16px;
+  background:rgba(16,16,22,.92);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);
+  border:1px solid var(--line-strong);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.m-menu.open{display:flex}
+.m-menu a{padding:13px 16px;font-size:14px;line-height:1;letter-spacing:1.2px;color:var(--fg-2);border-radius:10px}
+.m-menu a:hover{color:var(--fg);background:rgba(255,255,255,.06)}
+.m-menu a.apply{margin-top:6px;background:var(--fg);color:var(--bg);text-align:center;font-weight:700}
+
 @media(max-width:700px){
   .nav a:not(.btn):not(.lang),.nav .sep{display:none}
+  .nav .btn{display:none}
+  .menu-btn{display:block}
   .hero h1{font-size:38px;line-height:60px;letter-spacing:-1.5px}
   .g-title{font-size:28px}
   .sv .sv-q{align-items:flex-start;flex-direction:column;gap:12px}
@@ -178,8 +201,20 @@ section{position:relative;z-index:2}
     <span class="sep"></span>
     <a href="#" data-en="Community Login">社区登录</a>
     <a class="btn" href="#apply" data-en="Apply Now">报名领航</a>
+    <button class="menu-btn" id="menuBtn" aria-label="菜单" aria-expanded="false"><span></span><span></span><span></span></button>
   </nav>
 </div></header>
+
+<!-- 移动端下拉菜单 -->
+<div class="m-menu" id="mMenu">
+  <a href="index.html" data-en="Home">首页</a>
+  <a href="groups.html" data-en="Groups">组别</a>
+  <a href="mentors.html" data-en="Mentors">导师</a>
+  <a href="articles.html" data-en="Journal">文章</a>
+  <a href="#" data-en="Community Login">社区登录</a>
+  <a class="apply" href="#apply" data-en="Apply Now">报名领航</a>
+</div>
+
 
 <!-- ===================== HERO ===================== -->
 <section class="hero">
@@ -315,6 +350,24 @@ applyStatic(); render();
 const hdr = document.getElementById("hdr");
 const onScroll = ()=>hdr.classList.toggle("stuck", scrollY>40);
 onScroll(); addEventListener("scroll", onScroll, {passive:true});
+
+/* ---------- 移动端下拉菜单 ---------- */
+const menuBtn = document.getElementById("menuBtn"), mMenu = document.getElementById("mMenu");
+if(menuBtn && mMenu){
+  menuBtn.addEventListener("click", e=>{
+    e.stopPropagation();
+    const open = mMenu.classList.toggle("open");
+    menuBtn.classList.toggle("open", open);
+    menuBtn.setAttribute("aria-expanded", open);
+  });
+  document.addEventListener("click", e=>{
+    if(menuBtn.contains(e.target)) return;
+    if(!mMenu.contains(e.target) || e.target.closest("a")){
+      mMenu.classList.remove("open"); menuBtn.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded","false");
+    }
+  });
+}
 </script>
 </body>
 </html>
