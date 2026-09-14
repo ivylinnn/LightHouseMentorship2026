@@ -256,6 +256,7 @@ section{position:relative;z-index:2}
   <span>© Lighthouse Mentorship · 501(c)(3)</span>
 </div></div>
 
+<script src="web_assets/mentors-data.js"></script>
 <script>
 /* =========================================================================
    数据 —— 组别文案来自公众号《美西十二期报名开启》；导师沿用现有素材
@@ -304,17 +305,18 @@ const GROUPS = [
     goal:"导师通常为成功创业者或投资人，帮助创始人面对公司战略选择、团队建设与组织发展、融资和董事会管理等创业过程中的关键挑战。让创业之路少一份孤独，多一份支持。",
     goal_en:"Mentors are typically successful founders or investors who help founders navigate the key challenges of building a company — strategic choices, team building and organizational development, fundraising and board management. So the founder's road feels a little less lonely and a little more supported." }
 ];
-const P = "web_assets/mentors/";
-const GROUP_MENTORS = {
-  rising:  [ {name:"Liangxiao Zhu", photo:"Liangxiao Zhu.png", pos:"职位待补"}, {ph:true}, {ph:true} ],
-  senior:  [ {name:"David Feng 冯大为", photo:"David Feng 冯大为.png", pos:"职位待补"},
-             {name:"David Wei", photo:"David Wei.png", pos:"职位待补"}, {ph:true} ],
-  startup: [ {name:"包胜华", photo:"包胜华.png", pos:"职位待补"},
-             {name:"钱骏", photo:"钱骏.png", pos:"职位待补"}, {ph:true} ],
-  founder: [ {name:"Chang Chen", photo:"Chang Chen.png", pos:"Founder, Hockey Stick Growth"},
-             {name:"刘长明", pos:"CEO, Stellar Cyber"},
-             {name:"王金林", pos:"Managing Partner, Foothill Ventures"} ]
+const P = "web_assets/mentors/airtable/";
+/* 每组展示 3 位代表导师；按姓名从 mentors-data.js(Airtable 同步)中取，
+   照片/职位自动跟随同步结果。Airtable 里改了名字就会回落到占位卡片。 */
+const FEATURED = {
+  rising:  ["Felicia Heng", "Luke Jia", "朱阳波"],
+  senior:  ["David Feng 冯大为", "Yuankai Ge", "Maggie Du 杜莘"],
+  startup: ["贾扬清", "Xiangru Chen", "Lily Zhang 张若若"],
+  founder: ["Chang Chen", "刘长明", "王金林"]
 };
+const BY_NAME = new Map((typeof MENTORS !== "undefined" ? MENTORS : []).map(m => [m.name, m]));
+const GROUP_MENTORS = Object.fromEntries(Object.entries(FEATURED).map(
+  ([g, names]) => [g, names.map(n => BY_NAME.get(n) || {ph:true})]));
 
 const esc = s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const avatar = m => (m.ph || !m.photo)
@@ -323,7 +325,7 @@ const avatar = m => (m.ph || !m.photo)
 const TBD = ()=>t("职位待补","Title TBD");
 const mm = m => `<div class="mm ${m.ph?'is-ph':''}">${avatar(m)}
   <div style="min-width:0"><div class="nm">${m.ph?t('导师姓名','Mentor Name'):esc(m.name)}</div>
-  <div class="po">${m.ph||!m.pos||m.pos==='职位待补'?TBD():esc(m.pos)}</div></div></div>`;
+  <div class="po">${m.ph||!m.position?TBD():esc(m.position)}</div></div></div>`;
 
 function render(){
 document.getElementById("rows").innerHTML = GROUPS.map(g=>`
