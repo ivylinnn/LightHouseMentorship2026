@@ -20,7 +20,7 @@ token 存放: ~/.config/lighthouse/airtable_token       (美西 base)
 区域: 美西 base 读「区域」字段(缺省 west);美东 base 整表记为 east。
       两个 base 表结构一致,只有「组别」取值不同,见 WEST_GROUPS / EAST_GROUPS。
 """
-import io, json, os, re, sys, urllib.request, urllib.parse
+import io, json, os, re, sys, urllib.request, urllib.parse, urllib.error
 
 ROOT     = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PHOTO_DIR = os.path.join(ROOT, "web_assets", "mentors", "airtable")
@@ -90,7 +90,21 @@ def fetch_all(base, tok):
             q["offset"] = offset
         req = urllib.request.Request(url + "?" + urllib.parse.urlencode(q),
                                      headers={"Authorization": "Bearer " + tok})
-        d = json.load(urllib.request.urlopen(req))
+        try:
+            d = json.load(urllib.request.urlopen(req))
+        except urllib.error.HTTPError as e:
+            body = e.read().decode("utf-8", errors="ignore")[:300]
+            hint = {
+                401: "token 无效,或没有 data.records:read 权限",
+                403: f"token 有效,但没有被授权访问 base {base['id']}"
+                     "(在 token 设置里把这个 base 加进 Access 列表)",
+                404: f"base {base['id']} 或表 {TABLE_ID} 不存在 / 视图 {VIEW_ID} 不可见",
+                422: "筛选公式或视图 id 有问题",
+            }.get(e.code, "")
+            sys.exit(f"\n拉取 base {base['id']} 失败:HTTP {e.code}"
+                     + (f"\n  可能原因:{hint}" if hint else "")
+                     + f"\n  Airtable 返回:{body}"
+                     + f"\n  用的 token 来自:{base['token']} 或 {base['env']} / 通用 token")
         recs += d["records"]
         offset = d.get("offset")
         if not offset:
