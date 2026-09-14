@@ -177,11 +177,6 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 /* 下缘融进背景，避免"贴上去"的硬边 */
 .about-photo .frame::after{content:"";position:absolute;left:0;right:0;bottom:0;height:24%;
   pointer-events:none;background:linear-gradient(180deg,transparent,rgba(8,8,10,.8))}
-.about-photo figcaption{margin-top:16px;font-size:12.5px;line-height:22px;color:var(--fg-3);
-  display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.about-photo figcaption::before{content:"";width:18px;height:1px;background:var(--fg-3);flex:none}
-.about-photo .ph{color:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.16);
-  border-radius:999px;padding:1px 9px;font-size:9.5px;letter-spacing:1.2px;font-weight:700}
 
 /* ---------- 学员组别 ---------- */
 .groups{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -423,7 +418,6 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
       <div class="frame">
         <img src="web_assets/about_image.webp" alt="领航计划全体合影" data-en-alt="Lighthouse cohort group photo" loading="lazy" decoding="async">
       </div>
-      <figcaption><span data-en="Lighthouse cohort group photo">领航计划全体合影</span> <span class="ph" data-en="Cohort · date · location TBD">期数 · 时间 · 地点待补</span></figcaption>
     </figure>
   </div>
 </div></section>
