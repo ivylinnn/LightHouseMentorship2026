@@ -62,11 +62,22 @@ FORCE = "--force" in sys.argv
 
 
 def token(base):
-    p = os.path.expanduser(base["token"])
-    t = os.environ.get(base["env"]) or (open(p).read().strip() if os.path.exists(p) else "")
-    if not t:
-        sys.exit(f"找不到 {base['id']} 的 Airtable token:请放在 {base['token']} 或环境变量 {base['env']}")
-    return t
+    """先找本 base 专属的 token,没有就回落到通用 token —— 一个 PAT 同时授权两个 base
+    时只需配一份。"""
+    for env, path in [(base["env"], base["token"]),
+                      ("AIRTABLE_TOKEN", "~/.config/lighthouse/airtable_token")]:
+        t = os.environ.get(env)
+        if t:
+            return t.strip()
+        f = os.path.expanduser(path)
+        if os.path.exists(f):
+            return open(f).read().strip()
+    sys.exit(
+        f"找不到 {base['id']} 的 Airtable token。\n"
+        f"  方式一(推荐):建一个同时授权两个 base、含 data.records:read 的 PAT,存到\n"
+        f"      ~/.config/lighthouse/airtable_token\n"
+        f"  方式二:单独给这个 base 配,存到 {base['token']} 或环境变量 {base['env']}\n"
+        f"  建 token: https://airtable.com/create/tokens")
 
 
 def fetch_all(base, tok):
