@@ -116,6 +116,16 @@ def clean(s):
     return re.sub(r"\s+", " ", (s or "")).strip()
 
 
+UNVERIFIED = re.compile(r"^[❓？?]+\s*")
+
+
+def strip_marker(pos):
+    """Airtable 里用 ❓ 前缀标「待核实」,是内部标记,不能出现在网站上。
+    去掉后返回 (职位, 是否带过标记),带标记的人会进提醒列表。"""
+    p = clean(pos)
+    return (UNVERIFIED.sub("", p), bool(UNVERIFIED.match(p)))
+
+
 def safe_name(s):
     """姓名转文件名:去掉路径分隔等危险字符"""
     return re.sub(r"[/\\:*?\"<>|]+", " ", clean(s)).strip() or "unnamed"
@@ -173,9 +183,13 @@ def main():
             if not f.get("简介"):
                 warns.append(f"{name}: 无中文简介")
 
+            position, unverified = strip_marker(f.get("Current position", ""))
+            if unverified:
+                warns.append(f"{name}: 职位带 ❓ 待核实标记(已从网站去掉,请在 Airtable 里确认)")
+
             for g in groups:  # 目前无人多组;若将来有,同一导师在每组各出现一次
                 m = {"region": region, "group": g, "name": name,
-                     "position": clean(f.get("Current position", ""))}
+                     "position": position}
                 if photo:            m["photo"] = photo
                 if f.get("简介"):        m["bio"]    = f["简介"].strip()
                 if f.get("English Bio"): m["bio_en"] = f["English Bio"].strip()

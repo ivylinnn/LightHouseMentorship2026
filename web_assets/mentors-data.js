@@ -28,14 +28,6 @@ const MENTORS = [
  {
   "region": "west",
   "group": "senior",
-  "name": "Sean Sheng",
-  "position": "SVP of Engineering, Unity Technology",
-  "photo": "Sean Sheng.webp",
-  "bio": "Sean Sheng is an engineering leader with extensive experience in the advertising and fraud detection industries. As Vice President of Engineering at Unity, he leads the machine learning division of Unity Ads, focusing on delivering impactful innovations and scaling business solutions.\nSean has held key roles at leading tech companies, including Amazon, Airbnb, Facebook, Apple, eBay, and Microsoft, where he consistently contributed to advancing technology and driving team success.\nHe earned his PhD in Computer Engineering with honors from Syracuse University and has received multiple best paper awards at international conferences, reflecting his dedication to research and innovation. Sean is passionate about building strong teams and delivering meaningful results through collaboration and technology."
- },
- {
-  "region": "west",
-  "group": "senior",
   "name": "David Wei",
   "position": "Ex Head of R&D, Turing",
   "photo": "David Wei.webp",
@@ -48,6 +40,14 @@ const MENTORS = [
   "position": "CTO, Yami",
   "photo": "翁捷.webp",
   "bio": "待更新"
+ },
+ {
+  "region": "west",
+  "group": "senior",
+  "name": "Sean Sheng",
+  "position": "SVP, Unity Technology",
+  "photo": "Sean Sheng.webp",
+  "bio": "Sean Sheng is Senior Vice President at Unity Technologies, where he leads the Vector AI division and helps drive the company’s transformation across AI, product, and culture.\n\nSean’s career spans some of the world’s most influential technology companies, including Amazon, Airbnb, Facebook, Apple, eBay, and Microsoft. Through these experiences, he has developed a distinctive perspective at the intersection of artificial intelligence, large-scale technology, product innovation, and organizational leadership. He is known for building high-performing teams, turning ambitious ideas into meaningful customer and business outcomes, and leading effectively through periods of growth and change.\n\nSean earned his PhD in Computer Engineering with honors from Syracuse University. His research has received multiple best paper awards at international conferences, reflecting his deep technical foundation and longstanding commitment to innovation.\n\nBased in Silicon Valley, Sean is passionate about developing exceptional people, fostering cultures of trust and collaboration, and applying technology to solve meaningful problems at scale."
  },
  {
   "region": "west",
@@ -441,7 +441,7 @@ const MENTORS = [
   "region": "west",
   "group": "rising",
   "name": "Felicia Heng",
-  "position": "Senior Manager Machine Learning, Block",
+  "position": "Director of Machine Learning, Block",
   "photo": "Felicia Heng.webp",
   "bio": "I’m a senior AI/ML leader specializing in conversational AI, agentic systems, and recommender systems. My career spans building and leading large-scale AI products and teams across leading technology companies. At Block, I lead teams building production AI systems for customer support, including LLM applications and evaluation and safety. I’m passionate about building high-performing, high-autonomy teams and turning emerging technology into scalable product and business value."
  },
@@ -517,5 +517,547 @@ const MENTORS = [
   "position": "Sr Manager of Engineering, Airbnb",
   "photo": "朱阳波.webp",
   "bio": "朱阳波现在Airbnb带领搜索引擎团队，开发搜索平台，提升用户体验。他之前在Google Search Infrastructure团队工作七年。毕业于清华大学和卡内基梅隆大学。"
+ },
+ {
+  "region": "east",
+  "group": "founder",
+  "name": "李明",
+  "position": "董事长, 映翰通网络（688080）",
+  "photo": "east-李明.webp",
+  "bio": "李明，映翰通网络（688080）董事长。\n2001年，映翰通网络(InHand Networks)在北京成立。从创业伊始，映翰通即专注于将移动网络应用于工业能源商业医疗等领域，实现创新的应用。映翰通注重研发投入与产品品质，在早期阶段及获得GE医疗等世界级客户的认可。在2010年获得德丰杰A轮投资后，映翰通的技术积累从网络产品拓展到了云平台、先进传感器与人工智能等方面，形成多个创新的行业解决方案。映翰通致力于在飞速发展的智能时代，利用创新的物联网技术，驱动企业的数字化进程。2020年2月， 映翰通网络在科创板上市，交易代码688080。\n创立映翰通网络之前，李明曾在工业与电力的全球领先企业 - 施耐德电气担任包括自动化事业部、中国研发中心总经理在内的多项职务。"
+ },
+ {
+  "region": "east",
+  "group": "founder",
+  "name": "段渠",
+  "position": "创始人, 华盛顿清峰资本",
+  "photo": "east-段渠.webp",
+  "bio": "曾在中国科学院总部从事基础研究及高技术研究项目管理，曾在美国著名智库斯坦福研究院SRI科技和经济政策分部担任国际学者，从事SCI科技引文索大数据及国家创新机制研究。先后在四家美国网络技术创新或网络电信上市公司如QWEST，时代华纳电信TWC从事软件开发及系统质量管理工作十多年。\n2006年创立海外较早的三创（创新创业创投）及企业国际化服务平台美中技术UCTID与创新发展中心暨华盛顿创新创业俱乐部WIEC；2015年创立华盛顿清峰资本（TMT 投资及企业国际化）投资管理公司 。2016年始协议担任中国科学院国科控股集团美东联络代表，同时协助其子公司国科投资创建硅谷分部并兼任投资总监，合伙人。现为出海民营上市企业美国分公司CEO，管理企业资本CVC，投资 BIO TECH。\n清华大学工学学士。中国科学院理学硕士。美国乔治梅森大学计算机科学硕士。美国乔治梅森大学科技政策及系统科学博士候选人。"
+ },
+ {
+  "region": "east",
+  "group": "founder",
+  "name": "罗建刚",
+  "position": "创始人, Prime Science & Technology, Inc.",
+  "photo": "east-罗建刚.webp",
+  "bio": "罗建刚是Prime Science & Technology, Inc.创始人，美国SPAC上市公司CEO/独董，参与多家金融科技公司投资，多年甲骨文资深顾问，清华大学企业家协会成员，大纽约清华大学校友会董事会前主席，新州华人电脑协会前会長/董事。罗先生1991年本科毕业于清华大学应用数学系，1994年硕士毕业于清华大学应用数学系计算数学专业，1998年硕士毕业于新泽西理工学院计算机系。"
+ },
+ {
+  "region": "east",
+  "group": "founder",
+  "name": "贺然",
+  "position": "",
+  "photo": "east-贺然.webp"
+ },
+ {
+  "region": "east",
+  "group": "founder",
+  "name": "孙江涛",
+  "position": "董事长, CBiBank（美国富港银行）；CEO, 神州数字",
+  "photo": "east-孙江涛.webp",
+  "bio": "CBiBank.com（美国富港银行）集团董事长，钱袋宝创始人，神州数字CEO。\n孙江涛先生是互联网和金融科技领域连续创业的企业家和投资人。作为创始人和最主要的股东，孙先生曾创立6家企业，其中4家成功被收购，1家在香港上市。其中，于2004年10月创办神州付，2013年12月，带领行业先行者神州付于香港联交所上市，股票代码：08255.HK。2008年11月创办钱袋宝，开创了移动互联网第三方电子支付领域的新模式，钱袋宝曾获得海通证券、IDG资本等行业巨头的战略投资，2016年9月被美团点评（03690.HK）全资收购。察觉到“中小贸易企业的跨境金融需求”，2017年7月创办了CBiBank富港银行，将目光投向国际贸易金融服务领域，致力于让中小企业的国际收付款更安全、更方便，促进了金融业开放和国际合作。孙先生曾被评为“中关村高端领军人才”、“全国电子信息行业优秀青年企业家”、“互联网＋行业最具影响力人物”等。\n同时，孙先生还担任TNC大自然保护协会大中华理事会委员，北京微爱公益基金会理事，亚杰商会摇篮计划导师，致力于生态保护、科技向善、医疗救助及青年创业家的培养。\nGroup Chairman of CBiBank.com, Founder of Qiandaibao, CEO of China Binary New Fintech Group.\nMr. Sun is a serial entrepreneur and investor who spent years in the Internet and fintech field. As the founder and major shareholder, he has founded six companies, among which four of them successfully acquired and one listed in Hong Kong. In October 2004, he founded China Binary. In December 2013, he led the industry pioneer China Binary New Fintech Group to be listed on the HKEX under ticker 08255.HK. In November 2008, he founded Qiandaibao, forming a new role model in the mobile internet third party payment area. Qiandaibao received strategic investments from industry giants such as Haitong Securities and IDG Capital, and was fully acquired by Meituan-Dianping (03690.HK) in September 2016.\nRealizing the \"cross-border financial needs of small and medium-sized trading companies,\" Mr. Sun founded CBiBank, focusing on international trade finance services since July 2017, dedicated to making international payments for SMEs safer and more convenient, promoting financial openness and international cooperation. Mr. Sun has been recognized as \"Zhongguancun High-end Leader,\" \"Outstanding Young Entrepreneur in the National Electronic Information Industry,\" and \"Internet plus Industry Most Influential Person,\" etc.\nAdditionally, Mr. Sun serves as a member of the TNC Greater China, a director of Beijing Vlove Charity Foundation, a mentor for Asia America Multi-technology Association of its Commerce's Cradle Program. He is committed to ecological protection, promoting technology for good, medical assistance and nurturing young entrepreneurs."
+ },
+ {
+  "region": "east",
+  "group": "founder",
+  "name": "曹亚昕",
+  "position": "合伙人 & COO, Tidalwave",
+  "photo": "east-曹亚昕.webp",
+  "bio": "曹亚昕现任AI Fintech公司Tidalwave合伙人和COO。前任Web3领域全球最大安全公司及独角兽CertiK董事和COO。历任紫光通信副总裁，美国博通研发总监。有多年美国及中国科技行业产品和商业经验。曹先生拥有南加州大学电子工程博士学位，纽约大学Stern商学院MBA，和清华大学电子工程学士学位。"
+ },
+ {
+  "region": "east",
+  "group": "founder",
+  "name": "廖国娟",
+  "position": "联合创始人兼 CEO, Couragene",
+  "photo": "east-廖国娟.webp",
+  "bio": "廖国娟博士是Couragene的联合创始人兼首席执行官。在创办Couragene之前，廖博士是GENEWIZ的联合创始人兼首席执行官。2018年GENEWIZ公司被Brooks Automation公司成功并购。\n在创建GENEWIZ期间，廖国娟博士和共同创始人孙中平博士带领GENEWIZ团队实现了公司在美国和全球的快速扩张，并取得了骄人的成绩，是全球诸多跨国公司以及高等学府的战略合作伙伴和首选供应商。\n2020年，廖博士荣获生物医学工程学会颁发的享有盛誉的Wallace A. Coulter奖，以表彰其在生物科技领域的杰出成就。2010年，她与GENEWIZ联合创始人孙中平博士共同获得安永新泽西州 “年度企业家奖”。\n廖国娟博士秉承的企业文化价值观是客户和员工双赢，倡导的理念是“做世界最好,让世界更好”。廖博士自领航计划成立以来，一直担任创业组导师。"
+ },
+ {
+  "region": "east",
+  "group": "founder",
+  "name": "蒋宇红",
+  "position": "CEO, BRISEA Group（博瑞希集团）",
+  "photo": "east-蒋宇红.webp",
+  "bio": "美国博瑞希集团公司 (BRISEA Group, Inc.) CEO; 美中环境教育基金（U.S.-China Environmental Education Foundation, UCEEF）联合创始人。\n做为硬科技初创企业的投资人及成熟企业的运营者，蒋宇红女士对于企业的全生命周期运营有深刻的体验及经验。蒋宇红女士亦对美、中两国的项目评估、开发、管理、运行方面皆有着丰富经验。在蒋宇红女士参与、负责的超过100个中美项目中，向两国间的政府部门、行业协会及企业提供了多种定制商务发展方针、战略和咨询服务方案，并参与方案的实施。客户分布于环境，能源，石油化工，市政，化工等广泛的领域。蒋宇红女士还成功主导进行了多项中美企业融资投资，出海项目。\n蒋宇红女士被四任美国商务部长连续任命为美国联邦政府商务部环境技术贸易指导委员会委员；连续担任7届美东领航计划导师。"
+ },
+ {
+  "region": "east",
+  "group": "founder",
+  "name": "余龙文",
+  "position": "创始合伙人, 泰有基金 · 水木清华校友基金",
+  "photo": "east-余龙文.webp",
+  "bio": "余龙文是泰有基金创始合伙人、水木清华校友基金创始合伙人、中国高校创新创业教育联盟投融资专业委员会主任委员。\n清华大学工学博士，曾获首届全国大学生“挑战杯”科技成果一等奖、“十佳应用专利成果奖”等，发明的“竹草木漂白新工艺”应用到全国数百家企业，熟悉高新技术的产业转化。\n历任中国青年企业家协会常务副秘书长、广西北海市副市长、广西招商局副局长、中国光大集团办公厅主任、人力资源部总经理兼法律部主任。"
+ },
+ {
+  "region": "east",
+  "group": "founder",
+  "name": "Fang Liu",
+  "position": "Attorney（公司法与证券法）",
+  "photo": "east-Fang Liu.webp",
+  "bio": "Ms. Fang Liu focuses her practice in the areas of corporate and securities law, with an emphasis on initial public offerings. She assists public and private companies in their corporate transactions including securitizations, public financings, banking, international market financings, cross-border acquisitions and other general matters. Ms. Liu has deep experience in advising companies on going public and advising FINRA registered broker dealers on underwritten offerings.\nPrior to co-founding VCL Law LLP, Fang practiced securities law at Pillsbury Winthrop Shaw Pittman LLP and Loeb & Loeb LLP in Washington, DC.\nMs. Liu earned a J.D. from Duke University School of Law, an M.A. from Beijing Foreign Studies University, and a B.A. from Nankai University. Ms. Liu is admitted to practice law in Washington DC and Virginia. Her working languages are English and Chinese."
+ },
+ {
+  "region": "east",
+  "group": "founder",
+  "name": "叶帆",
+  "position": "创始人, SUNS International（三实电器）",
+  "photo": "east-叶帆.webp",
+  "bio": "SUNS International（三实电器）创始人。叶帆先生于1989年进入清华大学机械工程系。本科毕业后赴美，1997在 Ohio States University 获材料科学与工程博士学位，之后在麻省理工学院从事航空材料博士后研究工作。1999-2002就职于Corning，负责光通讯半导体激光器封装的生产和研发工作。2003年创办SUNS International（三实电器）, SUNS是全球主要的工业控制元件的生产厂家。"
+ },
+ {
+  "region": "east",
+  "group": "founder",
+  "name": "应希堂",
+  "position": "创始人、董事长, 科美诊断（688468）· 康爱医疗",
+  "photo": "east-应希堂.webp",
+  "bio": "连续创业者：科美诊断（科创板，688468）、康爱医疗； 学习经历：四川大学生物系本科，清华大学经管学院硕士。\n1988~1998：北京北方生物所书记兼常务副所长，1997年度部十大杰出青年；负责产品T3获国优金奖。1999~2018，科美诊断创始人、董事长，2021年科创板：688468，上市时市值137亿；2013~2023，康爱医疗，创始人、董事长，已完成A轮融资。中国医疗器械协会体外诊断专业委员会第一届副主任委员； 特殊医学用途食品应用专业委员会副主任委员；医学食品分会副主任委员；兰州大学公共卫生学院兼职教授， 美东清华领航计划创业导师。\n过往荣誉：2008年度十大创业人物；2010年获教育部科技成果一等奖；2014年北京市科技进步二等奖；2022年度食品科学科技进步一等奖，发表论文63篇，其中SCI论文12篇；获发明专利11项、软件著作25个、实用新型6个；商标87个；作品登记证1个。"
+ },
+ {
+  "region": "east",
+  "group": "founder",
+  "name": "龚遥滨",
+  "position": "主席, Zino Ventures 然诺资本",
+  "photo": "east-龚遥滨.webp",
+  "bio": "清华大学 EMBA 2003级，Zino Ventures 然诺资本主席，新西兰政府Callaghan Innovation董事，新加坡 JCM颉羿资本联合创始人，硅谷 Wisemont Capital 运营合伙人。龚遥滨先生在IT行业耕耘多年，是一位在公司战略、跨国运营和市场销售方面拥有二十多年经验的成功企业家和投资人。龚先生在1995年联合创办了博彦科技（002649.SZ），于2012年在深圳交易所挂牌上市。博彦科技是世界级的IT行业服务解决方案供应商，在全球范围有超过18000名员工。在波士顿地区，龚遥滨先生是 MassChallenge 导师和裁判，哈佛商学院 New Venture Competition 裁判。"
+ },
+ {
+  "region": "east",
+  "group": "founder",
+  "name": "柯学",
+  "position": "COO & 管理合伙人, 工合基金",
+  "photo": "east-柯学.webp",
+  "bio": "柯学曾担任中国证券业协会信息技术技术委员会委员、广发证券信息技术部总经理、广发资管公司首席信息官、深交所科技子公司高管,现任工合基金 COO & 管理合伙人。他拥有超过二十五年金融科技工作经历，管理团队人数超过 1200 人，负责的业务年收入超过 2亿美金,具有丰富的公司战略、市场、研发、人力等方面的综合管理经验。\n他曾获得中国证券业科学技术奖一等奖,及多项省部级科技奖项。组织和参与了中国证券标准化委员会的多项数据标准制定和实施,领导和组织团队获得了十多项技术发明专利,在中国证券业协会的权威杂志上发表过多篇论文。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "高梅",
+  "position": "Partner, IDG Capital",
+  "photo": "east-高梅.webp",
+  "bio": "Mei Gao is a Partner at IDG Capital, a leading Asia-focused alternative asset management firm with over USD 30 billion of AUM. She joined the firm in 2016 to focus on cross-border investments. From 2003 to 2016, Mei held various senior management roles at Fore Research & Management, a New York-based hedge fund with over USD 3.5 billion in AUM. Her tenure at the firm was marked by her leadership as President and Head of Portfolio Management, which earned her extensive investment experience.\nIn addition to her role at IDG, Mei chairs the investment committee of Cavamont Holdings, the multi-billion-dollar family office of Sir James Goldsmith, and serves on the Board of Governors of the CFA Institute. She is also a guest lecturer at New York University and a frequent speaker at leading industry forums, including the Future Investment Initiative (FII), SuperReturn, Fintech Abu Dhabi, the NMS Management Conference, and the Montgomery Summit. In 2013, she was named one of the “Most Powerful Women on Wall Street” by Business Insider.\nMei holds an MBA from Wilfrid Laurier University and a BA from Shantou University. She is a CFA charterholder."
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "李宏晖",
+  "position": "Managing Director, BofA Securities",
+  "photo": "east-李宏晖.webp",
+  "bio": "李宏晖(Michael Li)在美洲银行(BofA Securities)任Managing Director。目前在Global Markets管理Mortgage Quants和Cross Asset Strats两个部门，负责MBS/ABS产品的定价风险模型以及cross assets量化投资交易策略的开发和技术支持。Michael还致力于Global Markets和BofA enterprise level的技术创新和跨部门横向沟通与合作，包括从2023年以来GenAI在美洲银行的策略、研发、应用和推广。\n早期Michael有幸在北京与清华校友共创互联网科技公司，之后赴纽约任职于两家top 20 fastest growing companies in the US，积累了宝贵的产品研发和推广经验。\nMichael本科毕业于清华大学电机工程专业，并获得卡梅大学金融数学硕士学位。非常荣幸继续参与领航计划，与老师和同学们一起不断学习提高。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "庄婧",
+  "position": "Managing Director & Head of Fintech, BMO",
+  "photo": "east-庄婧.webp",
+  "bio": "庄婧，现任BMO Managing Director and Head of Fintech，专注于金融科技公司的并购上市融资等业务。\n此前，她就任于Goldman Sachs和Mizuho投行部负责金融机构的并购上市融资等业务，曾主导高盛的并购和战略策划。庄婧女士拥有Middlebury College的经济学士和数学学士。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "莫恒勇",
+  "position": "首席经济学家兼市场策略主管, Corebridge Financial",
+  "photo": "east-莫恒勇.webp",
+  "bio": "莫恒勇博士（Dr. Henry Mo, Ph.D., CFA）现任美国康桥金融（Corebridge Financial）首席经济学家兼市场策略主管，负责美国及全球宏观经济、金融市场和投资策略研究，为公司保险、退休及资产管理业务提供经济分析和市场策略支持。Corebridge Financial于2022年从美国国际集团（AIG）分拆独立，是美国领先的寿险、退休及资产管理公司之一。\n加入Corebridge前，莫博士曾任美国国际集团（AIG）首席经济学家；此前曾任瑞士信贷（Credit Suisse）董事兼资深全球及美国经济分析师，以及美国国家经济研究局（National Bureau of Economic Research, NBER）研究助理。作为华尔街大型金融机构中少数担任首席经济学家的华人经济学家之一，莫博士拥有二十余年美国经济、全球宏观及金融市场研究经验。\n莫博士拥有纽约市立大学经济学博士学位，并持有特许金融分析师（CFA）资格，经常受邀为国内商学院EMBA、DBA项目及国际财经论坛讲授美国经济、全球金融市场、货币政策、资产配置及投资策略等课程。\n工作之余，莫博士热爱耐力运动，是Ironman（铁人三项）完赛选手，并长期担任Achilles International（国际残障运动公益组织）志愿者，陪伴视障运动员参加马拉松和长距离骑行活动。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "毛昀",
+  "position": "Engineering Director, Meta Platforms",
+  "photo": "east-毛昀.webp",
+  "bio": "毛昀先生目前就职于Meta Platforms (fka Facebook)，从事AI推荐系统的算法和后端平台的开发与研究。他在2013年加入了Facebook，从零开始构建Facebook的纽约办公室和工程团队。在任职Engineering Director期间，他组建的团队横跨美东、美西和伦敦，负责公司核心产品平台的发展。在加入Facebook之前，他担任AT&T香浓研究院的研究员，是Cloud Computing的专家。毛昀先生拥有清华大学计算机系学士、硕士和University of Pennsylvania计算机系博士学位。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "刘兴初",
+  "position": "首席数据官, 基因科技（Genentech）",
+  "photo": "east-刘兴初.webp",
+  "bio": "刘兴初现任基因科技（Genentech）首席数据官，负责大数据、人工智能战略的制定和执行，致力于将人工智能应用于医药领域，推动医疗科技的发展。在此之前，曾先后任职辉瑞制药（Pfizer）全球首席数据分析官，梅西百货（Macy’s）高级副总裁，和Home Depot集团创新子公司BlackLocus的总裁。他在大数据开发和企业管理领域拥有20年的经验，专注于人工智能、机器学习以及大型商业和医疗中大数据平台的应用。在职业早期，刘兴初专注于初创公司，所在的3个初创团队Zilliant（被收购）, TrueCar（上市NASDAQ），BlackLocus（被收购）均获成功。\n刘兴初本科毕业于清华大学自动化专业获学士和硕士学位，同时获得工商管理双学位。并获得德州A&M大学工业工程博士学位。\n2023年刘兴初被美国首席数据官杂志评为创新领军人物。2024年被DataIQ评选为100位最有影响力的数据领军人物之一。此外，他还曾担任美国西北大学工业委员会董事和纽约首席数据官理事会理事。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "胡刚",
+  "position": "创始人兼首席投资官, WinShore Capital",
+  "photo": "east-胡刚.webp",
+  "bio": "现任WinShore Capital创始人兼首席投资官。他创办的WinShore Captical对冲基金专注于应用宏观金融工具进行相对价值交易。胡刚先生拥有逾24年金融市场经验，是通胀交易专家。在创办WinShore Captital前，曾作为基金经理就任于Blue Crest资本管理公司，专注于全球宏观策略交易。在加入Blue Crest Capital前，他担任瑞信(Credit Suisse)的董事总经理，负责美国线性利率交易和全球通胀业务。此前，他担任太平洋投资管理公司(PIMCO)的执行副总裁，在实际回报(Real Return)部门共同管理全球最大的通胀基金。胡刚先生拥有清华大学应用数学学士与加州理工学院(California Institute of Technology)应用数学博士学位。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "洪青",
+  "position": "行长, 中信银行（国际）纽约分行",
+  "photo": "east-洪青.webp",
+  "bio": "洪青，中信银行（国际）纽约分行行长，毕业于复旦大学，浙江大学，银行从业逾20年，曾任中国工商银行纽约分行副总经理，中国工商银行印度孟买分行总经理，中金资本董事总经理。\n在企业困境重组业务、项目融资、企业贷款、风险管理及监管合规方面拥有多年从业经验， 同时在成立并管理海外机构、业务拓展、商业银行管理、跨文化管理、增强团队效益等方面经验丰富。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "马华强",
+  "position": "股票衍生品量化模型, Jefferies",
+  "photo": "east-马华强.webp",
+  "bio": "马华强就职于Jefferies，负责股票衍生品的量化模型。他帮助前台交易部门进行交易定价模型设计和风险分析，为公司在金融衍生品方面的快速发展做出了贡献。此前他就任于Wells Fargo，先后在技术与编程，金融衍生品前台模型等部门任职。马华强本科毕业于中国科技大学化学物理专业，在马里兰大学取得了应用数学的博士学位。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "吴昊天",
+  "position": "Senior Director of Engineering, Instagram（Meta）",
+  "photo": "east-吴昊天.webp",
+  "bio": "吴昊天现在就职于Instagram, Meta Platforms，任高级工程总监 (Senior Director of Engineering)，带领Instagram内容推荐算法与系统的工程团队，包含Instagram Feed, Stories, Reels, Explore的推荐系统。他的团队在过去数年里对Instagram的增长起到了核心作用。 他于2012年加入Facebook，2016年转岗到Instagram，2018年创建了Instagram Reels。此前他在彭博(bloomberg)从事过高频交易平台开发。他拥有清华大学电子工程系的学士学位和波士顿大学电子工程系的硕士学位。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "叶刚",
+  "position": "合伙人, Bayes PLLC",
+  "photo": "east-叶刚.webp",
+  "bio": "叶刚博士是一位横跨科技与法律领域的复合型专家，现任Bayes PLLC合伙人，拥有清华大学工科学士、杜克大学电子及计算机工程硕博学位和乔治华盛顿大学法学博士学位。作为美国多个联邦法院及专利商标局注册律师，他在知识产权领域深耕十余年，主导超过上千件专利申请及多场高技术含量诉讼，为从初创企业到跨国集团的客户提供战略级解决方案。\n他擅长将复杂技术转化为系统性保护策略，并精通通过高效沟通推动目标达成。凭借对人工智能、5G通信、新能源，和医疗科技等前沿产业的深刻理解，及服务企业全生命周期的经验，他将帮助领航学员构建技术-法律双重视角，掌握高效解决问题的方法论，快速适应行业变革，规划清晰的职业晋升路径。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "Mandy Song",
+  "position": "Founding & Managing Partner, Bayes PLLC",
+  "photo": "east-Mandy Song.webp",
+  "bio": "Mandy Song, Ph.D., is a seasoned U.S. attorney, the founding and managing partner of the Bayes law firm. She brings nearly 20 years' experience in patent practice, including patent prosecution, client counseling, patent portfolio management & transactions, patent litigation in U.S. federal district courts and Section 337 investigations at the U.S. International Trade Commission (ITC), and post-grant proceedings before the Patent Trial and Appeal Board (PTAB) of the U.S. Patent and Trademark Office (USPTO). She has significant experience in a wide range of electrical, computer, and biomedical technologies."
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "黄长缨",
+  "position": "Head of China Desk, Citi Corporate Banking",
+  "photo": "east-黄长缨.webp",
+  "bio": "Cathy H. is with Citi’s Corporate Banking business at the firm’s global headquarters in New York. Within Global Network Banking North America, she leads the Consumer, Retail & Healthcare franchise and serves as Head of the China Desk.\nBased primarily in the United States throughout her career, Cathy has also worked in Asia and Europe. Her career has included leadership roles across corporate strategy and internal M&A, digital economy and innovation initiatives, pricing, Treasury & Trade Solutions, corporate sales, and Corporate Banking.\nShe is responsible for the firm’s relationships with multinational corporations and financial institutions headquartered outside North America across the United States and Canada. In this capacity, she brings together capabilities across Corporate Banking, Investment Banking, Capital Markets, and Treasury & Trade Solutions to develop and deliver integrated financial solutions.\nBeyond her client responsibilities, Cathy has long been engaged in the development of emerging professionals. She mentors young professionals and shares perspectives on leadership, career development, client relationship management, cross-cultural collaboration, and careers in global financial institutions."
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "康岚",
+  "position": "前资深董事总经理, 康桥资本；前执行董事兼高级副总裁, 复星国际",
+  "photo": "east-康岚.webp",
+  "bio": "康岚女士在生物医药、保险金融等领域有着丰富的投资和管理经验。她曾担任康桥资本的资深董事总经理，是投决会委员和基金管理委员会委员，全面负责投后管理。她也曾在复星国际担任执行董事兼高级副总裁，复星保险业务总裁、董事长，以及复星国际首席人力资源官。 她还曾在全球多家公司担任董事，包括Avantor的独立董事，复星保德信人寿董事长，美国Ameritrust保险公司董事长，以及复星医药和云顶新耀等多家医药企业的非执行董事。在加入复星之前，康女士在麦肯锡公司和光辉国际公司分别做过管理咨询和高管搜寻。她的职业生涯早期在美国的MSKCC和Wyeth从事癌症研究和药物研发工作。\n康岚女士在中国浙江大学获得生物科学与技术学士学位，在宾夕法尼亚大学沃顿商学院获得MBA，在Tulane大学获得生物化学硕士学位。在斯坦福大学Distinguished Careers Institute做过一年的Fellow。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "赵月刚",
+  "position": "Chief Commercial Officer, 波士顿某分析仪器公司",
+  "photo": "east-赵月刚.webp",
+  "bio": "Boston一家私募背景的分析仪器公司的Chief Commercial Officer， ICML (International Counsel of Machinery Lubrication，国际机械润滑理事会)的董事，Merrimack College Girard 商学院的客座讲师。二十多年一直在电子测量仪器，理化分析仪器行业任市场销售管理工作，所任职各公司服务于半导体，航空航天，锂电池，矿山，工程机械，食品加工和环保等市场。自2008年起在私募基金投资的公司中任职管理层，其中2018年Spectro Scientific被Ametek(NYSE: AME)以1.9亿美金全资收购。\n北京⼤学物理系本科， University of Wisconsin, Madison 物理系硕士学位，Case Western Reserve University MBA。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "任铁耕",
+  "position": "联合创始人 & CTO, REON Technology",
+  "photo": "east-任铁耕.webp",
+  "bio": "清华92级本科电机系毕业生，现任REON Technology 的联合创始人及CTO，从事新一代智能储能系统的设计与开发工作。在REON 之前，联合创立了FIGUR8 公司并担任CTO。目前，FIGUR8作为MIT STEX25的一员，经过多轮成功的融资(>$20m)，成为MSK领域的一个具有实力的数字医疗及健康数据公司的领头羊。\n在创立FIGUR8之前，任博士在施耐德电气公司工作近十年，在CTO Office 担任数据中心无线传感器产品（IOT）的技术负责人。他领导了技术团队开发了NetBotz 无线（ZIGBEE）环境监测传感器平台，负责软硬件以及产品工业级测试等全方位的产品化工作。\n任博士本科毕业于清华大学电机系，之后获得University of Rhode Island 计算机科学博士学位。在各项专业学术期刊上发表多篇论文，并拥有多项美国及国际专利。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "董建伟",
+  "position": "CEO, SK Siltron CSS",
+  "photo": "east-董建伟.webp",
+  "bio": "Mr. Dong is a growth-minded business executive with 20 years of experience in leading changes, developing organizations and people, and driving innovations. He currently serves as CEO of SK Siltron CSS, a fast-growing semiconductor materials company located in Bay City, Michigan.\nHe has B.A. from Jiao Tong University, Ph.D. from University of Minnesota. In 2019, Mr. Dong became an alum of Harvard Business School by completing a five-module executive program on leadership development (PLD)."
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "Kate Zhang",
+  "position": "Venture Partner, Tailwinds Venture（Northern Light VC）",
+  "photo": "east-Kate Zhang.webp",
+  "bio": "Dr. X. Kate Zhang, Ph.D., is a strategic scientific leader and executive with over 30 years of experience in the biopharmaceutical industry. Currently, she serves as a Venture Partner at Tailwinds (NLVC， Northern light VC) Venture, leveraging her extensive background in drug development to source investment opportunities and conduct deep scientific due diligence on emerging biotech startups. Dr. Zhang previously served as the Chief Scientific Officer and Interim CEO of Hopewell Therapeutics, where she spearheaded a $25 million seed funding round and established a fully operational R&D infrastructure for their tissue-targeting lipid nanoparticle (ttLNP) platform. Prior to Hopewell, she was the Vice President of Biological Development at Editas Medicine, where she led cross-functional teams employing breakthrough CRISPR-based in vivo and ex vivo gene editing technologies from program inception to multiple successful IND submissions. Earlier in her career, Dr. Zhang held multiple positions with increasing responsibility and senior leadership positions at Genzyme and Sanofi, including Senior Director of the Global R&D Platform. Her tenure there contributed to the successful launch of ten biologic drugs. An accomplished researcher and inventor, she has co-authored over 45 peer-reviewed publications and holds multiple patents. Dr. Zhang completed her post-doctoral training at the National Institutes of Health (NIH), holds a Ph.D. from Queen’s University in Canada, an M.Sc. from the Chinese Academy of Sciences, and a B.Eng. from Tsinghua University"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "曹雯",
+  "position": "另类资产投资风险模型研究, Ares Management",
+  "photo": "east-曹雯.webp",
+  "bio": "曹雯目前就职于Ares Management，从事另类资产投资风险模型研究工作。她在纽约大学Stern商学院获得统计学博士学位，在康涅迪格大学获得金融数学硕士学位，在清华大学获得数学学士。曹雯是领航第一期职业组学员，随后加入执委会。曹雯热衷于志愿者工作，于2015年至今担任大纽约地区清华校友会副会长，于2019至2025担任北美清华校友会联合会CFO。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "张舒",
+  "position": "股票量化交易研究, 纽约某量化对冲基金",
+  "photo": "east-张舒.webp",
+  "bio": "张舒目前就职于纽约量化对冲基金，从事股票量化交易研究。他于UIUC获得机械工程博士学位，在清华大学获得硕士和学士学位。Shu是领航第二届职业组学员，第六，七届领航执委会联席负责人。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "范思捷",
+  "position": "宏观投资策略, BlackRock",
+  "photo": "east-范思捷.webp",
+  "bio": "范思捷就职于BlackRock，从事宏观投资策略工作。她本科毕业于哥伦比亚大学应用数学系，是特许金融分析师（CFA）持证人。她同时也是纽约汉服社的创始人，一直致力于美东地区中国传统文化的推广。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "查誉劼",
+  "position": "Engineering Manager, Meta Platforms",
+  "photo": "east-查誉劼.webp",
+  "bio": "查誉劼目前在 Meta Platforms 担任 Engineering Manager。他在哥伦比亚大学获得金融工程硕士学位，本科毕业于复旦大学，是 CFA 特许金融分析师持证人。查誉劼是第二届领航计划的学员，及第七、八届领航执委会联席负责人。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "马婧",
+  "position": "量化执行服务总监, 某量化对冲基金",
+  "photo": "east-马婧.webp",
+  "bio": "马婧目前就职于一家量化对冲基金，担任量化执行服务总监。她在哥伦比亚大学获得硕士学位，在清华大学和北京大学获得学士学位。\n她热心于回馈社区，一直在多个非政府组织担任志愿者，也是领航计划第二届的学员，为第四届执委会负责人。此外，她曾任大纽约地区清华校友会2021-2023年度会长，并于2022年成为全美华人金融协会（TCFA）董事会成员。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "邵伟鹏",
+  "position": "投资交易与量化研究, 某对冲基金",
+  "photo": "east-邵伟鹏.webp",
+  "bio": "邵伟鹏目前就职于一家对冲基金，从事投资交易与量化研究。他的研究与交易领域涵盖股票及股指期权市场的波动率交易，以及以事件驱动（event-driven）为核心的多类策略，包括上市公司并购套利、特殊事件（special situations）与SPAC等。他在清华大学获得数学学士学位，并于加州大学伯克利分校取得金融工程硕士学位。邵伟鹏是第五届领航计划的学员，也是第八、九届领航执委会联席负责人。此外，他自2022年起担任大纽约地区清华校友会副会长。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "刘斌",
+  "position": "量化策略研发, 纽约某量化对冲基金",
+  "photo": "east-刘斌.webp",
+  "bio": "刘斌现就职于纽约一家量化对冲基金，从事基于深度学习的量化策略研发。他毕业于上海交通大学，获计算机学士学位，并于卡内基梅隆大学获得计算机博士学位。加入纽约量化行业之前，他曾先后在硅谷 Google 和腾讯美国从事广告机器学习相关研发工作。他是领航第八期学员，自第九期起加入执委会，并担任交通大学纽约校友会会长。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "傅鲁西",
+  "position": "信用债投资, BlackRock",
+  "photo": "east-傅鲁西.webp",
+  "bio": "傅鲁西目前就职于BlackRock，负责公司信用债投资。本科毕业于清华大学土木工程系，并获得北京大学经济学双学位，后于密歇根大学获得金融工程硕士学位，是领航计划2021–2022届领航学员。傅鲁西积极参与公司内外多个导师计划，长期关注青年人才培养与职业发展。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "吴舒怡",
+  "position": "公司债组合管理策略与研究, Blackstone",
+  "photo": "east-吴舒怡.webp",
+  "bio": "吴舒怡就职于Blackstone，从事公司债的基金组合管理策略和研究工作。她本科毕业于武汉大学生物系，取得哥伦比亚大学生物统计硕士学位，持有CFA和FRM证。吴舒怡一直热衷社会公益工作，曾任2015-16哥大中国学生学者联谊会主席，现任武汉大学大纽约地区校友会会长。吴舒怡是2021-22领航学员，随后加入执委会。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "武维",
+  "position": "Senior Staff Machine Learning Engineer, Meta Platforms",
+  "photo": "east-武维.webp",
+  "bio": "武维目前在Meta Platforms 担任Senior Staff Machine Learning Engineer，从事广告模型研究，负责机器学习和大语言模型的前沿技术业务落地，在加入Meta之前，他在JPMorgan Chief Investment Office 担任量化投资副总裁，负责宏观与固定收益投资。他在哥伦比亚大学取得运筹学硕士学位，在南京大学获得学士学位。他热心服务校友与支持青年留美学子成长，曾任南京大学大纽约地区校友会副会长。此外他也擅长“折腾”，多次尝试各类创业项目，写有微信公众号“意见狗威廉”。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "陈城",
+  "position": "Equity Derivatives Sales Trader, Wells Fargo",
+  "photo": "east-陈城.webp",
+  "bio": "Kevin is currently Equity Derivatives Sales Trader at Wells Fargo covering hedge funds and institutional clients. Previously, he worked as Equity Derivatives Portfolio Manager/Trader at Goldman Sachs for 6 years managing options overlay strategies in the Managed Strategies Group. Additionally, he worked as Investment Associate at New York Life Ventures investing in startups and venture capital funds. Kevin graduated from Baruch College in 2013 with bachelor degree in finance and completed CFA and CAIA program."
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "陶毅杰",
+  "position": "Senior Staff Software Engineer, Google",
+  "photo": "east-陶毅杰.webp",
+  "bio": "陶毅杰现任 Google Senior Staff Software Engineer，拥有超过十二年的大型科技公司研发与职业发展经验。目前主要负责 Google Ads 广告主数据分析及 Performance Max 相关产品与系统，长期专注于大规模数据系统、广告效果分析、复杂技术问题解决及跨团队协作。\n加入 Google 之前，曾任职于 BlackRock，参与风险管理工具和大数据基础设施建设。他本科毕业于复旦大学微电子学专业，后获得卡内基梅隆大学信息系统管理硕士学位。\n作为职业成长组导师，希望结合自己从初入职场到资深技术领导者的成长经历，与学员探讨软件工程师职业规划、技术能力提升、影响力建设、绩效与晋升、跨团队沟通，以及如何在职业发展的不同阶段做出适合自己的选择。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "姜嘉慧",
+  "position": "Platform Engineering Lead, AI cybersecurity startup",
+  "photo": "east-姜嘉慧.webp",
+  "bio": "Jiahui Jiang currently leads platform engineering at an AI cybersecurity startup. Previously, she worked on search and AI infrastructure at Notion, and spent nearly seven years at Palantir building large-scale distributed systems and real-time data platforms. She received a B.S. in Automation from Tsinghua University and an M.S. in Computer Science from the University of Illinois Urbana-Champaign..\n美东领航计划2024–2025届领航学员。"
+ },
+ {
+  "region": "east",
+  "group": "senior",
+  "name": "寿国威",
+  "position": "全球交易执行负责人, 某量化对冲基金",
+  "photo": "east-寿国威.webp",
+  "bio": "寿国威目前就职于一家量化对冲基金，全面负责全球各市场的交易执行。他本科毕业于清华大学计算机系，在哥伦比亚大学获得运筹学硕士学位。他之前在高盛纽约证券交易部工作7年，参与高盛核心量化模型开发和交易执行算法研究。他热心社区公益，曾担任过大纽约地区清华校友会会长。"
+ },
+ {
+  "region": "east",
+  "group": "advisor",
+  "name": "段春杰",
+  "position": "创始人兼 CEO, Redpoint Positioning",
+  "photo": "east-段春杰.webp",
+  "bio": "Redpoint Positioning创始人和首席执行官。Redpoint提供全球最先进的高精度室内定位平台，产品在仓储物流、工业自动化、建筑等若干领域被广泛应用，亚马逊、丰田、西门子等若干财富100家企业均为其合作伙伴。在创立Redpoint之前，曾在三菱电机、爱立信、高通、阿尔卡特等公司从事科研和开发工作，在通信理论和系统设计方面有突出成就，曾获得若干荣誉，拥有50多项专利，出版一本专著和大量论文。曾是IEEE标准委员会的会员和若干工作组的投票会员。拥有清华大学本科学位和科罗拉多大学博士学位。"
+ },
+ {
+  "region": "east",
+  "group": "advisor",
+  "name": "于利华",
+  "position": "首席数据执行官, FogPharma",
+  "photo": "east-于利华.webp",
+  "bio": "于博士在清华大学生物医学工程和自动化系获得双学士和工程硕士，并在Boston University获得了博士学位，师从计算生物学先驱Temple F. Smith博士。于博士曾两次获得AstraZeneca全球科学和技术成就奖，2015年入选PharmaVoice 100，并且是美国癌症研究协会的积极成员。\nFogPharma首席数据执行官，于博士负责FogPharma科研部门的数据科学平台的开发及应用。于博士同时建立了信息处理和机器学习的系统，此系统用于支持FogPharma专有的Helicon(TM) “设计-制造-测试-预测”平台。作为生物制药行业的领导者，于博士在计算生物学和生物信息学领域工作了20年，在癌症基因组学和预测生物标记方面拥有丰富的经验。\n在加入FogPharma之前，于博士曾在H3 Biomedicine担任President及Chief Data Science Officer，负责把控H3的整体科学和业务方向。她将数据科学与药物开发独特结合，加上她对利用数据驱动解决药物开发问题的浓厚兴趣，使她能够将数据科学整合到药物开发中，并且在领导和推进H3的战略方面发挥了重要作用。"
+ },
+ {
+  "region": "east",
+  "group": "advisor",
+  "name": "魏可成",
+  "position": "连续创业者；创始人, Nexaweb",
+  "photo": "east-魏可成.webp",
+  "bio": "于1996年在清华大学自动化和结构工程本科毕业，1998年于麻省理工学院硕士毕业。他是二十多项美国和国际专利的发明者，有丰富的创业，融资，销售及成功退出的执行经验。他曾被不少孵化器和企业聘为创业导师，对企业运作，投资和孵化有丰富经验。从2000到2009，他在波士顿创立Nexaweb，是全球第一家开发web 2.0技术的软件公司之一，有8项美国专利，客户有包括Nokia, 西门子,百事可乐及日本的许多大银行。2006年他和IBM，Google，Microsoft等150家科技公司成立了OpenAjax Alliance。在2007年他被选为“40 under 40”。2009年他在波士顿创立Yottaa，一家云计算自动化优化服务的软件公司。"
+ },
+ {
+  "region": "east",
+  "group": "advisor",
+  "name": "Ronnie Wei",
+  "position": "Head of Biologics Discovery, ModeX Therapeutics",
+  "photo": "east-Ronnie Wei.webp",
+  "bio": "目前在ModeX Therapeutics担任Head of Biologics Discovery，负责开发用于免疫肿瘤学和传染病适应症的新型多特异性疗法。在加入ModeX之前，Ronnie在2018年至2020年期间担任Sanofi的科学创新总监，管理Chief Scientific Office的日常运营并协助Global Chief Scientific Officer 执行科学研发战略，同时通过Sanofi的科学情报网络来推动创新。Ronnie还担任Sanofi Breakthrough Laboratory的科学顾问。Ronnie曾是Dragonfly Therapeutics的Director of Protein Engineering，她设计并建立了多特异性NK细胞结合平台，该平台的第一款分子已经应用在患者上。"
+ },
+ {
+  "region": "east",
+  "group": "advisor",
+  "name": "张锦云",
+  "position": "公司顾问, 三菱电机研究所",
+  "photo": "east-张锦云.webp",
+  "bio": "自2022年4月起，张锦云博士为三菱电机研究所的公司顾问，致力于培养和发展下一代领导人员, 为公司的运行管理作建议。在2011年4月至2022年3月期间，她担任三菱电机研究所的副总裁及科研总监，主要负责公司战略计划的制定及执行， 领导开发世界一流的基础技术，包括人工智能、IoT、数据分析、多物理建模、信号处理、控制、优化等，并且应用这些技术到三菱公司的先进产品之中。\n张锦云于1970年在清华大学无线电电子学系毕业并留校工作，1985年赴加拿大渥太华大学留学，于1991年获电子工程学博士学位。随后加入Nortel北方电讯网络公司研发中心，专注于最新无线通讯基站及光纤通讯网络技术和产品的研发。2001年张锦云加入三菱电机研究所，创建了数字通讯和网络的新团队，领导开发了最先进的各种无线技术。2008年被评为IEEE Fellow，2010年又被提升为公司的Fellow。"
+ },
+ {
+  "region": "east",
+  "group": "advisor",
+  "name": "邬涛",
+  "position": "数据科学主管, 微软 Azure Gaming Services",
+  "photo": "east-邬涛.webp",
+  "bio": "微软Azure Gaming Services部门数据科学主管。邬涛博士的团队专注于人工智能技术在游戏开发，内容创作和运营中的应用。他领导开发的Microsoft Recommenders开源项目，是GitHub上最受欢迎的推荐系统项目。在微软，诺基亚研究中心和麻省理工学院计算机科学与人工智能实验室(CSAIL) 长期从事研发和管理工作。"
+ },
+ {
+  "region": "east",
+  "group": "advisor",
+  "name": "王大勇",
+  "position": "",
+  "photo": "east-王大勇.webp"
+ },
+ {
+  "region": "east",
+  "group": "advisor",
+  "name": "Grace You",
+  "position": "Senior Director, US Launch Excellence Lead, EMD Serono",
+  "photo": "east-Grace You.webp",
+  "bio": "Grace You is currently Senior Director, US Launch Excellence Lead at EMD Serono. She is responsible for building launch excellence, overseeing launch readiness, and ensuring world-class launches in the US. Prior to this, she was the Chief of Staff to the President of EMD Serono and a member of the US Leadership Team, and sat on the company’s Diversity, Inclusion, Community and Equity (DICE) Council as the North America representative. Before EMD Serono, Grace developed commercial, marketing and innovation strategies at MilliporeSigma, and advised global pharmaceutical companies on strategic and operational priorities as a management consultant at Boston Consulting Group. Grace holds a BSc in Chemistry and Biology from Tsinghua University, Beijing, China and a PhD in Neurobiology from Harvard University."
+ },
+ {
+  "region": "east",
+  "group": "advisor",
+  "name": "姚慧斓",
+  "position": "转化医学部门总监, Blueprint Medicines",
+  "photo": "east-姚慧斓.webp",
+  "bio": "Blueprint Medicines 转化医学部门总监。在药物开发的过程中，基于的临床前数据，负责将临床前假设转化为临床项目中的生物标志物的策略，从而为候选药物筛选出更有效的适应症人群。同时负责拓展候选药物的新临床适应症，以及研究临床联合给药可行性。于清华大学生物科学与技术系获得学士和硕士学位，后在美国俄勒冈医科大学细胞与发育生物学系获得博士学位。先后在H3 Biomedicine, Constellation Pharmaceuticals, Takeda Pharmaceutical 等制药公司承担转化医学领域的各种职能，并参与癌症药物的临床前期，早期，晚期的多个课题的开发。."
+ },
+ {
+  "region": "east",
+  "group": "advisor",
+  "name": "钱毅",
+  "position": "VP & GM, Photonics Business, Semtech",
+  "photo": "east-钱毅.webp",
+  "bio": "现于 Semtech 担任 VP & General Manager, Photonics Business & Wafer Fab Operations，Spark Photonics Foundation公司董事，在光通讯、工业激光和医疗器件等领域工作了二十多年，浙大本科，中科院博士，Cornell博士后。入职业界最早的半导体激光器公司，99年被Corning收购，任职到工程部总监和大中华区技术销售总监。后来创业， 作为工程部副总组建团队开发三维激光照相系统，公司被Danaher收购。此后，在BPE创业公司任项目副总接口生物制药大厂，又在光通讯上市公司管理行业最早的100G光模块产品线，以及在全球最大的激光振镜公司总管产品和营销。15年加入生产自动化设备公司MRSI， 18年公司被Mycronic收购。"
+ },
+ {
+  "region": "east",
+  "group": "rising",
+  "name": "张勇",
+  "position": "总监, 某生物技术公司",
+  "photo": "east-张勇.webp",
+  "bio": "现在一家生物技术公司担任总监，负责细胞治疗的研发。 之前在EMD Serono从事自身免疫病的临床前早期研究。受惠于领航计划的“受助,互助,助人”的理念，\n美东领航计划第4期（2020-2021）职业组学员。学习结束后，成为“互助”的领航社区的一员。"
+ },
+ {
+  "region": "east",
+  "group": "rising",
+  "name": "庄晓丹",
+  "position": "Speech Recognition Team Lead, 某头部消费电子公司",
+  "photo": "east-庄晓丹.webp",
+  "bio": "Xiaodan Zhuang leads a global team of researchers and engineers to design and improve speech recognition for some of the most popular consumer devices in the world. He previously worked as speech, language and multimedia machine learning scientist at Bolt Beranek and Newman Technologies, after receiving PhD ( Electrical and Computer Engineering ), University of Illinois at Urbana-Champaign, and BS (Electronic Engineering), Tsinghua University."
+ },
+ {
+  "region": "east",
+  "group": "rising",
+  "name": "卢毅",
+  "position": "北美创新市场营销与战略合作负责人, 某中国制造企业美国子公司",
+  "photo": "east-卢毅.webp",
+  "bio": "目前在一家中国制造企业的美国子公司负责北美创新市场的营销开拓和战略合作。曾在E Ink担任Project Manager和Display Scientist，参与电子墨水屏幕的研发、生产、商业化。之前在Western Digital担任Principal Engineer，利用压电陶瓷提高硬盘磁头悬挂结构的控制精度。本科毕业于清华大学自动化系，后在University of Connecticut获得博士学位。\n美东领航计划第2期（2018-2019）职业组学员。"
+ },
+ {
+  "region": "east",
+  "group": "rising",
+  "name": "董琪",
+  "position": "高级临床医学总监, 武田制药（肿瘤）",
+  "photo": "east-董琪.webp",
+  "bio": "董琪现任武田肿瘤高级临床医学总监，担任多项创新肿瘤产品的全球临床负责人，拥有二十余年临床研究与制药行业领导经验，足迹遍及中国、亚洲及全球市场。她在肿瘤药物的临床开发和战略布局方面具有深厚积累，主导多个关键品种从早期探索到注册Ⅲ期临床试验，推动在中美欧等主要市场的新药批准。\n在加入武田之前，她担任亚盛医药临床开发高级医学总监，参与并推动公司成功在港交所完成IPO。职业生涯早期，她曾在赛诺菲、拜耳、辉瑞等跨国制药公司负责多项临床开发项目，积累了扎实的全球研发与注册经验。\n董琪于北京大学医学部获MD学位，后于北京大学BiMBA商学院取得MBA学位，并在哈佛大学公共卫生学院获得MPH学位。"
+ },
+ {
+  "region": "east",
+  "group": "rising",
+  "name": "Tu Xu",
+  "position": "Director of Biostatistics, Alnylam",
+  "photo": "east-Tu Xu.webp",
+  "bio": "Tu is currently Director of Biostatistics at Alnylam leading clinical trial designs and data analytics of clinical development programs in CNS. Prior to that, Tu served as a clinical biostatistician at multiple leading biotech companies including Amgen, Gilead, AbbVie, and Vertex. Tu was a previous mentee of LingHang program (2019-2020). He holds PhD from University of Illinois at Chicago and BS from East China Normal University."
+ },
+ {
+  "region": "east",
+  "group": "rising",
+  "name": "余冬子",
+  "position": "Senior Medical Director, 剑桥某制药公司",
+  "photo": "east-余冬子.webp",
+  "bio": "冬子现在是位于剑桥的一家小型制药公司的一名senior medical director， 有超过15年药厂经验，从事过药物基础研究， 临床研究，项目管理等多个职能部门的工作，涵盖神经生物，自体免疫和感染性疾病等多个疾病领域， 具有丰富的在职场转换工种的经验。冬子热心社区公益，多年来在所在学区和华人社区组织和参与各项活动，现为所在学区高中家长教师委员会董事会成员和莱星文化中心董事会成员。\n美东领航计划第5期（2021-2022）职业组学员，受益颇多，很高兴成为成长班导师，帮助初入职场的学员们快速成长。"
+ },
+ {
+  "region": "east",
+  "group": "rising",
+  "name": "Shu Jiang",
+  "position": "VP of Finance, Organogenesis",
+  "photo": "east-Shu Jiang.webp",
+  "bio": "Shu is currently VP of Finance at Organogenesis, a publicly traded biotech company. In this role, she oversees Commercial Ops & Analytics, FP&A, Transaction accounting, Treasury, Investor Relations, M&A, etc. Prior to joining Organogenesis, Shu held several progressive roles across multiple industries. She holds an MBA from Boston College, an MS in Finance from Suffolk, an MS in Accounting from Bentley and BS in Finance from Nanyang Technology University, Singapore and Xiamen University, China."
+ },
+ {
+  "region": "east",
+  "group": "rising",
+  "name": "王静",
+  "position": "Director of Statistics, Pfizer",
+  "photo": "east-王静.webp",
+  "bio": "Jing is currently Director of Statistics at Pfizer, where she leads the design of clinical trials and the analysis of clinical data for multiple oncology therapeutic development programs. Before joining Pfizer, Jing spent three years at Gilead Sciences working in the Liver Disease therapeutic area. She holds a BSc in Statistics from the University of Science and Technology of China and a PhD in Biostatistics from Boston University. In 2023, Jing completed the Executive Education Program for Leadership Development at Harvard Business School.\n美东领航计划第2期（2018-2019）职业组学员。"
+ },
+ {
+  "region": "east",
+  "group": "rising",
+  "name": "JQ Xi",
+  "position": "个人投资者；前 VP of Ops & Mfg, Anzu Partners",
+  "photo": "east-JQ Xi.webp",
+  "bio": "JQ在消费电子行业有超过15年经验。同时拥有职业及创业经历。现在是个人投资者。之前在风投公司 （Anzu Partners) 任 VP of Ops & Mfg, 主要负责投后初创公司的服务及支持，包括组织架构，战略制定，日常运营，项目管理等支持及服务。再之前在E Ink 任Strategic Partnership Manager，从事业务开发，主要负责北美医疗市场的digital signage 业务开发及战略合作。\n美东领航计划第4期（2020-2021）职业组学员。"
+ },
+ {
+  "region": "east",
+  "group": "rising",
+  "name": "Zhixiang Luo",
+  "position": "Principal Software Engineer, Workday",
+  "photo": "east-Zhixiang Luo.webp",
+  "bio": "Dr. Zhixiang Luo is a Principal Software Engineer at Workday, where he leads a team developing AI-powered productivity tools. Previously, he served as Data Science Manager at Gradient AI, a startup building machine learning models for the insurance industry, and at Wolters Kluwer, where he applied machine learning to healthcare data. Earlier in his career, he worked at Schlumberger and T2 Biosystems, conducting innovative research in oil and gas services and medical devices. Dr. Luo earned his Ph.D. in Physics from the University of North Carolina at Chapel Hill and his B.S. from Tsinghua University.\n美东领航第2期（2018-2019）职业组学员。"
+ },
+ {
+  "region": "east",
+  "group": "rising",
+  "name": "杨栋",
+  "position": "过程工程总监, 波士顿某生物技术公司",
+  "photo": "east-杨栋.webp",
+  "bio": "杨栋在波士顿一家生物技术公司担任过程工程总监。 他的团队主要聚焦于细胞和大分子生物疗法的过程开发， 技术转移，生产支持和上市申报。他拥有十余年的制药业工作经验并参与多个药品的申报上市工作。他本科毕业于上海交通大学，之后于康奈尔大学获得博士学位，哥伦比亚大学工商管理硕士。\n美东领航计划第2期（2018-2019）职业组学员。受益于领航，服务于领航。"
+ },
+ {
+  "region": "east",
+  "group": "rising",
+  "name": "Bingxin Xu",
+  "position": "AI Engineering Leader（企业 AI 定制与转型）",
+  "photo": "east-Bingxin Xu.webp",
+  "bio": "Bingxin is an AI Engineer Leader in AI Customization & Transformation Pioneer in developing domain-specific AI solutions and organizational AI transformation. Partnering with Fortune 500 companies to transform proprietary enterprise knowledge, workflows, and operational processes into production-grade AI capabilities that outperform general-purpose foundation models. Experienced in driving AI-native development across internal and external organizations to reconstruct legacy workflows, reduce coordination overhead, simplify organization structures, and dramatically increase overall efficiency through AI-native operation.\n美东领航计划第6期（2022-2023）职业组学员。"
  }
 ];
