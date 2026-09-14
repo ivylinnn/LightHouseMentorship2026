@@ -318,9 +318,12 @@ const GROUPS = [
   { id:"founder", cn:"创始人组",   name_en:"Founders",
     req:"面向全职创业的科技公司创始人，以接近 Private Board Meeting 的小班形式交流。公司已完成融资。",
     req_en:"For full-time founders of tech companies who have completed a funding round, meeting in a small-group format close to a private board meeting." },
-  { id:"seattle", cn:"西雅图组",   name_en:"Seattle",
+  { id:"seattle", cn:"西雅图组",   name_en:"Seattle", regions:["west"],
     req:"西雅图地区的导师团队。",
     req_en:"Mentors based in the Seattle area." },
+  { id:"advisor", cn:"荣誉顾问",   name_en:"Honorary Advisors", regions:["east"],
+    req:"长期支持领航计划的荣誉顾问。",
+    req_en:"Honorary advisors who have long supported the Lighthouse Mentorship program." },
   { id:"rising",  cn:"新星职业组", name_en:"Rising Professionals",
     req:"面向中大型科技公司工作经验相对较少、但展现出快速成长潜力的职场新锐。通常为全职工作五年以内。",
     req_en:"For early-career professionals at mid-to-large tech companies with relatively limited experience but clear signs of rapid growth potential. Typically within five years of full-time work." }
@@ -334,6 +337,8 @@ const P = "web_assets/mentors/airtable/";
 
 /* ---------- 渲染 ---------- */
 const of = (r,g)=>MENTORS.filter(m=>m.region===r && m.group===g);
+/* 没写 regions 的组两个区域都显示;写了的只在对应区域出现(西雅图组=美西,荣誉顾问=美东) */
+const groupsFor = r => GROUPS.filter(g => !g.regions || g.regions.includes(r));
 const esc = s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const avatar = m => (m.ph || !m.photo)
   ? `<div class="av ph"></div>`
@@ -346,16 +351,15 @@ const card = m=>`<div class="card m ${m.ph?'is-ph':''}" data-mid="${MENTORS.inde
 </div>`;
 
 function renderShell(){
-  document.getElementById("groups").innerHTML = GROUPS.map(g=>`
+  document.getElementById("groups").innerHTML = groupsFor(region).map(g=>`
   <div class="grp" id="${g.id}">
     <div class="grp-head"><h2>${t(g.cn,g.name_en)}</h2><div class="req">${t(g.req,g.req_en)}</div></div>
     <div class="m-grid" data-g="${g.id}"></div>
   </div>`).join("");
 
-  document.getElementById("sideNav").innerHTML = GROUPS.map((g,i)=>
+  document.getElementById("sideNav").innerHTML = groupsFor(region).map((g,i)=>
     `<li><a href="#${g.id}" class="${i?'':'on'}" data-g="${g.id}">${t(g.cn,g.name_en)}</a></li>`).join("");
 }
-renderShell();
 
 /* ---------- 区域状态：时区预选 → localStorage → 手动切换 ---------- */
 function guessRegion(){
@@ -370,8 +374,9 @@ const guessed = guessRegion();
 let region = saved || guessed || "west";
 
 function paint(){
-  GROUPS.forEach(g=>{
+  groupsFor(region).forEach(g=>{
     const box  = document.querySelector(`.m-grid[data-g="${g.id}"]`);
+    if(!box) return;
     const list = of(region, g.id);
     box.innerHTML = list.length ? list.map(card).join("")
                                 : `<div class="empty">${t(`该组暂无${REGIONS[region].short}导师`,`No ${REGIONS[region].short_en} mentors in this group yet`)}</div>`;
@@ -385,10 +390,11 @@ document.getElementById("seg").addEventListener("click", e=>{
   const b = e.target.closest("button"); if(!b) return;
   region = b.dataset.r;
   try{ localStorage.setItem("lh-region", region); }catch(e){}
-  paint();
+  renderAll();
 });
 
 applyStatic();
+renderShell();
 paint();
 
 /* ---------- 滚动高亮左侧目录 ---------- */
