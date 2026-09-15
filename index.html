@@ -197,38 +197,6 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 .mentor i{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
   font-style:normal;font-size:11.5px;line-height:19px;color:var(--fg-3);margin-top:6px}
 
-/* ---------- 报名 waitlist 弹窗 ---------- */
-.wl-mask{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;
-  padding:24px;background:rgba(4,4,6,.72);backdrop-filter:blur(6px)}
-.wl-mask.open{display:flex}
-.wl{position:relative;width:100%;max-width:460px;padding:40px 38px 34px;border-radius:var(--radius);
-  border:1px solid var(--card-border);background:#101015;
-  box-shadow:0 30px 80px rgba(0,0,0,.55);animation:wl-in .22s ease}
-@keyframes wl-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.wl h3{font-family:var(--display);font-size:30px;font-weight:400;line-height:1.3}
-.wl .lede{font-size:14px;line-height:25px;color:var(--fg-2);margin-top:12px}
-.wl label{display:block;font-size:11px;letter-spacing:1.6px;font-weight:700;
-  color:var(--fg-3);text-transform:uppercase;margin:20px 0 8px}
-.wl input,.wl select{width:100%;padding:12px 14px;border-radius:12px;font-family:var(--body);
-  font-size:14px;color:var(--fg);background:rgba(255,255,255,.05);
-  border:1px solid var(--line-strong);transition:border-color .2s}
-.wl input:focus,.wl select:focus{outline:none;border-color:var(--violet)}
-.wl select{appearance:none;cursor:pointer}
-.wl select option{background:#101015;color:var(--fg)}
-.wl .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.wl .btn{width:100%;margin-top:26px;padding:15px 24px}
-.wl .btn[disabled]{opacity:.5;cursor:not-allowed}
-.wl .err{font-size:12.5px;line-height:20px;color:#F2A0A0;margin-top:12px;min-height:20px}
-.wl .close{position:absolute;top:14px;right:16px;width:32px;height:32px;border:0;cursor:pointer;
-  background:none;color:var(--fg-3);font-size:22px;line-height:1;border-radius:50%}
-.wl .close:hover{color:var(--fg);background:rgba(255,255,255,.07)}
-.wl .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
-.wl .ok{text-align:center;padding:14px 0 6px}
-.wl .ok .tick{width:46px;height:46px;margin:0 auto 18px;border-radius:50%;
-  border:1px solid var(--violet);color:var(--violet);font-size:22px;
-  display:flex;align-items:center;justify-content:center}
-@media(max-width:520px){.wl{padding:34px 24px 28px}.wl .row{grid-template-columns:1fr}}
-
 /* ---------- 活动形式 ---------- */
 .timeline{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line-strong);margin-top:12px}
 .timeline > div{padding:24px 24px 0 0;position:relative}
@@ -451,55 +419,6 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
     </figure>
   </div>
 </div></section>
-
-<!-- ===================== 报名 waitlist 弹窗 ===================== -->
-<div class="wl-mask" id="wlMask" role="dialog" aria-modal="true" aria-labelledby="wlTitle">
-  <div class="wl">
-    <button class="close" id="wlClose" aria-label="关闭" data-en-aria="Close">&times;</button>
-
-    <div id="wlForm">
-      <h3 id="wlTitle" data-en="Join the Waitlist">加入下一期通知</h3>
-      <p class="lede" data-en="Applications for Cohort 12 have closed. Leave your email and we&rsquo;ll let you know the moment the next cohort opens.">
-        第十二期报名已经截止。留下邮箱，下一期开放报名时我们第一时间通知你。</p>
-
-      <form id="wlFormEl" novalidate>
-        <label for="wlEmail" data-en="Email">邮箱</label>
-        <input id="wlEmail" name="email" type="email" required autocomplete="email"
-               placeholder="you@example.com">
-
-        <div class="row">
-          <div>
-            <label for="wlName" data-en="Name">姓名</label>
-            <input id="wlName" name="name" type="text" required autocomplete="name" placeholder="">
-          </div>
-          <div>
-            <label for="wlRegion" data-en="Region">地区</label>
-            <select id="wlRegion" name="region" required>
-              <option value="west" data-en="West Coast">美西</option>
-              <option value="east" data-en="East Coast">美东</option>
-              <option value="other" data-en="Other">其他</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- 蜜罐:真人看不见,机器人会填 -->
-        <input class="hp" tabindex="-1" autocomplete="off" name="company" aria-hidden="true">
-
-        <button class="btn" type="submit" id="wlSubmit" data-en="Notify Me">通知我</button>
-        <div class="err" id="wlErr" role="alert"></div>
-      </form>
-    </div>
-
-    <div id="wlDone" style="display:none">
-      <div class="ok">
-        <div class="tick">&#10003;</div>
-        <h3 data-en="You&rsquo;re on the list">已经记下了</h3>
-        <p class="lede" data-en="We&rsquo;ll email you when applications for the next cohort open.">
-          下一期开放报名时，我们会发邮件通知你。</p>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- ===================== 活动形式 ===================== -->
 <section class="sec" id="format"><div class="wrap">
@@ -724,86 +643,6 @@ set("posts-grid", POSTS.slice(0,3).map(p=>`<a class="card is-link pcard" href="$
 set("orgs", ORGS.map(o=>`<div class="card org">${t(o.zh,o.en)}</div>`).join(""));
 }
 applyStatic(); render();
-
-</script>
-<script>
-/* ---------- 报名 waitlist ----------
-   静态站点不能直接写 Airtable(API key 会暴露在前端),所以表单 POST 到一个
-   Cloudflare Worker,key 放在 Worker 的环境变量里。
-   WAITLIST_ENDPOINT 留空时弹窗不生效,「报名领航」维持原来跳到 #apply 的行为,
-   这样即使还没部署 Worker,线上也不会出现一个提交不了的表单。 */
-const WAITLIST_ENDPOINT = "";   // 例:https://linghang-waitlist.<你的账号>.workers.dev
-
-if (WAITLIST_ENDPOINT) {
-  const mask = document.getElementById("wlMask");
-  const formWrap = document.getElementById("wlForm");
-  const done = document.getElementById("wlDone");
-  const form = document.getElementById("wlFormEl");
-  const err  = document.getElementById("wlErr");
-  const submit = document.getElementById("wlSubmit");
-  let lastFocus = null;
-
-  const open = e => {
-    if (e) e.preventDefault();
-    lastFocus = document.activeElement;
-    formWrap.style.display = ""; done.style.display = "none";
-    err.textContent = ""; form.reset();
-    mask.classList.add("open");
-    document.body.style.overflow = "hidden";
-    document.getElementById("wlEmail").focus();
-  };
-  const close = () => {
-    mask.classList.remove("open");
-    document.body.style.overflow = "";
-    if (lastFocus) lastFocus.focus();
-  };
-
-  // 所有「报名领航 / 报名 / Apply Now」的入口都改为打开弹窗
-  document.querySelectorAll('a[href="#apply"], a.apply, a.btn[href="#"]').forEach(a => {
-    if (/报名|Apply/i.test(a.textContent) || a.classList.contains("apply")) {
-      a.addEventListener("click", open);
-    }
-  });
-
-  document.getElementById("wlClose").addEventListener("click", close);
-  mask.addEventListener("click", e => { if (e.target === mask) close(); });
-  addEventListener("keydown", e => { if (e.key === "Escape" && mask.classList.contains("open")) close(); });
-
-  form.addEventListener("submit", async e => {
-    e.preventDefault();
-    err.textContent = "";
-    const fd = new FormData(form);
-    const email = (fd.get("email") || "").trim();
-    const name  = (fd.get("name")  || "").trim();
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-      err.textContent = t("请填写有效的邮箱地址。", "Please enter a valid email address."); return;
-    }
-    if (!name) {
-      err.textContent = t("请填写姓名。", "Please enter your name."); return;
-    }
-    if ((fd.get("company") || "").trim()) return;   // 蜜罐命中,静默丢弃
-
-    submit.disabled = true;
-    submit.textContent = t("提交中…", "Sending…");
-    try {
-      const res = await fetch(WAITLIST_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, name, region: fd.get("region"),
-                               lang: LANG, source: "website" })
-      });
-      if (!res.ok) throw new Error(res.status);
-      formWrap.style.display = "none"; done.style.display = "";
-    } catch (e) {
-      err.textContent = t("提交失败,请稍后再试,或发邮件给我们。",
-                          "Something went wrong. Please try again, or email us.");
-      submit.disabled = false;
-      submit.textContent = t("通知我", "Notify Me");
-    }
-  });
-}
-
 
 /* header 在 hero 之上透明，滚动后变实 */
 const hdr=document.getElementById("hdr");
