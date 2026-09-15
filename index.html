@@ -197,6 +197,27 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 .mentor i{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
   font-style:normal;font-size:11.5px;line-height:19px;color:var(--fg-3);margin-top:6px}
 
+/* ---------- 报名 → 关注公众号弹窗 ---------- */
+/* margin:auto 而不是 align-items:center —— 弹窗比屏幕高时仍然能滚动到顶部,
+   居中对齐会把溢出的部分裁在视口外够不到 */
+.qr-mask{position:fixed;inset:0;z-index:200;display:none;overflow-y:auto;
+  padding:24px;background:rgba(4,4,6,.72);backdrop-filter:blur(6px)}
+.qr-mask.open{display:flex;align-items:flex-start;justify-content:center}
+.qr-box{position:relative;margin:auto;width:100%;max-width:400px;padding:40px 36px 32px;text-align:center;
+  border-radius:var(--radius);border:1px solid var(--card-border);background:#101015;
+  box-shadow:0 30px 80px rgba(0,0,0,.55);animation:qr-in .22s ease}
+@keyframes qr-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.qr-box h3{font-family:var(--display);font-size:28px;font-weight:400;line-height:1.3}
+.qr-box .lede{font-size:14px;line-height:25px;color:var(--fg-2);margin-top:12px}
+.qr-box .shot{width:212px;margin:24px auto 0;padding:12px;border-radius:16px;background:#fff}
+.qr-box .shot img{width:100%;height:auto;display:block}
+.qr-box .hint{font-size:12px;line-height:20px;color:var(--fg-3);margin-top:16px}
+.qr-box .close{position:absolute;top:14px;right:16px;width:32px;height:32px;border:0;cursor:pointer;
+  background:none;color:var(--fg-3);font-size:22px;line-height:1;border-radius:50%}
+.qr-box .close:hover{color:var(--fg);background:rgba(255,255,255,.07)}
+@media(max-width:520px){.qr-box{padding:34px 22px 26px}.qr-box .shot{width:188px}}
+@media(max-height:760px){.qr-box{padding:30px 30px 24px}.qr-box .shot{width:168px;margin-top:18px}}
+
 /* ---------- 活动形式 ---------- */
 .timeline{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line-strong);margin-top:12px}
 .timeline > div{padding:24px 24px 0 0;position:relative}
@@ -419,6 +440,22 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
     </figure>
   </div>
 </div></section>
+
+<!-- ===================== 报名 → 关注公众号 ===================== -->
+<div class="qr-mask" id="qrMask" role="dialog" aria-modal="true" aria-labelledby="qrTitle">
+  <div class="qr-box">
+    <button class="close" id="qrClose" aria-label="关闭">&times;</button>
+    <h3 id="qrTitle" data-en="Applications Are Closed">本期报名已截止</h3>
+    <p class="lede" data-en="Scan to follow our WeChat channel — we announce each new cohort there first.">
+      扫码关注领航公众号，下一期开放报名时第一时间收到通知。</p>
+    <div class="shot">
+      <img src="web_assets/wechat-qr.webp" width="600" height="600" loading="lazy" decoding="async"
+           alt="领航计划公众号二维码" data-en-alt="Lighthouse Mentorship WeChat QR code">
+    </div>
+    <p class="hint" data-en="In WeChat: Scan, or press and hold the image to recognise the code.">
+      微信「扫一扫」，或长按图片识别二维码</p>
+  </div>
+</div>
 
 <!-- ===================== 活动形式 ===================== -->
 <section class="sec" id="format"><div class="wrap">
@@ -798,6 +835,40 @@ if(menuBtn && mMenu){
     }
   });
 }
+</script>
+<script>
+/* 「报名领航」改为弹出公众号二维码:本期报名已截止,引导关注公众号接收下一期通知。
+   单独一个 <script>,上面任何脚本报错都不影响它。 */
+(function () {
+  const mask = document.getElementById("qrMask");
+  if (!mask) return;
+  let lastFocus = null;
+
+  const open = e => {
+    e.preventDefault();
+    lastFocus = document.activeElement;
+    mask.classList.add("open");
+    document.body.style.overflow = "hidden";
+    document.getElementById("qrClose").focus();
+  };
+  const close = () => {
+    mask.classList.remove("open");
+    document.body.style.overflow = "";
+    if (lastFocus) lastFocus.focus();
+  };
+
+  document.querySelectorAll('a[href="#apply"], a.apply, a.btn[href="#"]').forEach(a => {
+    if (a.classList.contains("apply") || /报名|Apply/i.test(a.textContent)) {
+      a.addEventListener("click", open);
+    }
+  });
+
+  document.getElementById("qrClose").addEventListener("click", close);
+  mask.addEventListener("click", e => { if (e.target === mask) close(); });
+  addEventListener("keydown", e => {
+    if (e.key === "Escape" && mask.classList.contains("open")) close();
+  });
+})();
 </script>
 </body>
 </html>
