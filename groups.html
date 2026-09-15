@@ -239,9 +239,9 @@ section{position:relative;z-index:2}
 <section class="final-cta" id="apply">
   <div class="wrap" style="position:relative;z-index:2">
     <h2 data-en="Apply Now">报名领航</h2>
-    <p class="sub" data-en="Lighthouse welcomes one new cohort each year, beginning in September and graduating the following May. Find your group and begin the journey alongside more than 120 mentors and a community of ambitious peers.">
+    <p class="sub" data-en="Lighthouse welcomes one new cohort each year, beginning in September and graduating the following May. Find your group and begin the journey alongside 130 mentors and a community of ambitious peers.">
       领航计划每年招募一期，九月开学，次年五月毕业。
-      找到你的组，与一百二十余位导师和一群同行者一起出发。
+      找到你的组，与一百三十位导师和一群同行者一起出发。
     </p>
     <div class="actions">
       <a class="btn" href="#" style="padding:18px 38px" data-en="Apply Now">报名领航</a>
@@ -306,17 +306,31 @@ const GROUPS = [
     goal_en:"Mentors are typically accomplished founders or investors who help participants navigate the defining challenges of company building, including strategic decision-making, team and organizational development, fundraising, and board management—making the founder journey less isolating and better supported." }
 ];
 const P = "web_assets/mentors/airtable/";
-/* 每组展示 3 位代表导师；按姓名从 mentors-data.js(Airtable 同步)中取，
-   照片/职位自动跟随同步结果。Airtable 里改了名字就会回落到占位卡片。 */
-const FEATURED = {
-  rising:  ["Felicia Heng", "Luke Jia", "朱阳波"],
-  senior:  ["David Feng 冯大为", "Yuankai Ge", "Maggie Du 杜莘"],
-  startup: ["贾扬清", "Xiangru Chen", "Lily Zhang 张若若"],
-  founder: ["Chang Chen", "刘长明", "王金林"]
-};
-const BY_NAME = new Map((typeof MENTORS !== "undefined" ? MENTORS : []).map(m => [m.name, m]));
-const GROUP_MENTORS = Object.fromEntries(Object.entries(FEATURED).map(
-  ([g, names]) => [g, names.map(n => BY_NAME.get(n) || {ph:true})]));
+/* 每组展示 3 位代表导师:按「美西十二期导师出炉」公众号文章里的导师排序取前三。
+   名单和照片都来自 mentors-data.js(Airtable 同步),这里只决定顺序。
+   没出现在 PRIORITY 里的导师排在最后,按 Airtable 视图原顺序。 */
+const PRIORITY = [
+  "贾扬清", "翁捷", "Yuankai Ge", "Frank Ren 任中方", "David Feng 冯大为", "Sean Sheng",
+  "Liangxiao Zhu", "钱骏", "James Chen 陈璟", "Xiangru Chen", "张梁", "张佳音", "Chang Chen",
+  "Yvonne Luo", "David Wei", "卜峥", "田爱博", "周云凯", "Ling Leng", "Belinda Zeng 曾函",
+  "Brett Chen", "Nancy Lu 吕佳", "Richard Liu 刘向群", "Wen Shi", "刘昆", "包胜华", "Maggie Du 杜莘",
+  "Alex Chen 陈伟", "Leo Ma 马骉", "Lily Zhang 张若若", "廖璘", "许振斌", "Fei Guo", "Claire Fang",
+  "陈培基", "John Hu 胡荣湘", "申恺", "Ethan Zhu 朱一丰", "James Wu 吳正邦", "张翼", "Jenny Jau",
+  "Yiyao Liu", "Michael Jin 金学成", "李峻", "邵旭辉", "Charlie Wen 文华峰", "刘长明", "王金林", "陈维国",
+  "John Sun 孙壮", "Bill Zhang", "朱阳波"
+];
+const RANK = new Map(PRIORITY.map((n, i) => [n, i]));
+const ALL = typeof MENTORS !== "undefined" ? MENTORS : [];
+
+function topThree(gid){
+  return ALL
+    .map((m, i) => ({ m, i }))                       // i 保留 Airtable 原顺序做次级排序
+    .filter(x => x.m.region === "west" && x.m.group === gid)
+    .sort((a, b) => (RANK.has(a.m.name) ? RANK.get(a.m.name) : 1e9) -
+                    (RANK.has(b.m.name) ? RANK.get(b.m.name) : 1e9) || a.i - b.i)
+    .slice(0, 3).map(x => x.m);                      // 该组暂时没有导师就返回空数组
+}
+const GROUP_MENTORS = Object.fromEntries(GROUPS.map(g => [g.id, topThree(g.id)]));
 
 const esc = s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const avatar = m => (m.ph || !m.photo)
@@ -324,7 +338,7 @@ const avatar = m => (m.ph || !m.photo)
   : `<div class="av"><img src="${P}${encodeURIComponent(m.photo)}" alt="${esc(m.name)}" loading="lazy" decoding="async"></div>`;
 const TBD = ()=>t("职位待补","Title Coming Soon");
 const mm = m => `<div class="mm ${m.ph?'is-ph':''}">${avatar(m)}
-  <div style="min-width:0"><div class="nm">${m.ph?t('导师姓名','Mentor Name'):esc(m.name)}</div>
+  <div style="min-width:0"><div class="nm">${m.ph?t('导师姓名','Mentor Name'):esc(t(m.name, m.name_en || m.name))}</div>
   <div class="po">${m.ph||!m.position?TBD():esc(m.position)}</div></div></div>`;
 
 function render(){
@@ -341,8 +355,9 @@ document.getElementById("rows").innerHTML = GROUPS.map(g=>`
         <div><div class="mono" style="margin-bottom:10px">${t("你会得到什么","What You'll Gain")}</div>
           <p style="font-size:13.5px;line-height:24px;color:var(--fg-2)">${t(g.goal,g.goal_en)}</p></div>
       </div>
+      ${GROUP_MENTORS[g.id].length ? `
       <div class="mm-row" style="margin-top:26px">${GROUP_MENTORS[g.id].map(mm).join("")}</div>
-      <div style="margin-top:18px"><a class="g-more" href="mentors.html">${t("查看本组全部导师","Meet All Mentors in This Group")} →</a></div>
+      <div style="margin-top:18px"><a class="g-more" href="mentors.html">${t("查看本组全部导师","Meet All Mentors in This Group")} →</a></div>` : ""}
     </div>
   </div>`).join("");
 }

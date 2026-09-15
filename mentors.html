@@ -226,7 +226,7 @@ section{position:relative;z-index:2}
     <a href="index.html" data-en="Home">首页</a>
     <a href="groups.html" data-en="Groups">组别</a>
     <a href="mentors.html" class="on" data-en="Mentors">导师</a>
-    <a href="articles.html" data-en="Journal">文章</a>
+    <a href="articles.html" data-en="Articles">文章</a>
     <a href="#" class="lang" data-lang-btn aria-label="Switch language">EN</a>
     <span class="sep"></span>
     <a href="#" data-en="Community Login">社区登录</a>
@@ -240,7 +240,7 @@ section{position:relative;z-index:2}
   <a href="index.html" data-en="Home">首页</a>
   <a href="groups.html" data-en="Groups">组别</a>
   <a href="mentors.html" data-en="Mentors">导师</a>
-  <a href="articles.html" data-en="Journal">文章</a>
+  <a href="articles.html" data-en="Articles">文章</a>
   <a href="#" data-en="Community Login">社区登录</a>
   <a class="apply" href="index.html#apply" data-en="Apply Now">报名领航</a>
 </div>
@@ -251,9 +251,9 @@ section{position:relative;z-index:2}
   <div class="hero-bg"></div>
   <div class="scrim"></div>
   <div class="wrap">
-    <h1 data-en="Our Mentors">导师团队</h1>
+    <h1 data-en="Mentors">导师团队</h1>
     <div class="rule"></div>
-    <p class="sub" data-en="Our mentors are largely VPs and directors from leading tech companies such as Meta, Google, Apple and NVIDIA, together with serial entrepreneurs and successful investors active in the Chinese community. Mentees are matched with mentors in their region for at least one in-depth themed session every month.">
+    <p class="sub" data-en="Our mentors include VPs and directors from leading technology companies such as Meta, Google, Apple, and NVIDIA, as well as serial entrepreneurs and accomplished investors active in the Chinese community. Mentees are matched with mentors in their region and participate in at least one in-depth group session each month.">
       导师多由 Meta、Google、Apple、NVIDIA 等顶尖科技公司的 VP 与总监，以及活跃在华人圈的连续创业者与成功投资人组成。
       学员与本区导师匹配，每月至少一次深入的主题交流。
     </p>
@@ -279,7 +279,7 @@ section{position:relative;z-index:2}
 
 <div class="wrap"><div class="site-footer">
   <span>Lighthouse Mentorship · 领航计划</span>
-  <nav><a href="index.html" data-en="Home">首页</a><a href="groups.html" data-en="Groups">组别</a><a href="mentors.html" data-en="Mentors">导师</a><a href="articles.html" data-en="Journal">文章</a><a href="#" data-en="Community Login">社区登录</a><a href="#" data-en="Apply">报名</a></nav>
+  <nav><a href="index.html" data-en="Home">首页</a><a href="groups.html" data-en="Groups">组别</a><a href="mentors.html" data-en="Mentors">导师</a><a href="articles.html" data-en="Articles">文章</a><a href="#" data-en="Community Login">社区登录</a><a href="#" data-en="Apply Now">报名</a></nav>
   <span>© Lighthouse Mentorship · 501(c)(3)</span>
 </div></div>
 
@@ -312,24 +312,46 @@ function setLang(l){ LANG=l; try{ localStorage.setItem("lh-lang", l); }catch(e){
 document.querySelectorAll("[data-lang-btn]").forEach(b=>b.addEventListener("click", e=>{ e.preventDefault(); setLang(LANG==="en"?"zh":"en"); }));
 
 const GROUPS = [
-  { id:"senior",  cn:"资深职业和初创员工组", name_en:"Senior Professionals & Startup Employees",
-    req:"面向中大型科技公司拥有较丰富经验的 Manager、Senior Manager 及对应级别的 Individual Contributor，以及初创公司的优秀员工与业务骨干。",
-    req_en:"For experienced Managers, Senior Managers and equivalent-level Individual Contributors at mid-to-large tech companies, as well as outstanding employees and key contributors at startups." },
-  { id:"founder", cn:"创始人组",   name_en:"Founders",
+  { id:"senior", regions:["west"],  cn:"资深职业组", name_en:"Senior Professionals",
+    req:"面向中大型科技公司拥有较丰富经验的 Manager、Senior Manager 及对应级别的 Individual Contributor。",
+    req_en:"For experienced managers, senior managers, and individual contributors at equivalent levels within mid-sized to large technology companies." },
+  { id:"startup", regions:["west"], cn:"初创员工组", name_en:"Startup Employees",
+    req:"面向初创公司的优秀员工与业务骨干，Manager 或 Individual Contributor 均可，职能不限。",
+    req_en:"For high-performing employees and key contributors across all functions at startups." },
+  { id:"founder", regions:["west"], cn:"创始人组",   name_en:"Founders",
     req:"面向全职创业的科技公司创始人，以接近 Private Board Meeting 的小班形式交流。公司已完成融资。",
-    req_en:"For full-time founders of tech companies who have completed a funding round, meeting in a small-group format close to a private board meeting." },
+    req_en:"For full-time technology founders who have completed a funding round, with intimate, board-style sessions designed for candid discussion and peer guidance." },
   { id:"seattle", cn:"西雅图组",   name_en:"Seattle", regions:["west"],
     req:"西雅图地区的导师团队。",
-    req_en:"Mentors based in the Seattle area." },
-  { id:"advisor", cn:"荣誉顾问",   name_en:"Honorary Advisors", regions:["east"],
-    req:"长期支持领航计划的荣誉顾问。",
-    req_en:"Honorary advisors who have long supported the Lighthouse Mentorship program." },
-  { id:"rising",  cn:"新星职业组", name_en:"Rising Professionals",
+    req_en:"Mentors Based in the Seattle Area" },
+  { id:"rising",  regions:["west"], cn:"新星职业组", name_en:"Rising Professionals",
     req:"面向中大型科技公司工作经验相对较少、但展现出快速成长潜力的职场新锐。通常为全职工作五年以内。",
-    req_en:"For early-career professionals at mid-to-large tech companies with relatively limited experience but clear signs of rapid growth potential. Typically within five years of full-time work." }
+    req_en:"For early-career professionals at mid-sized to large technology companies who demonstrate strong potential for rapid growth, typically with five or fewer years of full-time experience." },
+  /* ---- 美东:保留 Airtable 里的原始分组(城市 + 赛道),不并入美西的分类 ---- */
+  { id:"east-nydc-founder", cn:"纽约DC创业组", name_en:"New York / DC — Founders", regions:["east"],
+    req:"面向纽约、华盛顿特区地区全职创业的科技公司创始人。",
+    req_en:"For full-time technology founders in the New York and Washington, D.C., areas." },
+  { id:"east-bos-founder",  cn:"波士顿创业组", name_en:"Boston — Founders", regions:["east"],
+    req:"面向波士顿地区全职创业的科技公司创始人。",
+    req_en:"For full-time technology founders in the Boston area." },
+  { id:"east-nydc-senior",  cn:"纽约DC职业组进阶班", name_en:"New York / DC — Advanced", regions:["east"],
+    req:"面向纽约、华盛顿特区地区拥有较丰富经验的 Manager、Senior Manager 及对应级别的 Individual Contributor。",
+    req_en:"For experienced managers, senior managers, and individual contributors at equivalent levels in the New York and Washington, D.C., areas." },
+  { id:"east-bos-senior",   cn:"波士顿职业组进阶班", name_en:"Boston — Advanced", regions:["east"],
+    req:"面向波士顿地区拥有较丰富经验的 Manager、Senior Manager 及对应级别的 Individual Contributor。",
+    req_en:"For experienced managers, senior managers, and individual contributors at equivalent levels in the Boston area." },
+  { id:"east-nydc-rising",  cn:"纽约DC职业组成长班", name_en:"New York / DC — Growth", regions:["east"],
+    req:"面向纽约、华盛顿特区地区工作经验相对较少、但展现出快速成长潜力的职场新锐。",
+    req_en:"For early-career professionals in the New York and Washington, D.C., areas who demonstrate strong potential for rapid growth." },
+  { id:"east-bos-rising",   cn:"波士顿职业组成长班", name_en:"Boston — Growth", regions:["east"],
+    req:"面向波士顿地区工作经验相对较少、但展现出快速成长潜力的职场新锐。",
+    req_en:"For early-career professionals in the Boston area who demonstrate strong potential for rapid growth." },
+  { id:"east-advisor",      cn:"荣誉顾问", name_en:"Honorary Advisors", regions:["east"],
+    req:"长期支持领航计划的荣誉顾问。",
+    req_en:"Honorary advisors whose longstanding support has helped shape the Lighthouse Mentorship community." }
 ];
 const REGIONS = {
-  west:{ cn:"美西导师", en:"West Coast Mentors", short:"美西", short_en:"West Coast", cities:"加州湾区 · 西雅图",        cities_en:"SF Bay Area · Seattle" },
+  west:{ cn:"美西导师", en:"West Coast Mentors", short:"美西", short_en:"West Coast", cities:"加州湾区 · 西雅图",        cities_en:"San Francisco Bay Area · Seattle" },
   east:{ cn:"美东导师", en:"East Coast Mentors", short:"美东", short_en:"East Coast", cities:"纽约 · 波士顿 · 华盛顿", cities_en:"New York · Boston · Washington, D.C." }
 };
 const P = "web_assets/mentors/airtable/";
@@ -338,16 +360,16 @@ const P = "web_assets/mentors/airtable/";
 /* ---------- 渲染 ---------- */
 const of = (r,g)=>MENTORS.filter(m=>m.region===r && m.group===g);
 /* 没写 regions 的组两个区域都显示;写了的只在对应区域出现(西雅图组=美西,荣誉顾问=美东) */
-const groupsFor = r => GROUPS.filter(g => !g.regions || g.regions.includes(r));
+const groupsFor = r => GROUPS.filter(g => (!g.regions || g.regions.includes(r)) && of(r, g.id).length);
 const esc = s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const avatar = m => (m.ph || !m.photo)
   ? `<div class="av ph"></div>`
-  : `<div class="av"><img src="${P}${encodeURIComponent(m.photo)}" alt="${esc(m.name)}" loading="lazy" decoding="async"></div>`;
+  : `<div class="av"><img src="${P}${encodeURIComponent(m.photo)}" alt="${esc(t(m.name, m.name_en || m.name))}" loading="lazy" decoding="async"></div>`;
 const card = m=>`<div class="card m ${m.ph?'is-ph':''}" data-mid="${MENTORS.indexOf(m)}" role="button" tabindex="0">
   <div class="top">${avatar(m)}
-    <div><div class="nm">${m.ph?t('导师姓名','Mentor Name'):esc(m.name)}</div>
-      <div class="po">${m.ph||!m.position?t('职位待补','Title TBD'):esc(m.position)}</div></div></div>
-  <div class="bio">${m.ph||!m.bio?t('简介待从 Airtable 导入。','Bio to be imported from Airtable.'):t(m.bio,m.bio_en)}</div>
+    <div><div class="nm">${m.ph?t('导师姓名','Mentor Name'):esc(t(m.name, m.name_en || m.name))}</div>
+      <div class="po">${m.ph||!m.position?t('职位待补','Title Coming Soon'):esc(m.position)}</div></div></div>
+  <div class="bio">${m.ph||!m.bio?t('简介待更新。','Bio coming soon.'):t(m.bio,m.bio_en)}</div>
 </div>`;
 
 function renderShell(){

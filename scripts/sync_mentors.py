@@ -29,24 +29,23 @@ OUT_JS    = os.path.join(ROOT, "web_assets", "mentors-data.js")
 TABLE_ID = "tbl0xkyhbCVN2b3g3"          # 两个 base 的表结构一致,表 id 也相同
 VIEW_ID  = "viwHMIrIFbGSLuId7"          # 「导师完整信息」视图:网页展示顺序 = 此视图行顺序
 
-# 美西组别 → 网站 group id;初创员工并入资深职业(网页上是一个组)
+# 美西组别 → 网站 group id(资深职业组和初创员工组各自独立成组)
 WEST_GROUPS = {
     "新星职业组": "rising",
     "资深职业组": "senior",
-    "初创员工组": "senior",
+    "初创员工组": "startup",
     "创始人组":   "founder",
     "西雅图组":   "seattle",
 }
-# 美东组别按「赛道」归入同样的三组;城市(纽约DC / 波士顿)这一维度网站上暂不区分。
-# 荣誉顾问单独成组,只在美东出现。
+# 美东保留自己的 7 个组别(城市 + 赛道),不并入美西的分组。
 EAST_GROUPS = {
-    "纽约DC创业组":       "founder",
-    "波士顿创业组":       "founder",
-    "纽约DC职业组进阶班": "senior",
-    "波士顿职业组进阶班": "senior",
-    "纽约DC职业组成长班": "rising",
-    "波士顿职业组成长班": "rising",
-    "荣誉顾问":           "advisor",
+    "纽约DC创业组":       "east-nydc-founder",
+    "波士顿创业组":       "east-bos-founder",
+    "纽约DC职业组进阶班": "east-nydc-senior",
+    "波士顿职业组进阶班": "east-bos-senior",
+    "纽约DC职业组成长班": "east-nydc-rising",
+    "波士顿职业组成长班": "east-bos-rising",
+    "荣誉顾问":           "east-advisor",
 }
 
 # 每个 base 一套配置。region=None 表示读 Airtable 的「区域」字段(美西表用)。
@@ -57,6 +56,36 @@ BASES = [
      "token": "~/.config/lighthouse/airtable_token_east", "env": "AIRTABLE_TOKEN_EAST"},
 ]
 REGION_MAP = {"美西": "west", "美东": "east"}
+
+# 英文版名字的兜底表(Airtable 的 English Name / 拼音 都为空时才用)。
+# 以 _ 开头的键是注释,不参与匹配。
+PINYIN_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "name_pinyin.json")
+CJK = re.compile(r"[\u4e00-\u9fff\u3400-\u4dbf·]+")
+
+
+def normalize_en_name(en, zh):
+    """Airtable 的「拼音」列有的填「姓 名」(Bao Shenghua),有的填「名 姓」(Shenghua Bao)。
+    网站上要统一成英文习惯的「名 姓」,否则和 David Feng 这类英文名排在一起会很乱。
+    判断方法:name_pinyin.json 里的写法是「名 姓」,取它的姓(最后一个词);
+    如果 Airtable 那串的第一个词就是这个姓,说明是「姓 名」,调换过来。"""
+    words = en.split()
+    if len(words) == 2:
+        words = [w[:1].upper() + w[1:] for w in words]      # 顺手修掉 "Liu xingchu" 这类小写
+        ref = PINYIN.get(zh, "").split()
+        if len(ref) == 2 and words[0].lower() == ref[-1].lower():
+            words = [words[1], words[0]]
+        return " ".join(words)
+    return en
+
+
+def strip_cjk(name):
+    """"David Feng 冯大为" -> "David Feng"。只在名字里中英混排时用。"""
+    return re.sub(r"\s+", " ", CJK.sub(" ", name)).strip()
+
+
+PINYIN = {k: v for k, v in
+          (json.load(open(PINYIN_FILE, encoding="utf-8")).items() if os.path.exists(PINYIN_FILE) else [])
+          if not k.startswith("_")}
 PHOTO_MAX = 480          # 头像最长边(px),卡片显示用足够
 FORCE = "--force" in sys.argv
 
@@ -117,6 +146,13 @@ def clean(s):
 
 
 UNVERIFIED = re.compile(r"^[❓？?]+\s*")
+# Airtable 里用「待更新」「待补」「TBD」占位的简介,不应该原样出现在网站上
+PLACEHOLDER_BIO = {"待更新", "待补", "待补充", "暂无", "tbd", "n/a", "na", "-", "—"}
+
+
+def is_placeholder(v):
+    t = clean(v or "")
+    return (not t) or t.lower() in PLACEHOLDER_BIO
 
 
 def strip_marker(pos):
@@ -148,6 +184,7 @@ def save_photo(att, fname):
 def main():
     os.makedirs(PHOTO_DIR, exist_ok=True)
     mentors, skipped, warns, downloaded = [], [], [], 0
+    fallbacks = []
     seen = {}
 
     for base in BASES:                 # 美西在前、美东在后:网站上区域是并列的两套名单
@@ -187,12 +224,27 @@ def main():
             if unverified:
                 warns.append(f"{name}: 职位带 ❓ 待核实标记(已从网站去掉,请在 Airtable 里确认)")
 
+            # 英文版显示用的名字:优先 Airtable 的 English Name,其次拼音;
+            # 两个都没有就退回中文名(页面上会原样显示中文)
+            name_en = clean(f.get("English Name", "")) or clean(f.get("拼音", ""))
+            if name_en and not re.search(r"[A-Za-z]", name):   # 纯中文名才需要统一姓名顺序
+                name_en = normalize_en_name(name_en, name)
+            if not name_en and CJK.search(name) and re.search(r"[A-Za-z]", name):
+                name_en = strip_cjk(name)          # 中英混排,英文版只留英文部分
+            if not name_en:
+                name_en = PINYIN.get(name, "")
+                if name_en:
+                    fallbacks.append(name)
+            if not name_en and re.search(r"[\u4e00-\u9fff]", name):
+                warns.append(f"{name}: 没有 English Name / 拼音,英文版仍显示中文名")
+
             for g in groups:  # 目前无人多组;若将来有,同一导师在每组各出现一次
                 m = {"region": region, "group": g, "name": name,
                      "position": position}
+                if name_en and name_en != name: m["name_en"] = name_en
                 if photo:            m["photo"] = photo
-                if f.get("简介"):        m["bio"]    = f["简介"].strip()
-                if f.get("English Bio"): m["bio_en"] = f["English Bio"].strip()
+                if not is_placeholder(f.get("简介")):        m["bio"]    = f["简介"].strip()
+                if not is_placeholder(f.get("English Bio")): m["bio_en"] = f["English Bio"].strip()
                 mentors.append(m)
 
     js = ("/* 本文件由 scripts/sync_mentors.py 自动生成,请勿手改 —— 改 Airtable 后重新运行脚本 */\n"
@@ -209,6 +261,10 @@ def main():
         print(f"\n跳过 {len(skipped)} 位(组别不在映射表内,待确认):")
         for b, n, g in skipped:
             print(f"  - [{b}] {n}  {g}")
+    if fallbacks:
+        print(f"\n{len(fallbacks)} 位导师的英文名来自 scripts/name_pinyin.json 兜底表"
+              "(Airtable 的 English Name / 拼音 为空),建议回填 Airtable:")
+        print("  " + "、".join(fallbacks))
     if warns:
         print("\n提醒:")
         for w in warns:
