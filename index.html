@@ -317,9 +317,17 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
   :root{--gutter:32px;--indent:32px}
   .grid-lines{display:none}
   .about-grid{grid-template-columns:1fr;gap:48px}
-  .groups,.dims,.quotes,.posts,.timeline{grid-template-columns:repeat(2,1fr)}
+  .groups,.dims,.quotes,.posts{grid-template-columns:repeat(2,1fr)}
   .mentors{grid-template-columns:repeat(3,1fr)}
   .orgs{grid-template-columns:repeat(3,1fr)}
+  /* 时间线：横向的线 + 圆点一旦换行就会断开，窄屏改为竖向轨道 */
+  .timeline{grid-template-columns:1fr;border-top:0;margin-top:22px}
+  .timeline > div{padding:0 0 28px 26px}
+  .timeline > div:last-child{padding-bottom:0}
+  .timeline > div::before{top:2px;left:0}
+  .timeline > div::after{content:"";position:absolute;left:3px;top:13px;bottom:-2px;
+    width:1px;background:var(--line-strong)}
+  .timeline > div:last-child::after{display:none}
 }
 
 /* ---------- 移动端下拉菜单(桌面端隐藏) ---------- */
@@ -350,7 +358,8 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
   .menu-btn{display:block}
   .hero h1{font-size:38px;line-height:60px;letter-spacing:-1.5px}
   .sec-title{font-size:32px}
-  .groups,.dims,.quotes,.posts,.timeline{grid-template-columns:1fr}
+  .groups,.dims,.quotes,.posts{grid-template-columns:1fr}
+  .timeline > div{padding-bottom:26px}
   /* 窄屏回落到两个一排 */
   .stat-grid{grid-template-columns:1fr 1fr;column-gap:24px;margin-top:36px;
     background:linear-gradient(var(--line),var(--line)) 50% 0/1px 100% no-repeat}
