@@ -84,7 +84,11 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 .sec-title{font-family:var(--display);font-size:48px;line-height:1.25;font-weight:400;
   display:flex;align-items:center;gap:22px;color:var(--fg)}
 .sec-title::before{content:"";width:26px;height:1px;background:var(--fg);flex:none}
-.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;padding-right:var(--indent)}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;
+  gap:24px 40px;padding-right:var(--indent)}
+/* 标题不参与收缩，宽度不够时让按钮整个换行，而不是把标题压成竖排 */
+.sec-head .sec-title{flex:0 0 auto}
+.sec-head .btn{white-space:nowrap}
 /* section 标题之下的所有内容块，左右一律内缩到标题文字的位置 */
 .sec-sub,.about-grid,.groups,.mentors,.format-body,.quotes,.posts,.orgs{
   padding-left:var(--indent);padding-right:var(--indent)}
@@ -358,6 +362,7 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
   .menu-btn{display:block}
   .hero h1{font-size:38px;line-height:60px;letter-spacing:-1.5px}
   .sec-title{font-size:32px}
+  .sec-head{flex-direction:column;align-items:flex-start;gap:20px}
   .groups,.dims,.quotes,.posts{grid-template-columns:1fr}
   .timeline > div{padding-bottom:26px}
   /* 窄屏回落到两个一排 */
