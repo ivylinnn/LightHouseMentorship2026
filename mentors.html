@@ -26,6 +26,12 @@
   --gutter:64px; --maxw:1600px; --indent:48px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
+/* 触摸设备上 iOS/WKWebView 会在 <button>/<a> 上画一块系统高亮方块，
+   形状按 client rect 走、不跟随 border-radius，所以圆形按钮会出现歪的光圈。
+   关掉它，键盘操作的焦点环通过 :focus-visible 保留。 */
+a,button{-webkit-tap-highlight-color:transparent}
+:focus:not(:focus-visible){outline:none}
+:focus-visible{outline:2px solid var(--violet,#a07de1);outline-offset:3px}
 html{scroll-behavior:smooth;scroll-padding-top:120px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:30px;
   font-weight:500;-webkit-font-smoothing:antialiased;overflow-x:hidden}

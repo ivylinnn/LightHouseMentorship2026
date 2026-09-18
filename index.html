@@ -44,6 +44,12 @@
   --indent: 48px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
+/* 触摸设备上 iOS/WKWebView 会在 <button>/<a> 上画一块系统高亮方块，
+   形状按 client rect 走、不跟随 border-radius，所以圆形按钮会出现歪的光圈。
+   关掉它，键盘操作的焦点环通过 :focus-visible 保留。 */
+a,button{-webkit-tap-highlight-color:transparent}
+:focus:not(:focus-visible){outline:none}
+:focus-visible{outline:2px solid var(--violet,#a07de1);outline-offset:3px}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{
   background:var(--bg); color:var(--fg);
@@ -217,7 +223,9 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 .qr-box .shot img{width:100%;height:auto;display:block}
 .qr-box .hint{font-size:12px;line-height:20px;color:var(--fg-3);margin-top:16px}
 .qr-box .close{position:absolute;top:14px;right:16px;width:32px;height:32px;border:0;cursor:pointer;
-  background:none;color:var(--fg-3);font-size:22px;line-height:1;border-radius:50%}
+  background:none;color:var(--fg-3);font-size:22px;line-height:1;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;padding:0;
+  -webkit-appearance:none;appearance:none}
 .qr-box .close:hover{color:var(--fg);background:rgba(255,255,255,.07)}
 @media(max-width:520px){.qr-box{padding:34px 22px 26px}.qr-box .shot{width:188px}}
 @media(max-height:760px){.qr-box{padding:30px 30px 24px}.qr-box .shot{width:168px;margin-top:18px}}
