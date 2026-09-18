@@ -217,6 +217,7 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
   border-radius:var(--radius);border:1px solid var(--card-border);background:#101015;
   box-shadow:0 30px 80px rgba(0,0,0,.55);animation:qr-in .22s ease}
 @keyframes qr-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.qr-box:focus,.qr-box:focus-visible{outline:none}
 .qr-box h3{font-family:var(--display);font-size:28px;font-weight:400;line-height:1.3}
 .qr-box .lede{font-size:14px;line-height:25px;color:var(--fg-2);margin-top:12px}
 .qr-box .shot{width:212px;margin:24px auto 0;padding:12px;border-radius:16px;background:#f8f6ff}
@@ -475,7 +476,7 @@ a.card:hover,.card.is-link:hover{background:var(--card-bg-2);border-color:rgba(2
 
 <!-- ===================== 报名 → 关注公众号 ===================== -->
 <div class="qr-mask" id="qrMask" role="dialog" aria-modal="true" aria-labelledby="qrTitle">
-  <div class="qr-box">
+  <div class="qr-box" tabindex="-1">
     <button class="close" id="qrClose" aria-label="关闭">&times;</button>
     <h3 id="qrTitle" data-en="Applications Are Closed">本期报名已截止</h3>
     <p class="lede" data-en="Scan to follow our WeChat channel — we announce each new cohort there first.">
@@ -881,7 +882,9 @@ if(menuBtn && mMenu){
     lastFocus = document.activeElement;
     mask.classList.add("open");
     document.body.style.overflow = "hidden";
-    document.getElementById("qrClose").focus();
+    /* 焦点给对话框容器：programmatic focus 在 WebKit 下会命中 :focus-visible，
+       落在圆形的 × 上就会画出一圈不跟随 border-radius 的系统焦点环 */
+    mask.querySelector(".qr-box").focus({ preventScroll: true });
   };
   const close = () => {
     mask.classList.remove("open");
