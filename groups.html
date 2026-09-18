@@ -144,7 +144,9 @@ section{position:relative;z-index:2}
 @media(max-width:1240px){
   :root{--gutter:32px;--indent:32px}
   .grid-lines{display:none}
-  .row{grid-template-columns:1fr;gap:28px}
+  /* 偶数行的 .row:nth-child(even) 权重更高，必须一起覆盖，否则窄屏仍是两列 */
+  .row,.row:nth-child(even){grid-template-columns:1fr;gap:28px}
+  .row > *{min-width:0}
   .row:nth-child(even) .media{order:0}
   .row .media .imgph{aspect-ratio:16/9;height:auto}
 }
