@@ -374,7 +374,7 @@ const avatar = m => (m.ph || !m.photo)
 const card = m=>`<div class="card m ${m.ph?'is-ph':''}" data-mid="${MENTORS.indexOf(m)}" role="button" tabindex="0">
   <div class="top">${avatar(m)}
     <div><div class="nm">${m.ph?t('导师姓名','Mentor Name'):esc(t(m.name, m.name_en || m.name))}</div>
-      <div class="po">${m.ph||!m.position?t('职位待补','Title Coming Soon'):esc(m.position)}</div></div></div>
+      ${m.ph?`<div class="po">${t('职位待补','Title Coming Soon')}</div>`:m.position?`<div class="po">${esc(m.position)}</div>`:``}</div></div>
   <div class="bio">${m.ph||!m.bio?t('简介待更新。','Bio coming soon.'):t(m.bio,m.bio_en)}</div>
 </div>`;
 

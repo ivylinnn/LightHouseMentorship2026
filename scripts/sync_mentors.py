@@ -6,6 +6,10 @@
 用法:
     python3 scripts/sync_mentors.py            # 增量:已有照片不重新下载
     python3 scripts/sync_mentors.py --force    # 重新下载所有照片
+    python3 scripts/sync_mentors.py --from-csv east=<视图导出的csv>
+        # 不走 API:用 Airtable「Download CSV」导出的文件替代某个 base,
+        # 其余 base 的记录沿用现有 mentors-data.js。照片沿用本地已有文件,
+        # 缺的会尝试下载(下载不了只警告)。
 
 流程:
     1. 拉取「网页显示=✓ 且 12期=yes」的导师记录
@@ -140,6 +144,38 @@ def fetch_all(base, tok):
             return recs
 
 
+def csv_records(path):
+    """把 Airtable「Download CSV」导出的文件转成和 API 返回一致的 records 结构。
+    差异:组别是逗号拼接的字符串;网页显示是 'checked';Photo 是 'name (url)'。
+    视图导出不带筛选,这里补上「网页显示=✓ 且 12期=yes」。"""
+    import csv
+    recs = []
+    with open(path, encoding="utf-8-sig", newline="") as fp:
+        for row in csv.DictReader(fp):
+            if (row.get("网页显示") or "").strip() != "checked":
+                continue
+            if (row.get("12期") or "").strip().lower() != "yes":
+                continue
+            f = dict(row)
+            f["组别"] = [g.strip() for g in (row.get("组别") or "").split(",") if g.strip()]
+            atts = []
+            for m in re.finditer(r"\((https?://[^)]+)\)", row.get("Photo") or ""):
+                atts.append({"url": m.group(1)})
+            f["Photo"] = atts
+            recs.append({"fields": f})
+    return recs
+
+
+def parse_from_csv(argv):
+    """--from-csv east=path [--from-csv west=path] → {region: path}"""
+    out = {}
+    for i, a in enumerate(argv):
+        if a == "--from-csv" and i + 1 < len(argv):
+            k, _, v = argv[i + 1].partition("=")
+            out[k.strip()] = os.path.expanduser(v.strip())
+    return out
+
+
 def clean(s):
     """多行/多余空白压成单行"""
     return re.sub(r"\s+", " ", (s or "")).strip()
@@ -156,10 +192,13 @@ def is_placeholder(v):
 
 
 def strip_marker(pos):
-    """Airtable 里用 ❓ 前缀标「待核实」,是内部标记,不能出现在网站上。
-    去掉后返回 (职位, 是否带过标记),带标记的人会进提醒列表。"""
+    """Airtable 里用 ❓ 前缀标「待核实」。带标记的职位整个不上网站(职位留空,
+    卡片上不显示职位行),等本人确认、Airtable 里去掉 ❓ 后再同步进来。
+    返回 (职位, 是否带过标记),带标记的人会进提醒列表。"""
     p = clean(pos)
-    return (UNVERIFIED.sub("", p), bool(UNVERIFIED.match(p)))
+    if UNVERIFIED.match(p):
+        return ("", True)
+    return (p, False)
 
 
 def safe_name(s):
@@ -173,7 +212,10 @@ def save_photo(att, fname):
     if os.path.exists(path) and not FORCE:
         return False
     url = (att.get("thumbnails", {}).get("full", {}) or {}).get("url") or att["url"]
-    data = urllib.request.urlopen(url).read()
+    try:
+        data = urllib.request.urlopen(url, timeout=30).read()
+    except Exception as e:            # CSV 模式下的 airtableusercontent 链接可能过期/被拦
+        raise RuntimeError(f"下载照片失败: {e}")
     from PIL import Image
     img = Image.open(io.BytesIO(data)).convert("RGB")
     img.thumbnail((PHOTO_MAX, PHOTO_MAX))
@@ -187,9 +229,25 @@ def main():
     fallbacks = []
     seen = {}
 
+    csv_src = parse_from_csv(sys.argv)
+    existing = []
+    if csv_src and os.path.exists(OUT_JS):
+        txt = open(OUT_JS, encoding="utf-8").read()
+        existing = json.loads(txt[txt.index("["):txt.rindex("]") + 1])
+
     for base in BASES:                 # 美西在前、美东在后:网站上区域是并列的两套名单
-        recs = fetch_all(base, token(base))
-        print(f"{base['id']}: 拉取到 网页显示✓ 且 12期=yes 的记录 {len(recs)}")
+        base_region = base["region"] or "west"
+        if csv_src and base_region not in csv_src:
+            kept = [m for m in existing if m["region"] == base_region]
+            mentors.extend(kept)
+            print(f"{base['id']}: 未提供 CSV,沿用现有 mentors-data.js 里的 {len(kept)} 条 {base_region} 记录")
+            continue
+        if csv_src:
+            recs = csv_records(csv_src[base_region])
+            print(f"{base['id']}: 从 CSV 读到 网页显示✓ 且 12期=yes 的记录 {len(recs)}")
+        else:
+            recs = fetch_all(base, token(base))
+            print(f"{base['id']}: 拉取到 网页显示✓ 且 12期=yes 的记录 {len(recs)}")
 
         for r in recs:                 # 不排序:保持 Airtable 视图中的行顺序
             f = r["fields"]
@@ -213,8 +271,15 @@ def main():
             if atts:
                 photo = f"{region}-{safe_name(name)}.webp" if region != "west" \
                         else safe_name(name) + ".webp"
-                if save_photo(atts[0], photo):
-                    downloaded += 1
+                try:
+                    if save_photo(atts[0], photo):
+                        downloaded += 1
+                except RuntimeError as e:
+                    if os.path.exists(os.path.join(PHOTO_DIR, photo)):
+                        pass            # 本地已有旧照片,沿用
+                    else:
+                        warns.append(f"{name}: {e};本地也没有,卡片将显示占位头像")
+                        photo = ""
             else:
                 warns.append(f"{name}: 无照片")
             if not f.get("简介"):

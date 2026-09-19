@@ -568,7 +568,7 @@ const MENTORS = [
   "region": "east",
   "group": "east-nydc-founder",
   "name": "段渠",
-  "position": "创始人, 华盛顿清峰资本",
+  "position": "",
   "name_en": "Qu Duan",
   "photo": "east-段渠.webp",
   "bio": "曾在中国科学院总部从事基础研究及高技术研究项目管理，曾在美国著名智库斯坦福研究院SRI科技和经济政策分部担任国际学者，从事SCI科技引文索大数据及国家创新机制研究。先后在四家美国网络技术创新或网络电信上市公司如QWEST，时代华纳电信TWC从事软件开发及系统质量管理工作十多年。\n2006年创立海外较早的三创（创新创业创投）及企业国际化服务平台美中技术UCTID与创新发展中心暨华盛顿创新创业俱乐部WIEC；2015年创立华盛顿清峰资本（TMT 投资及企业国际化）投资管理公司 。2016年始协议担任中国科学院国科控股集团美东联络代表，同时协助其子公司国科投资创建硅谷分部并兼任投资总监，合伙人。现为出海民营上市企业美国分公司CEO，管理企业资本CVC，投资 BIO TECH。\n清华大学工学学士。中国科学院理学硕士。美国乔治梅森大学计算机科学硕士。美国乔治梅森大学科技政策及系统科学博士候选人。"
@@ -639,7 +639,7 @@ const MENTORS = [
   "region": "east",
   "group": "east-nydc-founder",
   "name": "Fang Liu",
-  "position": "Attorney（公司法与证券法）",
+  "position": "",
   "photo": "east-Fang Liu.webp",
   "bio": "Ms. Fang Liu focuses her practice in the areas of corporate and securities law, with an emphasis on initial public offerings. She assists public and private companies in their corporate transactions including securitizations, public financings, banking, international market financings, cross-border acquisitions and other general matters. Ms. Liu has deep experience in advising companies on going public and advising FINRA registered broker dealers on underwritten offerings.\nPrior to co-founding VCL Law LLP, Fang practiced securities law at Pillsbury Winthrop Shaw Pittman LLP and Loeb & Loeb LLP in Washington, DC.\nMs. Liu earned a J.D. from Duke University School of Law, an M.A. from Beijing Foreign Studies University, and a B.A. from Nankai University. Ms. Liu is admitted to practice law in Washington DC and Virginia. Her working languages are English and Chinese."
  },
@@ -799,7 +799,7 @@ const MENTORS = [
   "region": "east",
   "group": "east-nydc-senior",
   "name": "康岚",
-  "position": "前资深董事总经理, 康桥资本；前执行董事兼高级副总裁, 复星国际",
+  "position": "",
   "name_en": "Lan Kang",
   "photo": "east-康岚.webp",
   "bio": "康岚女士在生物医药、保险金融等领域有着丰富的投资和管理经验。她曾担任康桥资本的资深董事总经理，是投决会委员和基金管理委员会委员，全面负责投后管理。她也曾在复星国际担任执行董事兼高级副总裁，复星保险业务总裁、董事长，以及复星国际首席人力资源官。 她还曾在全球多家公司担任董事，包括Avantor的独立董事，复星保德信人寿董事长，美国Ameritrust保险公司董事长，以及复星医药和云顶新耀等多家医药企业的非执行董事。在加入复星之前，康女士在麦肯锡公司和光辉国际公司分别做过管理咨询和高管搜寻。她的职业生涯早期在美国的MSKCC和Wyeth从事癌症研究和药物研发工作。\n康岚女士在中国浙江大学获得生物科学与技术学士学位，在宾夕法尼亚大学沃顿商学院获得MBA，在Tulane大学获得生物化学硕士学位。在斯坦福大学Distinguished Careers Institute做过一年的Fellow。"
@@ -808,7 +808,7 @@ const MENTORS = [
   "region": "east",
   "group": "east-bos-senior",
   "name": "赵月刚",
-  "position": "Chief Commercial Officer, 波士顿某分析仪器公司",
+  "position": "",
   "name_en": "Yuegang Zhao",
   "photo": "east-赵月刚.webp",
   "bio": "Boston一家私募背景的分析仪器公司的Chief Commercial Officer， ICML (International Counsel of Machinery Lubrication，国际机械润滑理事会)的董事，Merrimack College Girard 商学院的客座讲师。二十多年一直在电子测量仪器，理化分析仪器行业任市场销售管理工作，所任职各公司服务于半导体，航空航天，锂电池，矿山，工程机械，食品加工和环保等市场。自2008年起在私募基金投资的公司中任职管理层，其中2018年Spectro Scientific被Ametek(NYSE: AME)以1.9亿美金全资收购。\n北京⼤学物理系本科， University of Wisconsin, Madison 物理系硕士学位，Case Western Reserve University MBA。"
@@ -842,114 +842,6 @@ const MENTORS = [
  {
   "region": "east",
   "group": "east-bos-senior",
-  "name": "曹雯",
-  "position": "另类资产投资风险模型研究, Ares Management",
-  "name_en": "Wen Cao",
-  "photo": "east-曹雯.webp",
-  "bio": "曹雯目前就职于Ares Management，从事另类资产投资风险模型研究工作。她在纽约大学Stern商学院获得统计学博士学位，在康涅迪格大学获得金融数学硕士学位，在清华大学获得数学学士。曹雯是领航第一期职业组学员，随后加入执委会。曹雯热衷于志愿者工作，于2015年至今担任大纽约地区清华校友会副会长，于2019至2025担任北美清华校友会联合会CFO。"
- },
- {
-  "region": "east",
-  "group": "east-bos-senior",
-  "name": "张舒",
-  "position": "股票量化交易研究, 纽约某量化对冲基金",
-  "name_en": "Shu Zhang",
-  "photo": "east-张舒.webp",
-  "bio": "张舒目前就职于纽约量化对冲基金，从事股票量化交易研究。他于UIUC获得机械工程博士学位，在清华大学获得硕士和学士学位。Shu是领航第二届职业组学员，第六，七届领航执委会联席负责人。"
- },
- {
-  "region": "east",
-  "group": "east-bos-senior",
-  "name": "范思捷",
-  "position": "宏观投资策略, BlackRock",
-  "name_en": "Sijie Fan",
-  "photo": "east-范思捷.webp",
-  "bio": "范思捷就职于BlackRock，从事宏观投资策略工作。她本科毕业于哥伦比亚大学应用数学系，是特许金融分析师（CFA）持证人。她同时也是纽约汉服社的创始人，一直致力于美东地区中国传统文化的推广。"
- },
- {
-  "region": "east",
-  "group": "east-bos-senior",
-  "name": "查誉劼",
-  "position": "Engineering Manager, Meta Platforms",
-  "name_en": "Yujie Zha",
-  "photo": "east-查誉劼.webp",
-  "bio": "查誉劼目前在 Meta Platforms 担任 Engineering Manager。他在哥伦比亚大学获得金融工程硕士学位，本科毕业于复旦大学，是 CFA 特许金融分析师持证人。查誉劼是第二届领航计划的学员，及第七、八届领航执委会联席负责人。"
- },
- {
-  "region": "east",
-  "group": "east-bos-senior",
-  "name": "马婧",
-  "position": "量化执行服务总监, 某量化对冲基金",
-  "name_en": "Jing Ma",
-  "photo": "east-马婧.webp",
-  "bio": "马婧目前就职于一家量化对冲基金，担任量化执行服务总监。她在哥伦比亚大学获得硕士学位，在清华大学和北京大学获得学士学位。\n她热心于回馈社区，一直在多个非政府组织担任志愿者，也是领航计划第二届的学员，为第四届执委会负责人。此外，她曾任大纽约地区清华校友会2021-2023年度会长，并于2022年成为全美华人金融协会（TCFA）董事会成员。"
- },
- {
-  "region": "east",
-  "group": "east-bos-senior",
-  "name": "邵伟鹏",
-  "position": "投资交易与量化研究, 某对冲基金",
-  "name_en": "Weipeng Shao",
-  "photo": "east-邵伟鹏.webp",
-  "bio": "邵伟鹏目前就职于一家对冲基金，从事投资交易与量化研究。他的研究与交易领域涵盖股票及股指期权市场的波动率交易，以及以事件驱动（event-driven）为核心的多类策略，包括上市公司并购套利、特殊事件（special situations）与SPAC等。他在清华大学获得数学学士学位，并于加州大学伯克利分校取得金融工程硕士学位。邵伟鹏是第五届领航计划的学员，也是第八、九届领航执委会联席负责人。此外，他自2022年起担任大纽约地区清华校友会副会长。"
- },
- {
-  "region": "east",
-  "group": "east-bos-senior",
-  "name": "刘斌",
-  "position": "量化策略研发, 纽约某量化对冲基金",
-  "name_en": "Bin Liu",
-  "photo": "east-刘斌.webp",
-  "bio": "刘斌现就职于纽约一家量化对冲基金，从事基于深度学习的量化策略研发。他毕业于上海交通大学，获计算机学士学位，并于卡内基梅隆大学获得计算机博士学位。加入纽约量化行业之前，他曾先后在硅谷 Google 和腾讯美国从事广告机器学习相关研发工作。他是领航第八期学员，自第九期起加入执委会，并担任交通大学纽约校友会会长。"
- },
- {
-  "region": "east",
-  "group": "east-bos-senior",
-  "name": "傅鲁西",
-  "position": "信用债投资, BlackRock",
-  "name_en": "Luxi Fu",
-  "photo": "east-傅鲁西.webp",
-  "bio": "傅鲁西目前就职于BlackRock，负责公司信用债投资。本科毕业于清华大学土木工程系，并获得北京大学经济学双学位，后于密歇根大学获得金融工程硕士学位，是领航计划2021–2022届领航学员。傅鲁西积极参与公司内外多个导师计划，长期关注青年人才培养与职业发展。"
- },
- {
-  "region": "east",
-  "group": "east-bos-senior",
-  "name": "吴舒怡",
-  "position": "公司债组合管理策略与研究, Blackstone",
-  "name_en": "Shuyi Wu",
-  "photo": "east-吴舒怡.webp",
-  "bio": "吴舒怡就职于Blackstone，从事公司债的基金组合管理策略和研究工作。她本科毕业于武汉大学生物系，取得哥伦比亚大学生物统计硕士学位，持有CFA和FRM证。吴舒怡一直热衷社会公益工作，曾任2015-16哥大中国学生学者联谊会主席，现任武汉大学大纽约地区校友会会长。吴舒怡是2021-22领航学员，随后加入执委会。"
- },
- {
-  "region": "east",
-  "group": "east-bos-senior",
-  "name": "武维",
-  "position": "Senior Staff Machine Learning Engineer, Meta Platforms",
-  "name_en": "Wei Wu",
-  "photo": "east-武维.webp",
-  "bio": "武维目前在Meta Platforms 担任Senior Staff Machine Learning Engineer，从事广告模型研究，负责机器学习和大语言模型的前沿技术业务落地，在加入Meta之前，他在JPMorgan Chief Investment Office 担任量化投资副总裁，负责宏观与固定收益投资。他在哥伦比亚大学取得运筹学硕士学位，在南京大学获得学士学位。他热心服务校友与支持青年留美学子成长，曾任南京大学大纽约地区校友会副会长。此外他也擅长“折腾”，多次尝试各类创业项目，写有微信公众号“意见狗威廉”。"
- },
- {
-  "region": "east",
-  "group": "east-bos-senior",
-  "name": "陈城",
-  "position": "Equity Derivatives Sales Trader, Wells Fargo",
-  "name_en": "Cheng Chen",
-  "photo": "east-陈城.webp",
-  "bio": "Kevin is currently Equity Derivatives Sales Trader at Wells Fargo covering hedge funds and institutional clients. Previously, he worked as Equity Derivatives Portfolio Manager/Trader at Goldman Sachs for 6 years managing options overlay strategies in the Managed Strategies Group. Additionally, he worked as Investment Associate at New York Life Ventures investing in startups and venture capital funds. Kevin graduated from Baruch College in 2013 with bachelor degree in finance and completed CFA and CAIA program."
- },
- {
-  "region": "east",
-  "group": "east-bos-senior",
-  "name": "陶毅杰",
-  "position": "Senior Staff Software Engineer, Google",
-  "name_en": "Yijie Tao",
-  "photo": "east-陶毅杰.webp",
-  "bio": "陶毅杰现任 Google Senior Staff Software Engineer，拥有超过十二年的大型科技公司研发与职业发展经验。目前主要负责 Google Ads 广告主数据分析及 Performance Max 相关产品与系统，长期专注于大规模数据系统、广告效果分析、复杂技术问题解决及跨团队协作。\n加入 Google 之前，曾任职于 BlackRock，参与风险管理工具和大数据基础设施建设。他本科毕业于复旦大学微电子学专业，后获得卡内基梅隆大学信息系统管理硕士学位。\n作为职业成长组导师，希望结合自己从初入职场到资深技术领导者的成长经历，与学员探讨软件工程师职业规划、技术能力提升、影响力建设、绩效与晋升、跨团队沟通，以及如何在职业发展的不同阶段做出适合自己的选择。"
- },
- {
-  "region": "east",
-  "group": "east-bos-senior",
   "name": "姜嘉慧",
   "position": "Platform Engineering Lead, AI cybersecurity startup",
   "name_en": "Jiahui Jiang",
@@ -960,7 +852,7 @@ const MENTORS = [
   "region": "east",
   "group": "east-bos-senior",
   "name": "寿国威",
-  "position": "全球交易执行负责人, 某量化对冲基金",
+  "position": "",
   "name_en": "Guowei Shou",
   "photo": "east-寿国威.webp",
   "bio": "寿国威目前就职于一家量化对冲基金，全面负责全球各市场的交易执行。他本科毕业于清华大学计算机系，在哥伦比亚大学获得运筹学硕士学位。他之前在高盛纽约证券交易部工作7年，参与高盛核心量化模型开发和交易执行算法研究。他热心社区公益，曾担任过大纽约地区清华校友会会长。"
@@ -987,7 +879,7 @@ const MENTORS = [
   "region": "east",
   "group": "east-advisor",
   "name": "魏可成",
-  "position": "连续创业者；创始人, Nexaweb",
+  "position": "",
   "name_en": "Kecheng Wei",
   "photo": "east-魏可成.webp",
   "bio": "于1996年在清华大学自动化和结构工程本科毕业，1998年于麻省理工学院硕士毕业。他是二十多项美国和国际专利的发明者，有丰富的创业，融资，销售及成功退出的执行经验。他曾被不少孵化器和企业聘为创业导师，对企业运作，投资和孵化有丰富经验。从2000到2009，他在波士顿创立Nexaweb，是全球第一家开发web 2.0技术的软件公司之一，有8项美国专利，客户有包括Nokia, 西门子,百事可乐及日本的许多大银行。2006年他和IBM，Google，Microsoft等150家科技公司成立了OpenAjax Alliance。在2007年他被选为“40 under 40”。2009年他在波士顿创立Yottaa，一家云计算自动化优化服务的软件公司。"
@@ -1054,9 +946,117 @@ const MENTORS = [
  },
  {
   "region": "east",
+  "group": "east-nydc-rising",
+  "name": "曹雯",
+  "position": "另类资产投资风险模型研究, Ares Management",
+  "name_en": "Wen Cao",
+  "photo": "east-曹雯.webp",
+  "bio": "曹雯目前就职于Ares Management，从事另类资产投资风险模型研究工作。她在纽约大学Stern商学院获得统计学博士学位，在康涅迪格大学获得金融数学硕士学位，在清华大学获得数学学士。曹雯是领航第一期职业组学员，随后加入执委会。曹雯热衷于志愿者工作，于2015年至今担任大纽约地区清华校友会副会长，于2019至2025担任北美清华校友会联合会CFO。"
+ },
+ {
+  "region": "east",
+  "group": "east-nydc-rising",
+  "name": "张舒",
+  "position": "股票量化交易研究, 纽约某量化对冲基金",
+  "name_en": "Shu Zhang",
+  "photo": "east-张舒.webp",
+  "bio": "张舒目前就职于纽约量化对冲基金，从事股票量化交易研究。他于UIUC获得机械工程博士学位，在清华大学获得硕士和学士学位。Shu是领航第二届职业组学员，第六，七届领航执委会联席负责人。"
+ },
+ {
+  "region": "east",
+  "group": "east-nydc-rising",
+  "name": "范思捷",
+  "position": "宏观投资策略, BlackRock",
+  "name_en": "Sijie Fan",
+  "photo": "east-范思捷.webp",
+  "bio": "范思捷就职于BlackRock，从事宏观投资策略工作。她本科毕业于哥伦比亚大学应用数学系，是特许金融分析师（CFA）持证人。她同时也是纽约汉服社的创始人，一直致力于美东地区中国传统文化的推广。"
+ },
+ {
+  "region": "east",
+  "group": "east-nydc-rising",
+  "name": "查誉劼",
+  "position": "Engineering Manager, Meta Platforms",
+  "name_en": "Yujie Zha",
+  "photo": "east-查誉劼.webp",
+  "bio": "查誉劼目前在 Meta Platforms 担任 Engineering Manager。他在哥伦比亚大学获得金融工程硕士学位，本科毕业于复旦大学，是 CFA 特许金融分析师持证人。查誉劼是第二届领航计划的学员，及第七、八届领航执委会联席负责人。"
+ },
+ {
+  "region": "east",
+  "group": "east-nydc-rising",
+  "name": "马婧",
+  "position": "",
+  "name_en": "Jing Ma",
+  "photo": "east-马婧.webp",
+  "bio": "马婧目前就职于一家量化对冲基金，担任量化执行服务总监。她在哥伦比亚大学获得硕士学位，在清华大学和北京大学获得学士学位。\n她热心于回馈社区，一直在多个非政府组织担任志愿者，也是领航计划第二届的学员，为第四届执委会负责人。此外，她曾任大纽约地区清华校友会2021-2023年度会长，并于2022年成为全美华人金融协会（TCFA）董事会成员。"
+ },
+ {
+  "region": "east",
+  "group": "east-nydc-rising",
+  "name": "邵伟鹏",
+  "position": "",
+  "name_en": "Weipeng Shao",
+  "photo": "east-邵伟鹏.webp",
+  "bio": "邵伟鹏目前就职于一家对冲基金，从事投资交易与量化研究。他的研究与交易领域涵盖股票及股指期权市场的波动率交易，以及以事件驱动（event-driven）为核心的多类策略，包括上市公司并购套利、特殊事件（special situations）与SPAC等。他在清华大学获得数学学士学位，并于加州大学伯克利分校取得金融工程硕士学位。邵伟鹏是第五届领航计划的学员，也是第八、九届领航执委会联席负责人。此外，他自2022年起担任大纽约地区清华校友会副会长。"
+ },
+ {
+  "region": "east",
+  "group": "east-nydc-rising",
+  "name": "刘斌",
+  "position": "",
+  "name_en": "Bin Liu",
+  "photo": "east-刘斌.webp",
+  "bio": "刘斌现就职于纽约一家量化对冲基金，从事基于深度学习的量化策略研发。他毕业于上海交通大学，获计算机学士学位，并于卡内基梅隆大学获得计算机博士学位。加入纽约量化行业之前，他曾先后在硅谷 Google 和腾讯美国从事广告机器学习相关研发工作。他是领航第八期学员，自第九期起加入执委会，并担任交通大学纽约校友会会长。"
+ },
+ {
+  "region": "east",
+  "group": "east-nydc-rising",
+  "name": "傅鲁西",
+  "position": "信用债投资, BlackRock",
+  "name_en": "Luxi Fu",
+  "photo": "east-傅鲁西.webp",
+  "bio": "傅鲁西目前就职于BlackRock，负责公司信用债投资。本科毕业于清华大学土木工程系，并获得北京大学经济学双学位，后于密歇根大学获得金融工程硕士学位，是领航计划2021–2022届领航学员。傅鲁西积极参与公司内外多个导师计划，长期关注青年人才培养与职业发展。"
+ },
+ {
+  "region": "east",
+  "group": "east-nydc-rising",
+  "name": "吴舒怡",
+  "position": "公司债组合管理策略与研究, Blackstone",
+  "name_en": "Shuyi Wu",
+  "photo": "east-吴舒怡.webp",
+  "bio": "吴舒怡就职于Blackstone，从事公司债的基金组合管理策略和研究工作。她本科毕业于武汉大学生物系，取得哥伦比亚大学生物统计硕士学位，持有CFA和FRM证。吴舒怡一直热衷社会公益工作，曾任2015-16哥大中国学生学者联谊会主席，现任武汉大学大纽约地区校友会会长。吴舒怡是2021-22领航学员，随后加入执委会。"
+ },
+ {
+  "region": "east",
+  "group": "east-nydc-rising",
+  "name": "武维",
+  "position": "Senior Staff Machine Learning Engineer, Meta Platforms",
+  "name_en": "Wei Wu",
+  "photo": "east-武维.webp",
+  "bio": "武维目前在Meta Platforms 担任Senior Staff Machine Learning Engineer，从事广告模型研究，负责机器学习和大语言模型的前沿技术业务落地，在加入Meta之前，他在JPMorgan Chief Investment Office 担任量化投资副总裁，负责宏观与固定收益投资。他在哥伦比亚大学取得运筹学硕士学位，在南京大学获得学士学位。他热心服务校友与支持青年留美学子成长，曾任南京大学大纽约地区校友会副会长。此外他也擅长“折腾”，多次尝试各类创业项目，写有微信公众号“意见狗威廉”。"
+ },
+ {
+  "region": "east",
+  "group": "east-nydc-rising",
+  "name": "陈城",
+  "position": "Equity Derivatives Sales Trader, Wells Fargo",
+  "name_en": "Cheng Chen",
+  "photo": "east-陈城.webp",
+  "bio": "Kevin is currently Equity Derivatives Sales Trader at Wells Fargo covering hedge funds and institutional clients. Previously, he worked as Equity Derivatives Portfolio Manager/Trader at Goldman Sachs for 6 years managing options overlay strategies in the Managed Strategies Group. Additionally, he worked as Investment Associate at New York Life Ventures investing in startups and venture capital funds. Kevin graduated from Baruch College in 2013 with bachelor degree in finance and completed CFA and CAIA program."
+ },
+ {
+  "region": "east",
+  "group": "east-nydc-rising",
+  "name": "陶毅杰",
+  "position": "Senior Staff Software Engineer, Google",
+  "name_en": "Yijie Tao",
+  "photo": "east-陶毅杰.webp",
+  "bio": "陶毅杰现任 Google Senior Staff Software Engineer，拥有超过十二年的大型科技公司研发与职业发展经验。目前主要负责 Google Ads 广告主数据分析及 Performance Max 相关产品与系统，长期专注于大规模数据系统、广告效果分析、复杂技术问题解决及跨团队协作。\n加入 Google 之前，曾任职于 BlackRock，参与风险管理工具和大数据基础设施建设。他本科毕业于复旦大学微电子学专业，后获得卡内基梅隆大学信息系统管理硕士学位。\n作为职业成长组导师，希望结合自己从初入职场到资深技术领导者的成长经历，与学员探讨软件工程师职业规划、技术能力提升、影响力建设、绩效与晋升、跨团队沟通，以及如何在职业发展的不同阶段做出适合自己的选择。"
+ },
+ {
+  "region": "east",
   "group": "east-bos-rising",
   "name": "张勇",
-  "position": "总监, 某生物技术公司",
+  "position": "",
   "name_en": "Yong Zhang",
   "photo": "east-张勇.webp",
   "bio": "现在一家生物技术公司担任总监，负责细胞治疗的研发。 之前在EMD Serono从事自身免疫病的临床前早期研究。受惠于领航计划的“受助,互助,助人”的理念，\n美东领航计划第4期（2020-2021）职业组学员。学习结束后，成为“互助”的领航社区的一员。"
@@ -1065,7 +1065,7 @@ const MENTORS = [
   "region": "east",
   "group": "east-bos-rising",
   "name": "庄晓丹",
-  "position": "Speech Recognition Team Lead, 某头部消费电子公司",
+  "position": "",
   "name_en": "Xiaodan Zhuang",
   "photo": "east-庄晓丹.webp",
   "bio": "Xiaodan Zhuang leads a global team of researchers and engineers to design and improve speech recognition for some of the most popular consumer devices in the world. He previously worked as speech, language and multimedia machine learning scientist at Bolt Beranek and Newman Technologies, after receiving PhD ( Electrical and Computer Engineering ), University of Illinois at Urbana-Champaign, and BS (Electronic Engineering), Tsinghua University."
@@ -1074,7 +1074,7 @@ const MENTORS = [
   "region": "east",
   "group": "east-bos-rising",
   "name": "卢毅",
-  "position": "北美创新市场营销与战略合作负责人, 某中国制造企业美国子公司",
+  "position": "",
   "name_en": "Yi Lu",
   "photo": "east-卢毅.webp",
   "bio": "目前在一家中国制造企业的美国子公司负责北美创新市场的营销开拓和战略合作。曾在E Ink担任Project Manager和Display Scientist，参与电子墨水屏幕的研发、生产、商业化。之前在Western Digital担任Principal Engineer，利用压电陶瓷提高硬盘磁头悬挂结构的控制精度。本科毕业于清华大学自动化系，后在University of Connecticut获得博士学位。\n美东领航计划第2期（2018-2019）职业组学员。"
@@ -1151,7 +1151,7 @@ const MENTORS = [
   "region": "east",
   "group": "east-bos-rising",
   "name": "Bingxin Xu",
-  "position": "AI Engineering Leader（企业 AI 定制与转型）",
+  "position": "",
   "photo": "east-Bingxin Xu.webp",
   "bio": "Bingxin is an AI Engineer Leader in AI Customization & Transformation Pioneer in developing domain-specific AI solutions and organizational AI transformation. Partnering with Fortune 500 companies to transform proprietary enterprise knowledge, workflows, and operational processes into production-grade AI capabilities that outperform general-purpose foundation models. Experienced in driving AI-native development across internal and external organizations to reconstruct legacy workflows, reduce coordination overhead, simplify organization structures, and dramatically increase overall efficiency through AI-native operation.\n美东领航计划第6期（2022-2023）职业组学员。"
  }

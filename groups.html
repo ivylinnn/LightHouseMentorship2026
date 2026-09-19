@@ -347,7 +347,7 @@ const avatar = m => (m.ph || !m.photo)
 const TBD = ()=>t("职位待补","Title Coming Soon");
 const mm = m => `<div class="mm ${m.ph?'is-ph':''}">${avatar(m)}
   <div style="min-width:0"><div class="nm">${m.ph?t('导师姓名','Mentor Name'):esc(t(m.name, m.name_en || m.name))}</div>
-  <div class="po">${m.ph||!m.position?TBD():esc(m.position)}</div></div></div>`;
+  ${m.ph?`<div class="po">${TBD()}</div>`:m.position?`<div class="po">${esc(m.position)}</div>`:``}</div></div>`;
 
 function render(){
 document.getElementById("rows").innerHTML = GROUPS.map(g=>`
